@@ -5,10 +5,10 @@ import datetime
 
 db = SQLAlchemy()
 
-# user_rewards = db.Table('user_rewards',
-#   db.Column('user_id', db.Integer, db.ForeignKey('users.id'), primary_key=True),
-#   db.Column('reward_id', db.Integer, db.ForeignKey('rewards.id'), primary_key=True)
-# )
+user_rewards = db.Table('follow_table',
+  db.Column('follower_id', db.Integer, db.ForeignKey('users.id'), primary_key=True),
+  db.Column('following_id', db.Integer, db.ForeignKey('users.id'), primary_key=True)
+)
 
 class User(db.Model, UserMixin):
   __tablename__ = 'users'

@@ -15,7 +15,7 @@ with app.app_context():
   angela = User(username = 'Angela', email = 'angela@aa.io', password = 'password')
   soonmi = User(username = 'Soon-Mi', email = 'soonmi@aa.io', password = 'password')
   alissa = User(username = 'Alissa', email = 'alissa@aa.io', password = 'password')
-  demo = User(id = 555, username = 'Demo', email = 'demo@moneypit.com', password = 'password')
+  demo = User(id = 555, username = 'Demo', email = 'demo@odaat.com', password = 'password')
 
   
 
