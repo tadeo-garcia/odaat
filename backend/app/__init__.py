@@ -2,18 +2,22 @@ import os
 from flask import Flask, render_template, request, session
 from flask_cors import CORS
 from flask_wtf.csrf import CSRFProtect, generate_csrf
-
-
 from .models import db, User
 from .api.user_routes import user_routes
-
+from .api.session_routes import session_routes
+from flask_migrate import Migrate
 from .config import Config
 
 app = Flask(__name__)
 
 app.config.from_object(Config)
-app.register_blueprint(user_routes, url_prefix='/api/users')
+app.register_blueprint(user_routes, url_prefix='/api/user')
+app.register_blueprint(session_routes, url_prefix='/api/session')
+ # MAKE SURE TO REGISTER ALL OTHER ROUTES #
 db.init_app(app)
+migrate = Migrate(app,db)
+
+
 
 ## Application Security
 CORS(app)

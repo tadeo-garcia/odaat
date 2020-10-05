@@ -1,13 +1,14 @@
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+import datetime
 
 db = SQLAlchemy()
 
-user_rewards = db.Table('user_rewards',
-  db.Column('user_id', db.Integer, db.ForeignKey('users.id'), primary_key=True),
-  db.Column('reward_id', db.Integer, db.ForeignKey('rewards.id'), primary_key=True)
-)
+# user_rewards = db.Table('user_rewards',
+#   db.Column('user_id', db.Integer, db.ForeignKey('users.id'), primary_key=True),
+#   db.Column('reward_id', db.Integer, db.ForeignKey('rewards.id'), primary_key=True)
+# )
 
 class User(db.Model, UserMixin):
   __tablename__ = 'users'
@@ -39,29 +40,29 @@ class User(db.Model, UserMixin):
     }
 
 
-class Pledge(db.Model):
-  __tablename__ = 'pledges'
+# class Pledge(db.Model):
+#   __tablename__ = 'pledges'
 
-  id = db.Column(db.Integer, primary_key=True)
-  pledge_amount = db.Column(db.Integer, nullable=False)
-  reward_id = db.Column(db.Integer, db.ForeignKey("rewards.id"))
-  backer_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
-  project_id = db.Column(
-      db.Integer, db.ForeignKey("projects.id"), nullable=False)
-  created_at = db.Column(db.DateTime, nullable=False,
-                         default=datetime.datetime.utcnow)
-  updated_at = db.Column(db.DateTime, nullable=False,
-                         default=datetime.datetime.utcnow)
+#   id = db.Column(db.Integer, primary_key=True)
+#   pledge_amount = db.Column(db.Integer, nullable=False)
+#   reward_id = db.Column(db.Integer, db.ForeignKey("rewards.id"))
+#   backer_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+#   project_id = db.Column(
+#       db.Integer, db.ForeignKey("projects.id"), nullable=False)
+#   created_at = db.Column(db.DateTime, nullable=False,
+#                          default=datetime.datetime.utcnow)
+#   updated_at = db.Column(db.DateTime, nullable=False,
+#                          default=datetime.datetime.utcnow)
 
-  backer = db.relationship("User", foreign_keys=[backer_id])
-  project = db.relationship("Project", foreign_keys=[project_id])
-  reward = db.relationship("Reward", foreign_keys=[reward_id])
+#   backer = db.relationship("User", foreign_keys=[backer_id])
+#   project = db.relationship("Project", foreign_keys=[project_id])
+#   reward = db.relationship("Reward", foreign_keys=[reward_id])
 
-  def to_dict():
-    return {
-        "id": self.id,
-        "pledge_amount": self.pledge_amount,
-        "reward_id": self.reward_id,
-        "backer_id": self.backer_id,
-        "project_id": self.project_id
-    }
+#   def to_dict():
+#     return {
+#         "id": self.id,
+#         "pledge_amount": self.pledge_amount,
+#         "reward_id": self.reward_id,
+#         "backer_id": self.backer_id,
+#         "project_id": self.project_id
+#     }
