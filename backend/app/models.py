@@ -5,6 +5,16 @@ import datetime
 
 db = SQLAlchemy()
 
+follow_table = db.Table('follow_table',
+  db.Column('follower_id', db.Integer, db.ForeignKey('users.id'), primary_key=True),
+  db.Column('followed_id', db.Integer, db.ForeignKey('users.id'), primary_key=True)
+)
+
+sponsor_table = db.Table('sponsor_table',
+  db.Column('sponsor_id', db.Integer, db.ForeignKey('users.id'), primary_key=True),
+  db.Column('sponsee_id', db.Integer, db.ForeignKey('users.id'), primary_key=True)
+)
+
 class User(db.Model, UserMixin):
   __tablename__ = 'users'
 
@@ -20,6 +30,10 @@ class User(db.Model, UserMixin):
   updated_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
 
   meeting = db.relationship('Meeting', backref='User', lazy=True)
+  followed = db.relationship('User', secondary=follow_table,
+                            primaryjoin=(follow_table.c.follower_id == id),
+                            secondaryjoin=(follow_table.c.followed_id==id),
+                            backref=db.backref('follow_table', lazy='dynamic'), lazy='dynamic')
 
   @property
   def password(self):
@@ -39,15 +53,18 @@ class User(db.Model, UserMixin):
       "created_at": self.created_at.strftime("%B %Y")
     }
 
-follow_table = db.Table('follow_table',
-  db.Column('follower_id', db.Integer, db.ForeignKey('users.id'), primary_key=True),
-  db.Column('followed_id', db.Integer, db.ForeignKey('users.id'), primary_key=True)
-)
+  def follow(self, user):
+    if not self.is_following(user):
+      self.followed.remove(user)
 
-sponsor_table = db.Table('sponsor_table',
-  db.Column('sponsor_id', db.Integer, db.ForeignKey('users.id'), primary_key=True),
-  db.Column('sponsee_id', db.Integer, db.ForeignKey('users.id'), primary_key=True)
-)
+  def unfollow(self, user):
+    if self.is_following(user):
+      self.followed.remove(user)
+  
+  def is_following(self, user):
+    return self.followed.filter(
+      followers.c.followed_id == user.id).count() > 0
+    )
 
 user_meeting = db.Table('user_meeting',
   db.Column('user_id', db.Integer, db.ForeignKey('users.id'), primary_key=True),
