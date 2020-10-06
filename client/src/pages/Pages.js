@@ -11,8 +11,6 @@ import Profile from './Profile'
 export default function Pages() {
   return (
     <>
-      {/* <Navbar /> */
-      }
       <Route exact path="/" component={HomePage} />
       <Route exact path="/profile" component={Profile} />
       <Auth />
