@@ -8,10 +8,10 @@ session_routes = Blueprint('session', __name__)
 @session_routes.route('', methods=['POST', 'DELETE'])
 def login_user():
   if(request.method=='POST'):
-    email = request.json.get('email', None)
+    username = request.json.get('username', None)
     password = request.json.get('password', None)
 
-    user = User.query.filter(User.email==email).first()
+    user = User.query.filter(User.username==username).first()
     user_data = user.to_dict()
     if(user and user.check_password(password)):
       session['user']= user.to_dict()
@@ -19,7 +19,7 @@ def login_user():
       print('USER LOGGED IN')
       return {"user": session['user']}, 200
     else:
-      return jsonify({"msg": "Incorrect email or password."}), 400
+      return jsonify({"msg": "Incorrect username or password."}), 400
   elif(request.method=='DELETE'):
     session.pop('user', None)
     return {'msg': 'successfully logged out'}

@@ -20,14 +20,14 @@ export const logoutUser = () => {
   }
 }
 
-export const login = (email, password) => {
+export const login = (username, password) => {
   return async dispatch => {
     const res = await fetch('/api/session', {
       method: 'post',
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ email, password })
+      body: JSON.stringify({ username, password })
     })
     res.data = await res.json();
     if (res.ok) { 
@@ -37,14 +37,14 @@ export const login = (email, password) => {
   }
 }
 
-export const signup = (username, email, password) => {
+export const signup = (username, password) => {
   return async dispatch => {
     const res = await fetch('/api/users/signup', {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ username, email, password })
+      body: JSON.stringify({ username, password })
     })
     res.data = await res.json();
     if (res.ok) {

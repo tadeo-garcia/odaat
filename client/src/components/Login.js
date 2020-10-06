@@ -32,7 +32,7 @@ function Login() {
 
   const demo = e => {
     e.preventDefault();
-    dispatch(login('demo@odaat.com', 'password'))
+    dispatch(login('Demo', 'password'))
   };
   if (currentUserId) return <Redirect to='/' />
   return (

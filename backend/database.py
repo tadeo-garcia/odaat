@@ -9,13 +9,13 @@ with app.app_context():
   db.create_all()
 
 # USERS
-  ian = User(username = 'Ian', email = 'ian@aa.io', password = 'password')
-  javier = User(username = 'Javier', email = 'javier@aa.io', password = 'password')
-  dean = User(username = 'Dean', email = 'dean@aa.io', password = 'password')
-  angela = User(username = 'Angela', email = 'angela@aa.io', password = 'password')
-  soonmi = User(username = 'Soon-Mi', email = 'soonmi@aa.io', password = 'password')
-  alissa = User(username = 'Alissa', email = 'alissa@aa.io', password = 'password')
-  demo = User(id = 555, username = 'Demo', email = 'demo@odaat.com', password = 'password')
+  ian = User(username = 'Ian', password = 'password')
+  javier = User(username = 'Javier', password = 'password')
+  dean = User(username = 'Dean', password = 'password')
+  angela = User(username = 'Angela', password = 'password')
+  soonmi = User(username = 'Soon-Mi', password = 'password')
+  alissa = User(username = 'Alissa', password = 'password')
+  demo = User(id = 555, username = 'Demo', password = 'password')
 
   # followTable1 = follow_table(follower_id=1, followed_id= 2)
   # followTable2 = follow_table(follower_id=1, followed_id=3)

@@ -19,7 +19,7 @@ class User(db.Model, UserMixin):
   created_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
   updated_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
 
-  meeting = db.relationship('Meeting', backref='User', lazy=true)
+  meeting = db.relationship('Meeting', backref='User', lazy=True)
 
   @property
   def password(self):
