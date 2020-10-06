@@ -2,7 +2,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from app import app, db
-from app.models import User # SampleModel
+from app.models import User, follow_table # SampleModel
 
 with app.app_context():
   db.drop_all()
@@ -17,8 +17,14 @@ with app.app_context():
   alissa = User(username = 'Alissa', email = 'alissa@aa.io', password = 'password')
   demo = User(id = 555, username = 'Demo', email = 'demo@odaat.com', password = 'password')
 
+  # followTable1 = follow_table(follower_id=1, followed_id= 2)
+  # followTable2 = follow_table(follower_id=1, followed_id=3)
+
+
   
 
+  # db.session.add(followTable1)
+  # db.session.add(followTable2)
   db.session.add(ian)
   db.session.add(javier)
   db.session.add(dean)
