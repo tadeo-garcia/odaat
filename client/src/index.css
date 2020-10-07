@@ -4,6 +4,7 @@
 @import './css/login.css';
 @import './css/profile.css';
 @import './css/signup.css';
+@import './css/navbar.css';
 
 *{
   margin: 0px;

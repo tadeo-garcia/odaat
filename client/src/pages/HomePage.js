@@ -1,7 +1,6 @@
 import React from 'react';
 import {useSelector} from 'react-redux'
 import {Link, Redirect} from 'react-router-dom'
-// import '../css/homepage.css'
 
 
 
@@ -9,8 +8,9 @@ export default function HomePage() {
 const currentUserId = useSelector(state => state.auth.id)
 
 if (currentUserId) return <Redirect to='/dashboard' />
-  return (
-    <>
+  
+return (
+    <> 
       <div id='homepage__main'>
         <div id='homepage__top'>
           <div id='homepage__nav'>
