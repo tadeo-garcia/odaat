@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, Redirect } from 'react-router-dom';
 import { logout } from '../store/auth'
 
 
@@ -12,7 +12,8 @@ function Sidebar() {
   const handleLogout = e => {
     e.preventDefault();
     dispatch(logout())
-    history.push('/')
+    // history.push('/')
+    return (<Redirect to='/'></Redirect>)
   }
 
   return (
@@ -32,15 +33,15 @@ function Sidebar() {
           </Link>
         <Link className='sidebar-container__link' to='/settings'>
           <i className="fa fa-calendar-o" /> 
-          <span>host</span>
+          <span> host</span>
           </Link>
         <Link className='sidebar-container__link' to='/settings'>
           <i className="fa fa-book" />
           <span> 12 steps</span>
         </Link>
-        <Link className='sidebar-container__link' to='/logout'>
+        <Link className='sidebar-container__link' to='/'>
           <i className="fa fa-sign-out"/> 
-          <span onClick={handleLogout}>logout</span>
+          <span onClick={handleLogout}> logout</span>
         </Link>
       </div>
     </div>

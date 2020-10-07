@@ -7,7 +7,9 @@ import {Link, Redirect} from 'react-router-dom'
 export default function HomePage() {
 const currentUserId = useSelector(state => state.auth.id)
 
-if (currentUserId) return <Redirect to='/dashboard' />
+if (typeof currentUserId === 'number'){
+  return <Redirect to='/dashboard' />
+} 
   
 return (
     <> 

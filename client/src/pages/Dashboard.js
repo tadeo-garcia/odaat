@@ -12,7 +12,7 @@ const currentUserId = useSelector(state=> state.auth.id)
 
  
 if(!currentUserId){
-  return <Redirect to='/login'></Redirect>
+  return <Redirect to='/'></Redirect>
 }
 
   return (

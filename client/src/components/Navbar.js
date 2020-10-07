@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { NavLink, useHistory } from 'react-router-dom';
+import { NavLink, useHistory, Redirect } from 'react-router-dom';
 import {logout} from '../store/auth'
 
 function Navbar() {
@@ -11,7 +11,8 @@ function Navbar() {
   const handleLogout = e => {
     e.preventDefault();
     dispatch(logout())
-    history.push('/')
+    // history.push('/')
+    return (<Redirect to='/'></Redirect>)
   }
 
   return (

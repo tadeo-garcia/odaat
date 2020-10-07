@@ -13,9 +13,6 @@ def login_user():
     user = User.query.filter(User.email == email).first()
     user_data = user and user.to_dict()
     if(user and user.check_password(password)):
-      print('~~~~~~~~~~~~~~~')
-      print('LOGGED IN SUCCESFUL')
-      print('~~~~~~~~~~~~~~~')
       session['user'] = user.to_dict()
       return {"user": session['user']}, 200
     else:

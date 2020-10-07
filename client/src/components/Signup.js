@@ -38,7 +38,8 @@ function Signup() {
     }
   }
 
-  if (currentUserId) return <Redirect to='/' />
+  if (currentUserId) return <Redirect to='/dashboard' />
+
   if (warning.length) {
     emailDiv = "login-container__input-bad";
     passwordDiv = "login-container__input-bad";
