@@ -1,13 +1,13 @@
-import React, { useEffect, useState} from 'react';
-import '../css/profile.css';
+// import React, { useEffect, useState} from 'react';
+// import '../css/profile.css';
 
 
-export default function Profile() {
+// export default function Profile() {
 
 
-  return (
-    <>
+//   return (
+//     <>
      
-    </>
-  )
-}
+//     </>
+//   )
+// }

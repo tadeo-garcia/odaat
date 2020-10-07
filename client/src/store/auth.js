@@ -34,7 +34,6 @@ export const login = (email, password) => {
       dispatch(setUser(res.data.user))
     }
     else{
-      // console.log(res.data.msg)
       dispatch(setUser(res.data.msg))
       return res;
     }
@@ -51,9 +50,10 @@ export const signup = (email, password) => {
       body: JSON.stringify({ email, password })
     })
     res.data = await res.json();
-    if (res.ok) {
+    if (res.data.user) {
       dispatch(setUser(res.data.user));
     }
+    
     return res;
   }
 }

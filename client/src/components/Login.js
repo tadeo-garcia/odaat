@@ -11,7 +11,7 @@ function Login() {
   const [noPassword, setNoPassword] = useState('');
   const currentUserId = useSelector(state => state.auth.id);
   const warning = useSelector(state => state.auth)
-  const warningRef = useRef()
+  
 
   const dispatch = useDispatch();
   let emailDiv = "login-container__input";
@@ -40,8 +40,9 @@ function Login() {
   
   if (currentUserId) return <Redirect to='/' />
   
-  if(warning){
-    warningRef.current = warning
+  if(warning.length){
+    emailDiv = "login-container__input-bad";
+    passwordDiv = "login-container__input-bad";
   }
 
   return (
@@ -50,9 +51,6 @@ function Login() {
           <div className="login-container">
             <div id='login-container__label'>
               Log in
-            </div>
-            <div ref={warningRef} id='login-conatiner__warning'>
-          
             </div>
             <form className='login-container__form' onSubmit={handleSubmit}>
               <div>
