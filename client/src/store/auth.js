@@ -30,10 +30,14 @@ export const login = (email, password) => {
       body: JSON.stringify({ email, password })
     })
     res.data = await res.json();
-    if (res.ok) { 
+    if (res.data.user) { 
       dispatch(setUser(res.data.user))
     }
-    return res;
+    else{
+      // console.log(res.data.msg)
+      dispatch(setUser(res.data.msg))
+      return res;
+    }
   }
 }
 

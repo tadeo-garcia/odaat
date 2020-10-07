@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../store/auth';
 import { Redirect, Link } from 'react-router-dom';
 import '../css/login.css'
-import Footer from '../components/Footer'
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -11,22 +10,25 @@ function Login() {
   const [noEmail, setNoEmail] = useState('');
   const [noPassword, setNoPassword] = useState('');
   const currentUserId = useSelector(state => state.auth.id);
+  const warning = useSelector(state => state.auth)
+  const warningRef = useRef()
 
   const dispatch = useDispatch();
-  let emailDiv = "form-input";
-  let passwordDiv = "form-input";
+  let emailDiv = "login-container__input";
+  let passwordDiv = "login-container__input";
   const handleSubmit = e => {
     e.preventDefault();
     setNoEmail('');
     setNoPassword('');
+
     if (email && password) {
       dispatch(login(email.toLocaleLowerCase(), password));
     } else if (!email && password) {
-      emailDiv = "bad-input";
-      setNoEmail("Oi! We're gonna need that email of yours!")
+      emailDiv = "login-container__input-bad";
+      setNoEmail("Please enter a valid email.")
     } else if (email && !password) {
-      passwordDiv = "bad-input";
-      setNoPassword("What's the password?");
+      passwordDiv = "login-container__input-bad";
+      setNoPassword("Please enter your password.");
     }
   }
 
@@ -37,33 +39,46 @@ function Login() {
 
   
   if (currentUserId) return <Redirect to='/' />
+  
+  if(warning){
+    warningRef.current = warning
+  }
+
   return (
     <>
-      <div className='loginWrapper'>
-          <div className="loginContainer">
-            <div id='loginLabel'>
+      <div className='login-wrapper'>
+          <div className="login-container">
+            <div id='login-container__label'>
               Log in
             </div>
-            <form className='loginContainer__form' onSubmit={handleSubmit}>
+            <div ref={warningRef} id='login-conatiner__warning'>
+          
+            </div>
+            <form className='login-container__form' onSubmit={handleSubmit}>
               <div>
-                <span style={{ color: 'red' }}>{noEmail}</span>
                 <input type='email' className={emailDiv} name='email' value={email} placeholder="Email" onChange={e => setEmail(e.target.value)} />
+              </div>
+              <div className='login-container__warning' 
+              style={{ color: 'red'}}>
+                {noEmail}
               </div>
               <div>
                 <input type='password' className={passwordDiv} name='password' value={password} placeholder='Password' onChange={e => setPassword(e.target.value)} />
               </div>
-              <span style={{ color: 'red' }}>{noPassword}</span>
-              <div>
-                <button type='submit' className='loginContainer__loginButton'>Log in</button>
+              <div className='login-container__warning' style={{ color: 'red'}}>
+                {noPassword}
               </div>
-              <button className='loginContainer__loginButton' onClick={demo}>Demo Log in</button>
+              <div>
+              <button type='submit' className='login-container__button'>Log in</button>
+              </div>
+              <button className='login-container__button' onClick={demo}>Demo Log in</button>
             </form>
-            <div id='redirect'>
-              New to Kickstarter? <Link to="/signup" style={{ textDecoration: 'none', color: 'blue', fontWeight: 'bold' }} > Sign up </Link>
+            <div id='login-container__redirect'>
+            New to odaat? 
+            <Link to="/signup" style={{ textDecoration: 'none', color: '#014178', fontWeight: '500' }} > Sign up </Link>
             </div>
           </div>
         </div>
-      <Footer />
     </>
   )
 }

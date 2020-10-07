@@ -1,7 +1,6 @@
-/* TODO Add site wide styles */
-
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700');  
 *{
   margin: 0px;
   box-sizing: border-box;
-  font-family: "Maison Neue Book", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }

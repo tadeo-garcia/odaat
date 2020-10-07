@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { signup } from '../store/auth';
 import { Redirect, Link } from 'react-router-dom';
-import Footer from '../components/Footer'
 import '../css/signup.css'
 
 let emailDiv = "signup-input";
@@ -79,7 +78,6 @@ function Signup() {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   )
 }
