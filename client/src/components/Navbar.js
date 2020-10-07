@@ -17,20 +17,17 @@ function Navbar() {
   return (
     <div id='nav-container'>
       <div id='nav-container__left'>
-        <div id='' >
-          <span id="nav-links">One Day At A Time</span>
-          
+        <div id='nav-container__title' >
+          <span>One Day At A Time</span>
         </div>
       </div>
-
       <div id='nav-container__middle'>
           “There is an island of opportunity in the middle of every difficulty.”
       </div>
-
       <div id='nav-container__right'>
         <div id='nav-container__right-profile' >
             <NavLink id='nav-container__right-link' exact to={`/user/${currentUserId}`}> 
-              <i className="fa fa-user-circle-o" aria-hidden="true"></i>
+              <i className="fa fa-user-circle-o"/>
               profile
             </NavLink>
         </div>
@@ -40,9 +37,7 @@ function Navbar() {
         <div id='nav-container__right-logout'>
           <span id='nav-container__right-link' onClick={handleLogout}>logout</span>
         </div>
-      
       </div>
-
     </div>
   )
 };

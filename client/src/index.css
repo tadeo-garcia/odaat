@@ -5,6 +5,8 @@
 @import './css/profile.css';
 @import './css/signup.css';
 @import './css/navbar.css';
+@import './css/footer.css';
+@import './css/sidebar.css';
 
 *{
   margin: 0px;
