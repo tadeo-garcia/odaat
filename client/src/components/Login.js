@@ -32,8 +32,10 @@ function Login() {
 
   const demo = e => {
     e.preventDefault();
-    dispatch(login('Demo', 'password'))
+    dispatch(login('demo@odaat.com', 'password'))
   };
+
+  
   if (currentUserId) return <Redirect to='/' />
   return (
     <>
