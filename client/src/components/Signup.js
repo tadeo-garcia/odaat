@@ -15,6 +15,7 @@ function Signup() {
   const [noEmail, setNoEmail] = useState('');
   const [noPassword, setNoPassword] = useState('');
   const currentUserId = useSelector(state => state.auth.id);
+  const warning = useSelector(state => state.auth)
   const dispatch = useDispatch();
   
   const handleSubmit = e => {
@@ -39,6 +40,10 @@ function Signup() {
   }
 
   if (currentUserId) return <Redirect to='/' />
+  if (warning.length) {
+    emailDiv = "login-container__input-bad";
+    passwordDiv = "login-container__input-bad";
+  }
 
   return (
     <>

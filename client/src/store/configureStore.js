@@ -2,7 +2,7 @@ import { createStore, compose, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 
 import auth from './auth';
-// import sample_store from './sample_store'
+
 
 const rootReducer = combineReducers({
   auth, // sample_store

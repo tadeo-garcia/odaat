@@ -40,21 +40,23 @@ export const login = (email, password) => {
   }
 }
 
-export const signup = (email, password) => {
+export const signup = (email, password, username) => {
   return async dispatch => {
-    const res = await fetch('/api/users/signup', {
+    const res = await fetch('/api/user/signup', {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ email, password })
+      body: JSON.stringify({ email, password, username })
     })
     res.data = await res.json();
     if (res.data.user) {
       dispatch(setUser(res.data.user));
     }
-    
-    return res;
+    else{
+      dispatch(setUser(res.data.msg))
+      return res;
+    }
   }
 }
 
