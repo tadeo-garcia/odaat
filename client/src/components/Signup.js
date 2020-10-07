@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { signup } from '../store/auth';
 import { Redirect, Link } from 'react-router-dom';
-import '../css/signup.css'
+// import '../css/signup.css'
 
 let emailDiv = "signup-container__input";
 let passwordDiv = "signup-container__input";

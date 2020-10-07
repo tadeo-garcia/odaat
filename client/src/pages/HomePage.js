@@ -1,7 +1,7 @@
 import React from 'react';
 import {useSelector} from 'react-redux'
 import {Link, Redirect} from 'react-router-dom'
-import '../css/homepage.css'
+// import '../css/homepage.css'
 
 
 

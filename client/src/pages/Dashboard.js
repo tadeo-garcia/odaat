@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 // import { Link } from 'react-router-dom'
-import '../css/dashboard.css'
+// import '../css/dashboard.css'
 
 export default function Dashboard() {
 const currentUserId = useSelector(state=> state.auth.id)

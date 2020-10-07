@@ -1,6 +1,21 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700');  
+@import './css/dashboard.css';
+@import './css/homepage.css';
+@import './css/login.css';
+@import './css/profile.css';
+@import './css/signup.css';
+
 *{
   margin: 0px;
   box-sizing: border-box;
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+button {
+  background: none;
+  border: none;
+}
+
+button:hover {
+  cursor: pointer;
 }
