@@ -20,6 +20,7 @@ class User(db.Model, UserMixin):
 
   id = db.Column(db.Integer, primary_key=True)
   username = db.Column(db.String(30), nullable=False)
+  email = db.Column(db.String(55), nullable=False, unique=True)
   hashed_password = db.Column(db.String(100), nullable=False)
   zipcode = db.Column(db.Integer)
   sponsor = db.Column(db.Boolean, default=False)
@@ -49,7 +50,13 @@ class User(db.Model, UserMixin):
   def to_dict(self):
     return {
       "id": self.id,
-      "username": self.username,
+      "email": self.email,
+      "username":self.username,
+      "zipcode":self.zipcode,
+      "sponsor": self.sponsor,
+      "sponsee": self.sponsee,
+      "picture": self.picture,
+      "bio": self.bio,
       "created_at": self.created_at.strftime("%B %Y")
     }
 
@@ -64,7 +71,7 @@ class User(db.Model, UserMixin):
   def is_following(self, user):
     return self.followed.filter(
       followers.c.followed_id == user.id).count() > 0
-    )
+    
 
 user_meeting = db.Table('user_meeting',
   db.Column('user_id', db.Integer, db.ForeignKey('users.id'), primary_key=True),

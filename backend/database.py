@@ -9,22 +9,15 @@ with app.app_context():
   db.create_all()
 
 # USERS
-  ian = User(username = 'Ian', password = 'password')
-  javier = User(username = 'Javier', password = 'password')
-  dean = User(username = 'Dean', password = 'password')
-  angela = User(username = 'Angela', password = 'password')
-  soonmi = User(username = 'Soon-Mi', password = 'password')
-  alissa = User(username = 'Alissa', password = 'password')
-  demo = User(id = 555, username = 'Demo', password = 'password')
-
-  # followTable1 = follow_table(follower_id=1, followed_id= 2)
-  # followTable2 = follow_table(follower_id=1, followed_id=3)
+  ian = User(username = 'Ian', email='ian@odaat.com', password = 'password')
+  javier = User(username = 'Javier', email='javier@odaat.com', password = 'password')
+  dean = User(username = 'Dean', email='dean@odaat.com', password = 'password')
+  angela = User(username = 'Angela', email='angela@odaat.com',  password = 'password')
+  soonmi = User(username='Soon-Mi', email='soon-mi@odaat.com', password='password')
+  alissa = User(username='Alissa', email='alissa@odaat.com', password='password')
+  demo = User(id = 555, username = 'Demo', email='demo@odaat.com', password = 'password')
 
 
-  
-
-  # db.session.add(followTable1)
-  # db.session.add(followTable2)
   db.session.add(ian)
   db.session.add(javier)
   db.session.add(dean)
