@@ -11,7 +11,7 @@
 
 #nav-container__left{
   width: 300px;
-  padding-left: 25px;
+  padding-left: 20px;
 
 }
 
@@ -21,19 +21,21 @@
   justify-content: center;
   align-items: center;
   text-align:center;
-  font-size: 12px;
+  font-size: 13px;
+  font-weight: 300;
 }
 
 
 #nav-container__right{
   width: 300px;
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-end;
 }
 
 #nav-container__right-link{
   color: #014178;
   text-decoration: none;
+  padding-right: 20px;
 }
 
 #nav-container__right-link:hover{

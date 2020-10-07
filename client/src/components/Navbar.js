@@ -30,7 +30,7 @@ function Navbar() {
       <div id='nav-container__right'>
         <div id='nav-container__right-profile' >
             <NavLink id='nav-container__right-link' exact to={`/user/${currentUserId}`}> 
-              <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+              <i className="fa fa-user-circle-o" aria-hidden="true"></i>
               profile
             </NavLink>
         </div>
