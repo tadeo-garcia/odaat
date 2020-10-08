@@ -7,8 +7,7 @@
 .map-container__search {
   position: absolute;
   top: 60px;
-  left: 50%;
-  /* transform: translateX(-50%); */
+  right: 0;
   width: 100%;
   max-width: 350px;
   z-index: 10;
@@ -20,13 +19,18 @@
   width: 100%;
 }
 
+.map-container__search input:focus {
+  border: 1px solid #014178;
+}
+
 .map-container__compass {
   position: absolute;
-  top: 75px;
-  right: 1rem;
+  top: 72.5px;
+  right: 360px;
   background: none;
   border: none;
   z-index: 10;
   width: 30px;
   cursor: pointer;
+  color: #014178;
 }

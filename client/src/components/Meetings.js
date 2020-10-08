@@ -1,14 +1,9 @@
-import React, { useEffect, useState } from 'react';
-
+import React, { useEffect, useState } from "react";
 
 export default function Meetings() {
-
-
   return (
     <>
-      <div id='meetings-container'>
-        Meetings GOES HERE!
-      </div>
+      <div id="meetings-container"></div>
     </>
-  )
+  );
 }

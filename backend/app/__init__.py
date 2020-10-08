@@ -2,7 +2,7 @@ import os
 from flask import Flask, render_template, request, session
 from flask_cors import CORS
 from flask_wtf.csrf import CSRFProtect, generate_csrf
-from .models import db, User
+from .models import db, User, Meeting
 from .api.user_routes import user_routes
 from .api.session_routes import session_routes
 from flask_migrate import Migrate
@@ -13,21 +13,24 @@ app = Flask(__name__)
 app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/user')
 app.register_blueprint(session_routes, url_prefix='/api/session')
- # MAKE SURE TO REGISTER ALL OTHER ROUTES #
+app.register_bluprint(meetings_routers, url_prefix='/api/meetings')
+
 db.init_app(app)
-migrate = Migrate(app,db)
+migrate = Migrate(app, db)
 
 
-
-## Application Security
+# Application Security
 CORS(app)
+
+
 @app.after_request
 def inject_csrf_token(response):
     response.set_cookie('csrf_token',
-        generate_csrf(),
-        secure=True if os.environ.get('FLASK_ENV') else False,
-        samesite='Strict' if os.environ.get('FLASK_ENV') else None,
-        httponly=True)
+                        generate_csrf(),
+                        secure=True if os.environ.get('FLASK_ENV') else False,
+                        samesite='Strict' if os.environ.get(
+                            'FLASK_ENV') else None,
+                        httponly=True)
     return response
 
 

@@ -1,11 +1,5 @@
 import React, { useCallback, useState, useRef } from "react";
-import {
-  GoogleMap,
-  useLoadScript,
-  Marker,
-  InfoWindow,
-} from "@react-google-maps/api";
-// import {formatRelative} from "date-fns";
+import { GoogleMap, useLoadScript, Marker, InfoWindow } from "@react-google-maps/api";
 import mapStyle from "./MapStyle";
 import Search from "./Search";
 import Compass from "./Compass";

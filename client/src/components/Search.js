@@ -1,8 +1,5 @@
 import React from "react";
-import usePlacesAutocomplete, {
-  getGeocode,
-  getLatLng,
-} from "use-places-autocomplete";
+import usePlacesAutocomplete, { getGeocode, getLatLng } from "use-places-autocomplete";
 import {
   Combobox,
   ComboboxInput,
@@ -47,7 +44,7 @@ export default function Search({ panTo }) {
             setValue(e.target.value);
           }}
           disabled={!ready}
-          placeholder="Enter an address"
+          placeholder="Enter a city"
         />
         <ComboboxPopover>
           <ComboboxList>
