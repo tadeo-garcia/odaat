@@ -10,7 +10,6 @@ import Footer from "../components/Footer";
 
 export default function Dashboard() {
   const currentUserId = useSelector((state) => state.auth.id);
-
   const contentRef = useRef();
 
   if (!currentUserId) {
