@@ -1,14 +1,9 @@
-import React, { useEffect, useState } from 'react';
-
+import React from "react";
 
 export default function Host() {
-
-
   return (
     <>
-      <div id='host-container'>
-        HOSTING MEETINGS GOES HERE!
-      </div>
+      <div id="host-container">HOSTING MEETINGS GOES HERE!</div>
     </>
-  )
+  );
 }

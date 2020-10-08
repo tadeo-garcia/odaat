@@ -5,6 +5,7 @@ from flask_wtf.csrf import CSRFProtect, generate_csrf
 from .models import db, User, Meeting
 from .api.user_routes import user_routes
 from .api.session_routes import session_routes
+from .api.meetings_routes import meetings_routes
 from flask_migrate import Migrate
 from .config import Config
 
@@ -13,7 +14,7 @@ app = Flask(__name__)
 app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/user')
 app.register_blueprint(session_routes, url_prefix='/api/session')
-app.register_bluprint(meetings_routers, url_prefix='/api/meetings')
+app.register_blueprint(meetings_routes, url_prefix='/api/meetings')
 
 db.init_app(app)
 migrate = Migrate(app, db)

@@ -19,6 +19,7 @@ export const getMeetings = () => {
   return async (dispatch) => {
     const res = await fetch("/api/meetings", {
       method: "GET",
+      headers: { "Access-Control-Allow-Origin": "*" },
     });
     res.data = await res.json();
     if (res.ok) {

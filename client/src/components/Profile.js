@@ -1,15 +1,9 @@
-import React, { useEffect, useState} from 'react';
-
+import React from "react";
 
 export default function Profile() {
-
-
   return (
     <>
-      <div id='profile-container'>
-        PROFILE GOES HERE!
-      </div>  
+      <div id="profile-container">PROFILE GOES HERE!</div>
     </>
-  )
+  );
 }
-  
