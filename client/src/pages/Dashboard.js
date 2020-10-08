@@ -5,7 +5,7 @@ import { Redirect } from 'react-router-dom';
 
 import Navbar from '../components/Navbar';
 import Sidebar from '../components/Sidebar';
-import MapApi from '../components/Map'
+import Feed from '../components/Feed'
 import Footer from '../components/Footer';
 
 export default function Dashboard() {
@@ -48,7 +48,7 @@ if(!currentUserId){
   return <Redirect to='/'></Redirect>
 }
 if(contentRef.current === undefined){
-  contentRef.current = MapApi();
+  contentRef.current = Feed();
 }
 
   return (

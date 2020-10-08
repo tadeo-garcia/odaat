@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useHistory, Redirect } from 'react-router-dom';
 import { logout } from '../store/auth';
-import MapApi from '../components/Map'
+import Feed from '../components/Feed'
 import Profile from '../components/Profile';
 import Settings from '../components/Settings';
 import Host from '../components/Host';
@@ -20,8 +20,8 @@ function Sidebar({contentRef}) {
     return (<Redirect to='/'></Redirect>)
   }
 
-  const setDisplayHome = () => {
-    contentRef.current = MapApi()
+  const setDisplayFeed = () => {
+    contentRef.current = Feed()
   }
 
   const setDisplayProfile = () => {
@@ -44,7 +44,7 @@ function Sidebar({contentRef}) {
   return (
     <div id='sidebar-container'>
       <div id='sidebar-container__links'>
-        <Link className='sidebar-container__link' to='/dashboard' onClick={setDisplayHome}>
+        <Link className='sidebar-container__link' to='/dashboard' onClick={setDisplayFeed}>
           <i className="fa fa-home" />
           <span> home </span>
         </Link>
