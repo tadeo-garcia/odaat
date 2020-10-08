@@ -46,27 +46,27 @@ function Sidebar({contentRef}) {
       <div id='sidebar-container__links'>
         <Link className='sidebar-container__link' to='/dashboard' onClick={setDisplayFeed}>
           <i className="fa fa-home" />
-          <span> home </span>
+          <span>home </span>
         </Link>
         <Link className='sidebar-container__link' to='/dashboard' onClick={setDisplayProfile}>
           <i className="fa fa-user-circle" />
-          <span> profile </span>
+          <span>profile </span>
         </Link>
         <Link className='sidebar-container__link' to='/dashboard' onClick={setDisplaySettings}> 
           <i className="fa fa-cog" /> 
-          <span> settings </span>
+          <span>settings </span>
           </Link>
         <Link className='sidebar-container__link' to='/dashboard' onClick={setDisplayHost}>
           <i className="fa fa-calendar-o" /> 
-          <span> host</span>
+          <span>host</span>
           </Link>
         <Link className='sidebar-container__link' to='/dashboard' onClick={setDisplaySteps}>
           <i className="fa fa-book" />
-          <span> 12 steps</span>
+          <span>12 steps</span>
         </Link>
         <Link className='sidebar-container__link' to='/'>
           <i className="fa fa-sign-out"/> 
-          <span onClick={handleLogout}> logout</span>
+          <span onClick={handleLogout}>logout</span>
         </Link>
       </div>
     </div>
