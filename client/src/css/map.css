@@ -13,3 +13,20 @@
   max-width: 350px;
   z-index: 10;
 }
+
+.map-container__search input {
+  padding: 0.5rem;
+  font-size: 1.5rem;
+  width: 100%;
+}
+
+.map-container__compass {
+  position: absolute;
+  top: 75px;
+  right: 1rem;
+  background: none;
+  border: none;
+  z-index: 10;
+  width: 30px;
+  cursor: pointer;
+}

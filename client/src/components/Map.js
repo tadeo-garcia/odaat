@@ -8,6 +8,7 @@ import {
 // import {formatRelative} from "date-fns";
 import mapStyle from "./MapStyle";
 import Search from "./Search";
+import Compass from "./Compass";
 
 const libraries = ["places"];
 const mapContainerStyle = {
@@ -46,7 +47,12 @@ export default function MapApi() {
   const mapRef = useRef();
   const onMapLoad = useCallback((map) => {
     mapRef.current = map;
-  });
+  }, []);
+
+  const panTo = useCallback(({ lat, lng }) => {
+    mapRef.current.panTo({ lat, lng });
+    mapRef.current.setZoom(12);
+  }, []);
 
   if (loadError) return "Error loading maps";
   if (!isLoaded) return "Loading Maps";
@@ -54,7 +60,8 @@ export default function MapApi() {
   return (
     <>
       <div id="map-container">
-        <Search />
+        <Search panTo={panTo} />
+        <Compass panTo={panTo} />
 
         <GoogleMap
           mapContainerStyle={mapContainerStyle}

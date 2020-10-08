@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useRef } from "react";
+import React from "react";
 import usePlacesAutocomplete, {
   getGeocode,
   getLatLng,
@@ -12,13 +12,13 @@ import {
 } from "@reach/combobox";
 import "@reach/combobox/styles.css";
 
-export default function Search() {
+export default function Search({ panTo }) {
   const {
     ready,
     value,
     suggestions: { status, data },
     setValue,
-    clearSuggestion,
+    clearSuggestions,
   } = usePlacesAutocomplete({
     requestOptions: {
       location: { lat: () => 32.776665, lng: () => -96.796989 },
@@ -29,8 +29,16 @@ export default function Search() {
   return (
     <div className="map-container__search">
       <Combobox
-        onSelect={(address) => {
-          console.log(address);
+        onSelect={async (address) => {
+          setValue(address, false);
+          clearSuggestions();
+          try {
+            const results = await getGeocode({ address });
+            const { lat, lng } = await getLatLng(results[0]);
+            panTo({ lat, lng });
+          } catch (e) {
+            console.log(e);
+          }
         }}
       >
         <ComboboxInput
@@ -42,10 +50,12 @@ export default function Search() {
           placeholder="Enter an address"
         />
         <ComboboxPopover>
-          {status === "OK" &&
-            data.map(({ id, description }) => (
-              <ComboboxOption key={id} value={description} />
-            ))}
+          <ComboboxList>
+            {status === "OK" &&
+              data.map(({ id, description }, index) => (
+                <ComboboxOption key={index} value={description} />
+              ))}
+          </ComboboxList>
         </ComboboxPopover>
       </Combobox>
     </div>
