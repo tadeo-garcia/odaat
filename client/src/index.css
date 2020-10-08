@@ -1,21 +1,20 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700');  
-@import './css/splashpage.css';
-@import './css/login.css';
-@import './css/signup.css';
-@import './css/dashboard.css';
-@import './css/navbar.css';
-@import './css/sidebar.css';
-@import './css/footer.css';
-@import './css/feed.css';
-@import './css/map.css';
-@import './css/meetings.css';
-@import './css/profile.css';
-@import './css/settings.css';
-@import './css/host.css';
-@import './css/steps.css';
+@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700");
+@import "./css/splashpage.css";
+@import "./css/login.css";
+@import "./css/signup.css";
+@import "./css/dashboard.css";
+@import "./css/navbar.css";
+@import "./css/sidebar.css";
+@import "./css/footer.css";
+@import "./css/feed.css";
+@import "./css/map.css";
+@import "./css/meetings.css";
+@import "./css/profile.css";
+@import "./css/settings.css";
+@import "./css/host.css";
+@import "./css/steps.css";
 
-
-*{
+* {
   margin: 0px;
   box-sizing: border-box;
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
