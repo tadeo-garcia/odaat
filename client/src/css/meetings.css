@@ -2,11 +2,19 @@
   width: 100%;
   height: 60%;
   border: 1px solid gray;
-  overflow-y: hidden scroll;
+  background-color: cadetblue;
+}
+
+#meetings-container__header {
+  /* position: -webkit-sticky; */
+  /* position: sticky; */
+  height: 75px;
+  width: 100%;
 }
 
 #meetings-container__grid {
-  display: flex;
+  /* margin-top: 100px; */
+  height: 100%;
   flex-direction: column;
 }
 

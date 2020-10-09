@@ -26,7 +26,6 @@ function Navbar() {
       <div id="nav-container__right">
         <div id="nav-container__right-profile">
           <NavLink id="nav-container__right-link" exact to={`/user/${currentUserId}`}>
-            <i className="fa fa-user-circle-o" />
             profile
           </NavLink>
         </div>

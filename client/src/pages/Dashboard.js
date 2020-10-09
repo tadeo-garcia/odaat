@@ -22,7 +22,7 @@ export default function Dashboard() {
   return (
     <>
       <div id="dashboard__main">
-        <div id="dashboard__-top">
+        <div id="dashboard__top">
           <Navbar />
         </div>
         <div id="dashboard__main-middle">
