@@ -29,6 +29,46 @@ export const getMeetings = () => {
   };
 };
 
+export const createMeeting = (
+  userId,
+  title,
+  description,
+  date,
+  time,
+  location,
+  lat,
+  lng,
+  virtual,
+  zoomId,
+  official
+) => {
+  return async (dispatch) => {
+    const res = await fetch("/api/meetings/create", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        userId,
+        title,
+        description,
+        date,
+        time,
+        location,
+        lat,
+        lng,
+        virtual,
+        zoomId,
+        official,
+      }),
+    });
+    res.data = await res.json();
+    if (res.ok) {
+      dispatch(loadMeeting(res.data.meeting));
+    }
+  };
+};
+
 export default function meetingsReducer(state = {}, action) {
   switch (action.type) {
     case GET_MEETING:

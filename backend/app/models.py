@@ -120,6 +120,8 @@ class Meeting(db.Model):
             "date": self.date.isoformat(),
             "time": self.time.isoformat(),
             "location": self.location,
+            "lat": self.lat,
+            "lng": self.lng,
             "virtual": self.virtual,
             "zoom_id": self.zoom_id,
         }

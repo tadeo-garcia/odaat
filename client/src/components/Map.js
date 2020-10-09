@@ -26,14 +26,10 @@ export default function MapApi() {
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries,
   });
-  const [markers, setMarkers] = useState([]);
+  // const [markers, setMarkers] = useState([]);
   const [selected, setSelected] = useState(null);
   const meetings = useSelector((state) => state.meetings.meetings);
   let coords = [];
-  let marks = [
-    { lat: 32.97687390000001, lng: -96.8307234 },
-    { lat: 33.6356695, lng: -96.6119449 },
-  ];
 
   const mapRef = useRef();
   const onMapLoad = useCallback((map) => {

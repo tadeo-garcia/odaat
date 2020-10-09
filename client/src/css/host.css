@@ -1,4 +1,5 @@
- #host-container{width: 650px;
-  height: 400px;
+#host-container {
+  width: 100%;
+  height: 100%;
   border: 1px solid gray;
 }

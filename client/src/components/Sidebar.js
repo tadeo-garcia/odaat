@@ -2,14 +2,8 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 import { logout } from "../store/auth";
-import Feed from "../components/Feed";
-import Profile from "../components/Profile";
-import Settings from "../components/Settings";
-import Host from "../components/Host";
-import Steps from "../components/Steps";
 
-function Sidebar({ contentRef }) {
-  // const currentUserId = useSelector(state => state.auth.id);
+function Sidebar() {
   const dispatch = useDispatch();
 
   const handleLogout = (e) => {
@@ -18,46 +12,26 @@ function Sidebar({ contentRef }) {
     return <Redirect to="/"></Redirect>;
   };
 
-  const setDisplayFeed = () => {
-    contentRef.current = Feed();
-  };
-
-  const setDisplayProfile = () => {
-    contentRef.current = Profile();
-  };
-
-  const setDisplaySettings = () => {
-    contentRef.current = Settings();
-  };
-
-  const setDisplayHost = () => {
-    contentRef.current = Host();
-  };
-
-  const setDisplaySteps = () => {
-    contentRef.current = Steps();
-  };
-
   return (
     <div id="sidebar-container">
       <div id="sidebar-container__links">
-        <Link className="sidebar-container__link" to="/dashboard" onClick={setDisplayFeed}>
+        <Link className="sidebar-container__link" to="/Dashboard">
           <i className="fa fa-home" />
           <span>home </span>
         </Link>
-        <Link className="sidebar-container__link" to="/dashboard" onClick={setDisplayProfile}>
+        <Link className="sidebar-container__link" to="/Dashboard/Profile">
           <i className="fa fa-user-circle" />
           <span>profile </span>
         </Link>
-        <Link className="sidebar-container__link" to="/dashboard" onClick={setDisplaySettings}>
+        <Link className="sidebar-container__link" to="/Dashboard/Settings">
           <i className="fa fa-cog" />
           <span>settings </span>
         </Link>
-        <Link className="sidebar-container__link" to="/dashboard" onClick={setDisplayHost}>
+        <Link className="sidebar-container__link" to="/Dashboard/Host">
           <i className="fa fa-calendar-o" />
           <span>host</span>
         </Link>
-        <Link className="sidebar-container__link" to="/dashboard" onClick={setDisplaySteps}>
+        <Link className="sidebar-container__link" to="/Dashboard/Steps">
           <i className="fa fa-book" />
           <span>12 steps</span>
         </Link>
