@@ -16,16 +16,22 @@ export default function Meetings() {
     <>
       <div id="meetings-container">
         <div id="meetings-container__header">
-          <span>Check out any of the meetings below, or search above with the map!</span>
+          <span>Check out any of the meetings below or search above with the map!</span>
         </div>
         <div id="meetings-container__grid">
-          {meetings.map((meeting) => {
+          {meetings.map((meeting, idx) => {
+            let meetClass = "meetings-container__meeting";
+            if (idx % 2 === 0) {
+              meetClass = "meetings-container__meeting2";
+            }
             return (
-              <div key={meeting.id} id="meetings-container__meeting">
-                <div>{meeting.title}</div>
-                <div>{meeting.date}</div>
-                <div>{meeting.time}</div>
-                <div>{meeting.location}</div>
+              <div key={meeting.id} id={meetClass}>
+                <div id="meetings-container__title" className="meetings-container__text">
+                  {meeting.title}
+                </div>
+                <div className="meetings-container__text">{meeting.date}</div>
+                <div className="meetings-container__text">{meeting.time}</div>
+                <div className="meetings-container__text">{meeting.location}</div>
               </div>
             );
           })}

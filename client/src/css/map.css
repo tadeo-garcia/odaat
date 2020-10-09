@@ -11,7 +11,7 @@
 
 .map-container__search {
   position: absolute;
-  top: 60px;
+  top: 0px;
   right: 0;
   width: 100%;
   max-width: 350px;
@@ -30,8 +30,8 @@
 
 .map-container__compass {
   position: absolute;
-  top: 72.5px;
-  right: 360px;
+  top: 65px;
+  right: 15px;
   background: none;
   border: none;
   z-index: 10;
