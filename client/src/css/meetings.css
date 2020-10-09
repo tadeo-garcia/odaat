@@ -8,14 +8,16 @@
 #meetings-container__header {
   /* position: -webkit-sticky; */
   /* position: sticky; */
-  height: 75px;
+  height: 45px;
   width: 100%;
+  background-color: white;
 }
 
 #meetings-container__grid {
   /* margin-top: 100px; */
   height: 100%;
   flex-direction: column;
+  overflow-y: scroll;
 }
 
 #meetings-container__meeting {
