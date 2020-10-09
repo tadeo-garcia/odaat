@@ -98,6 +98,8 @@ class Meeting(db.Model):
     date = db.Column(db.Date(), nullable=False)
     time = db.Column(db.Time, nullable=False)
     location = db.Column(db.String(1000), nullable=False)
+    lat = db.Column(db.Float, nullable=False)
+    lng = db.Column(db.Float, nullable=False)
     virtual = db.Column(db.Boolean, default=False)
     zoom_id = db.Column(db.String, default=None)
     official = db.Column(db.Boolean, default=True)

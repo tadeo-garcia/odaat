@@ -35,27 +35,27 @@ with app.app_context():
 
     meeting1 = Meeting(host_id='1', title='Clean Air Meeting',
                        description='This meeting is closed; only those who have a desire to stop drinking may attend.',
-                       date='2020-10-31', time='18:00:00', location='16541 Addison Rd, Addison, TX 75001', virtual=True, zoom_id='555xyz', official=True)
+                       date='2020-10-31', time='18:00:00', location='16541 Addison Rd, Addison, TX 75001', lat=32.976290, lng=-96.830360,  virtual=True, zoom_id='555xyz', official=True)
 
     meeting2 = Meeting(host_id='2', title='Serenity Group Meeting',
                        description='Discussion based meeting. This meeting is open and anyone may attend.',
-                       date='2020-10-31', time='18:00:00', location='106 S Elm St, Sherman, TX 75090', virtual=True, zoom_id='555xyz', official=True)
+                       date='2020-10-31', time='18:00:00', location='106 S Elm St, Sherman, TX 75090', lat=33.635950, lng=-96.611990, virtual=True, zoom_id='555xyz', official=True)
 
     meeting3 = Meeting(host_id='3', title='The Gift of Sobriety',
                        description='This meeting is closed; only those who have a desire to stop drinking may attend.',
-                       date='2020-10-31', time='18:00:00', location='1350 W Walnut Hill Ln Irving, TX 75038', virtual=True, zoom_id='555xyz', official=True)
+                       date='2020-10-31', time='18:00:00', location='1350 W Walnut Hill Ln Irving, TX 75038', lat=32.884670, lng=-96.972900, virtual=True, zoom_id='555xyz', official=True)
 
     meeting4 = Meeting(host_id='4', title='Cornerstone Group Meeting',
                        description='This meeting is closed; only those who have a desire to stop drinking may attend.',
-                       date='2020-10-31', time='07:00:00', location='9090 Skillman St, Dallas, TX 75243', virtual=True, zoom_id='555xyz', official=True)
+                       date='2020-10-31', time='07:00:00', location='9090 Skillman St, Dallas, TX 75243', lat=32.896060, lng=-96.721440, virtual=True, zoom_id='555xyz', official=True)
 
-    meeting5 = Meeting(host_id='5', title='Clean Air Meeting',
-                       description='This meeting is closed; only those who have a desire to stop drinking may attend.',
-                       date='2020-10-31', time='18:00:00', location='9090 Skillman St, Dallas, TX 75243', virtual=True, zoom_id='555xyz', official=True)
+    meeting5 = Meeting(host_id='5', title='Unidad Meeting',
+                       description='This meeting is closed; only those who have a desire to stop drinking may attend. Meeting is in Spanish.',
+                       date='2020-10-31', time='18:00:00', location='4532 Columbia Ave Dallas, TX 75226', lat=32.792220, lng=-96.766520, virtual=True, zoom_id='555xyz', official=True)
 
-    meeting6 = Meeting(host_id='6', title='Dallas North Group',
-                       description='This meeting is closed; only those who have a desire to stop drinking may attend.',
-                       date='2020-10-31', time='18:00:00', location='101 S Coit Rd  # 210, Richardson, TX 75080', virtual=True, zoom_id='555xyz', official=True)
+    meeting6 = Meeting(host_id='6', title='31 De Octubre',
+                       description='This meeting is closed; only those who have a desire to stop drinking may attend. Meeting is in Spanish.',
+                       date='2020-10-31', time='18:00:00', location='7911 Lake June Rd Dallas, TX 75217', lat=32.734635, lng=-96.686310, virtual=True, zoom_id='555xyz', official=True)
 
     db.session.add(meeting1)
     db.session.add(meeting2)
