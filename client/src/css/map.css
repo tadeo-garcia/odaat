@@ -1,7 +1,12 @@
 #map-container {
   width: 100%;
+  min-height: 200px;
   height: 40%;
   border: 1px solid gray;
+}
+
+#google-map {
+  min-height: 200px;
 }
 
 .map-container__search {

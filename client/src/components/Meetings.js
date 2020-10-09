@@ -6,8 +6,6 @@ export default function Meetings() {
   const dispatch = useDispatch();
   const meetings = useSelector((state) => state.meetings.meetings);
 
-  console.log(meetings);
-
   useEffect(() => {
     dispatch(getMeetings());
   }, [dispatch]);
@@ -23,12 +21,12 @@ export default function Meetings() {
         <div id="meetings-container__grid">
           {meetings.map((meeting) => {
             return (
-              <>
+              <div key={meeting.id} id="meetings-container__meeting">
                 <div>{meeting.title}</div>
                 <div>{meeting.date}</div>
                 <div>{meeting.time}</div>
                 <div>{meeting.location}</div>
-              </>
+              </div>
             );
           })}
         </div>

@@ -2,4 +2,17 @@
   width: 100%;
   height: 60%;
   border: 1px solid gray;
+  overflow-y: hidden scroll;
+}
+
+#meetings-container__grid {
+  display: flex;
+  flex-direction: column;
+}
+
+#meetings-container__meeting {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 75px;
 }

@@ -1,5 +1,4 @@
 import React from "react";
-
 import MapApi from "./Map";
 import Meetings from "./Meetings";
 
