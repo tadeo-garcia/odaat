@@ -1,9 +1,68 @@
-#host-container {
-  width: 100%;
-  height: 100%;
-  border: 1px solid gray;
+#host-wrapper {
+  min-width: 30%;
+  overflow-y: scroll;
 }
 
 .hidden {
   display: none;
+}
+
+#host-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#host-container__info {
+  padding-top: 12.5px;
+  height: 45px;
+  width: 100%;
+  text-align: center;
+}
+
+#host-container__form-div {
+  width: 85%;
+}
+
+.host-container__input-div {
+  margin-bottom: 10px;
+  font-size: 18px;
+  color: #656969;
+  padding: 12px 18px;
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.17);
+}
+
+.host-container__input {
+  width: 100%;
+  font-size: 18px;
+}
+
+.host-container__input-descript {
+  line-height: 1.5;
+}
+
+.host-container__input-div-check {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 18px;
+  color: #656969;
+  padding: 12px 18px;
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.17);
+}
+
+.host-container__input-check {
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(2); /* IE */
+  -moz-transform: scale(2); /* FF */
+  -webkit-transform: scale(2); /* Safari and Chrome */
+  -o-transform: scale(2); /* Opera */
+  transform: scale(2);
+  padding: 10px;
+  margin-left: 10px;
 }

@@ -8,15 +8,11 @@ export default function Host() {
   const currentUserId = useSelector((state) => state.auth.id);
   const [title, setTitle] = useState(null);
   const [description, setDescription] = useState(null);
-  const [date, setDate] = useState("Choose a Date for your meeting.");
-  const [time, setTime] = useState(
-    "Choose a starting time for your meeting, please use the format 00:00, and military time."
-  );
-  const [location, setLocation] = useState("Please enter an address for your meeting.");
-  const [lat, setLat] = useState(null);
-  const [lng, setLng] = useState(null);
+  const [date, setDate] = useState(null);
+  const [time, setTime] = useState(null);
+  const [location, setLocation] = useState(null);
   const [virtual, setVirtual] = useState("off");
-  const [zoomId, setZoomId] = useState("Please enter the zoom id here if it is a virtual meeting.");
+  const [zoomId, setZoomId] = useState(null);
   const [official, setOfficial] = useState("off");
 
   const dispatch = useDispatch();
@@ -26,22 +22,6 @@ export default function Host() {
     try {
       const results = await getGeocode({ address });
       const { lat, lng } = await getLatLng(results[0]);
-      console.log(`${lat} , ${lng}`);
-      setLat(lat);
-      setLng(lng);
-      console.log({
-        currentUserId,
-        title,
-        location,
-        description,
-        date,
-        time,
-        lat,
-        lng,
-        virtual,
-        zoomId,
-        official,
-      });
 
       dispatch(
         createMeeting(
@@ -65,35 +45,6 @@ export default function Host() {
 
   const handleCreateMeeting = () => {
     extractCoord();
-
-    // console.log({
-    //   currentUserId,
-    //   title,
-    //   location,
-    //   description,
-    //   date,
-    //   time,
-    //   lat,
-    //   lng,
-    //   virtual,
-    //   zoomId,
-    //   official,
-    // });
-    // dispatch(
-    //   createMeeting(
-    //     currentUserId,
-    //     title,
-    //     location,
-    //     description,
-    //     date,
-    //     time,
-    //     lat,
-    //     lng,
-    //     virtual,
-    //     zoomId,
-    //     official
-    //   )
-    // );
   };
 
   return (
@@ -103,50 +54,85 @@ export default function Host() {
           <MapApi />
         </div>
         <div id="host-container">
-          <div id="host-container__info">Here is a form where you can host your own meeting.</div>
-          <div>
+          <div id="host-container__info">Fill out the form below to host your meeting!</div>
+          <div id="host-container__form-div">
             <form id="host-container__form">
-              <div id="host-container__input">
+              <div className="host-container__input-div">
                 <input
                   type="text"
+                  className="host-container__input"
                   onChange={(e) => setTitle(e.target.value)}
-                  placeholder={
-                    "Enter a Title for your meeting. An example could be Liberty Group Meeting."
-                  }
+                  placeholder={"Enter a Title for your meeting."}
                 />
               </div>
-              <div id="host-container__input">
-                <input type="text" onChange={(e) => setLocation(e.target.value)} />
-              </div>
-              <div id="host-container__input">
+              <div className="host-container__input-div">
                 <input
+                  type="text"
+                  className="host-container__input"
+                  placeholder={"Enter an address for your meeting."}
+                  onChange={(e) => setLocation(e.target.value)}
+                />
+              </div>
+              <div className=" host-container__input-div description-box">
+                <textarea
                   type="text-area"
+                  className="host-container__input"
+                  rows={10}
                   onChange={(e) => setDescription(e.target.value)}
                   placeholder="Set a description for your meeeting. Here you can specify if it is a closed meeting, or what language it is, and so on."
                 />
               </div>
-              <div id="host-container__input">
-                <input type="date" onChange={(e) => setDate(e.target.value)} />
-              </div>
-              <div id="host-container__input">
-                <input type="time" onChange={(e) => setTime(e.target.value)} />
-              </div>
-              <div id="host-container__input">
-                <input type="checkbox" onClick={(e) => setVirtual(e.target.value)} />
-              </div>
-              <div id="host-container__input">
-                <input type="checkbox" onClick={(e) => setOfficial(e.target.value)} />
-              </div>
-              <div id="host-container__input">
+              <div className="host-container__input-div">
+                <span className="host-container__input-descript">
+                  Please provide a date for your meeting.
+                </span>
                 <input
-                  type="text"
-                  onChange={(e) => setZoomId(e.target.value)}
-                  placeholder="If virtual, please provide zoom room ID."
+                  type="date"
+                  className="host-container__input"
+                  onChange={(e) => setDate(e.target.value)}
                 />
               </div>
-              <div id="host-container__input"></div>
+              <div className="host-container__input-div">
+                <span className="host-container__input-descript">
+                  {" "}
+                  Please provide a time for your meeting.{" "}
+                </span>
+                <input
+                  type="time"
+                  className="host-container__input"
+                  onChange={(e) => setTime(e.target.value)}
+                />
+              </div>
+              <div className="host-container__input-div-check">
+                <span>
+                  If this is an official Alcoholics Anonymous meeting please mark the check box.
+                </span>
+                <input
+                  type="checkbox"
+                  className="host-container__input-check"
+                  onClick={(e) => setOfficial(e.target.value)}
+                />
+              </div>
+              <div className="host-container__input-div-check">
+                <span>If this is intended to be a virtual meeting please mark the check box.</span>
+                <input
+                  type="checkbox"
+                  className="host-container__input-check"
+                  onClick={(e) => setVirtual(e.target.value)}
+                />
+              </div>
+              <div className="host-container__input-div">
+                <input
+                  type="text"
+                  className="host-container__input"
+                  onChange={(e) => setZoomId(e.target.value)}
+                  placeholder="If virtual, please provide zoom room ID, if not leave blank."
+                />
+              </div>
             </form>
-            <button onClick={(e) => handleCreateMeeting()}>host</button>
+            <div className="host-container__input-div">
+              <button onClick={(e) => handleCreateMeeting()}>host</button>
+            </div>
           </div>
         </div>
       </div>
