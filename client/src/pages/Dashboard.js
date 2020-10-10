@@ -1,7 +1,6 @@
 import React, { useRef } from "react";
 import { useSelector } from "react-redux";
 import { Redirect, Switch, Route } from "react-router-dom";
-// import { Link } from 'react-router-dom'
 
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
@@ -19,9 +18,6 @@ export default function Dashboard() {
   if (!currentUserId) {
     return <Redirect to="/"></Redirect>;
   }
-  if (contentRef.current === undefined) {
-    contentRef.current = Feed();
-  }
 
   return (
     <>
@@ -31,12 +27,8 @@ export default function Dashboard() {
         </div>
         <div id="dashboard__main-middle">
           <div id="dashboard__sidebar">
-            <Sidebar contentRef={contentRef} />
+            <Sidebar />
           </div>
-          {/* <div id="dashboard__content" ref={contentRef}>
-            {contentRef.current}
-          </div> */}
-
           <div id="dashboard__content" ref={contentRef}>
             <Switch>
               <Route exact path="/dashboard" component={Feed} />
@@ -54,5 +46,3 @@ export default function Dashboard() {
     </>
   );
 }
-
-// <Switch>

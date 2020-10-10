@@ -32,10 +32,10 @@ export const getMeetings = () => {
 export const createMeeting = (
   userId,
   title,
+  location,
   description,
   date,
   time,
-  location,
   lat,
   lng,
   virtual,
@@ -51,10 +51,10 @@ export const createMeeting = (
       body: JSON.stringify({
         userId,
         title,
+        location,
         description,
         date,
         time,
-        location,
         lat,
         lng,
         virtual,

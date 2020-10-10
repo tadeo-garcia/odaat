@@ -122,6 +122,7 @@ class Meeting(db.Model):
             "location": self.location,
             "lat": self.lat,
             "lng": self.lng,
+            "official": self.official,
             "virtual": self.virtual,
             "zoom_id": self.zoom_id,
         }

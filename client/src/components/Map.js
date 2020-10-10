@@ -15,6 +15,7 @@ const center = {
   lat: 32.776665,
   lng: -96.796989,
 };
+
 const options = {
   styles: mapStyle,
   disableDefaultUI: true,
@@ -59,16 +60,16 @@ export default function MapApi() {
           onLoad={onMapLoad}
           // onClick={onMapClick}
         >
-          {coords.map((marker, idx) => (
+          {meetings.map((meeting, idx) => (
             <Marker
               key={idx}
-              position={{ lat: marker.lat, lng: marker.lng }}
-              icon={{
-                color: "blue",
-                origin: new window.google.maps.Point(0, 0),
-                scaledSize: new window.google.maps.Size(30, 30),
-                anchor: new window.google.maps.Point(15, 15),
-              }}
+              position={{ lat: meeting.lat, lng: meeting.lng }}
+              // icon={{
+              //   color: "blue",
+              //   origin: new window.google.maps.Point(0, 0),
+              //   scaledSize: new window.google.maps.Size(30, 30),
+              //   anchor: new window.google.maps.Point(15, 15),
+              // }}
             />
           ))}
 

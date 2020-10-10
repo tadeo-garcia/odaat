@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getMeetings } from "../store/meetings";
+import { getGeocode, getLatLng } from "use-places-autocomplete";
 
 export default function Meetings() {
   const dispatch = useDispatch();
