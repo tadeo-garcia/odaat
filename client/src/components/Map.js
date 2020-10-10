@@ -11,6 +11,7 @@ const mapContainerStyle = {
   width: "100%",
   height: "100%",
 };
+
 const center = {
   lat: 32.776665,
   lng: -96.796989,
@@ -27,7 +28,7 @@ export default function MapApi() {
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries,
   });
-  // const [markers, setMarkers] = useState([]);
+
   const [selected, setSelected] = useState(null);
   const meetings = useSelector((state) => state.meetings.meetings);
   let coords = [];
@@ -58,19 +59,9 @@ export default function MapApi() {
           center={center}
           options={options}
           onLoad={onMapLoad}
-          // onClick={onMapClick}
         >
           {meetings.map((meeting, idx) => (
-            <Marker
-              key={idx}
-              position={{ lat: meeting.lat, lng: meeting.lng }}
-              // icon={{
-              //   color: "blue",
-              //   origin: new window.google.maps.Point(0, 0),
-              //   scaledSize: new window.google.maps.Size(30, 30),
-              //   anchor: new window.google.maps.Point(15, 15),
-              // }}
-            />
+            <Marker key={idx} position={{ lat: meeting.lat, lng: meeting.lng }} />
           ))}
 
           {selected ? (

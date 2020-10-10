@@ -94,10 +94,10 @@ class Meeting(db.Model):
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     host_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     title = db.Column(db.String(1000), nullable=False)
+    location = db.Column(db.String(1000), nullable=False)
     description = db.Column(db.String(1000), nullable=False)
     date = db.Column(db.Date(), nullable=False)
     time = db.Column(db.Time, nullable=False)
-    location = db.Column(db.String(1000), nullable=False)
     lat = db.Column(db.Float, nullable=False)
     lng = db.Column(db.Float, nullable=False)
     virtual = db.Column(db.Boolean, default=False)
@@ -114,8 +114,8 @@ class Meeting(db.Model):
     def to_dict(self):
         return {
             "id": self.id,
-            "title": self.title,
             "host_id": self.host_id,
+            "title": self.title,
             "description": self.description,
             "date": self.date.isoformat(),
             "time": self.time.isoformat(),
