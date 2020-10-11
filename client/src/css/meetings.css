@@ -63,10 +63,8 @@
 }
 
 .meetings-container__text {
-  /* padding-left: 5px; */
   width: 125px;
   margin-right: 5px;
-  /* margin-left: 5px; */
 }
 
 .meetings-container__link {

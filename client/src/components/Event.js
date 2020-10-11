@@ -24,17 +24,15 @@ export default function Event() {
     libraries,
   });
 
-  // const dispatch = useDispatch();
   const meeting = useSelector((state) => state.meetings.meeting);
-  // console.log(meeting);
   const meetings = useSelector((state) => state.meetings.meetings);
   const [center, setCenter] = useState(null);
 
-  // let center = { lat: meeting.lat, lng: meeting.lng };
   const mapRef = useRef();
   const onMapLoad = useCallback((map) => {
     mapRef.current = map;
     mapRef.current.setZoom(13);
+    console.log(meeting);
     let center = { lat: meeting.lat, lng: meeting.lng };
     setCenter(center);
   }, []);
@@ -50,7 +48,7 @@ export default function Event() {
 
   return (
     <>
-      <div id="meeting-container">
+      <div id="event-container">
         <div id="map-container">
           <Compass panTo={panTo} />
           <GoogleMap
@@ -62,22 +60,52 @@ export default function Event() {
             onLoad={onMapLoad}
           >
             <Marker key={meeting.id} position={{ lat: meeting.lat, lng: meeting.lng }} />
-
             <InfoWindow position={{ lat: meeting.lat, lng: meeting.lng }}>
               <div>
                 <h4>Meeting: {meeting.title}</h4>
-                <span>Join us on: {meeting.date}</span>
-                <br />
-                <span>Starts at: {meeting.time}</span>
+                <span>Join us at: {meeting.location}</span>
                 <br />
               </div>
             </InfoWindow>
           </GoogleMap>
         </div>
-        <div id="meetings-container__header">
-          <span>CURRENT MEETING TITLE</span>
+        <div id="event-container__main">
+          <div id="event-container__header">
+            <span>Please join us for the {meeting.title} !</span>
+          </div>
+          <div id="meeting-container__info-details">
+            {" "}
+            {meeting.date} at {meeting.time}{" "}
+          </div>
+          <div id="meeting-container__info">
+            <div id="meeting-container__info-details">{meeting.description}</div>
+            {meeting.official ? (
+              <div id="meeting-container__info-details">
+                This is an official AA meeting, where we will go through all of our regular
+                traditions.
+              </div>
+            ) : (
+              <div id="meeting-container__info-details">
+                This is not an official AA meeting, but instead an event for those who wish to
+                participate in sober activities with other members in recovery!
+              </div>
+            )}
+            {meeting.virtual ? (
+              <div id="meeting-container__info-details">
+                This is an online meeting, please log into zoom with the following password at the
+                start of the meeting.
+                <br />
+                <br />
+                password: {meeting.zoom_id}
+              </div>
+            ) : (
+              <div id="meeting-container__info-details">
+                This is not an online meeting, please remember to wear a mask and practice proper
+                social distancing when possible!
+              </div>
+            )}
+          </div>
         </div>
-        <div id="meeting-container-info"></div>
       </div>
     </>
   );
