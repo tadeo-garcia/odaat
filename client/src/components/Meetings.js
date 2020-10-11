@@ -15,9 +15,9 @@ export default function Meetings() {
   return (
     <>
       <div id="meetings-container">
-        <div id="meetings-container__header">
+        {/* <div id="meetings-container__header">
           <span>Check out any of the meetings below or search above with the map!</span>
-        </div>
+        </div> */}
         <div id="meetings-container__grid">
           {meetings.map((meeting, idx) => {
             let meetClass = "meetings-container__meeting";

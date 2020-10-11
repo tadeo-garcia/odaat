@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getMeetings } from "../store/meetings";
+import MapApi from "./Map";
 
 export default function Event() {
   const dispatch = useDispatch();

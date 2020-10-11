@@ -1,16 +1,14 @@
 #map-container {
   width: 100%;
-  height: 350px;
-  /* min-height: 350px; */
-  /* max-height: 40%; */
+  height: 40%;
   border: 1px solid gray;
-  position: absolute;
-  top: 0;
+  position: relative;
+  /* top: 0; */
   z-index: 40;
 }
 
 #google-map {
-  min-height: 350px;
+  min-height: inherit;
 }
 
 .map-container__search {
@@ -54,4 +52,30 @@
   color: #012e55;
   cursor: pointer;
   text-decoration: underline;
+}
+
+#map__table-header {
+  height: 45px;
+  width: 100%;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  z-index: 35;
+  border: 1px solid gray;
+}
+#map__table-header-check {
+  padding-left: 10px;
+  padding-top: 10px;
+}
+
+#map__table-label {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin-bottom: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-weight: 500;
 }

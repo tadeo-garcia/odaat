@@ -13,6 +13,7 @@
 @import "./css/settings.css";
 @import "./css/host.css";
 @import "./css/steps.css";
+@import "./css/event.css";
 
 * {
   margin: 0px;

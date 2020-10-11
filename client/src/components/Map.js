@@ -107,6 +107,17 @@ export default function MapApi() {
             </InfoWindow>
           ) : null}
         </GoogleMap>
+        <div id="map__table-header">
+          <div id="map__table-header-check">
+            Check out any of the meetings below or search above with the map!
+          </div>
+          <div id="map__table-label">
+            <div className="meetings-container__text">Name</div>
+            <div className="meetings-container__text">Date</div>
+            <div className="meetings-container__text">Time</div>
+            <div className="meetings-container__text">Address</div>
+          </div>
+        </div>
       </div>
     </>
   );
