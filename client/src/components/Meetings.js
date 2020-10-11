@@ -14,6 +14,17 @@ export default function Meetings() {
 
   return (
     <>
+      <div id="meetings__table-header">
+        <div id="meetings__table-header-check">
+          Check out any of the meetings below or search above with the map!
+        </div>
+        <div id="meetings__table-label">
+          <div className="meetings-container__text">Name</div>
+          <div className="meetings-container__text">Date</div>
+          <div className="meetings-container__text">Time</div>
+          <div className="meetings-container__text">Address</div>
+        </div>
+      </div>
       <div id="meetings-container">
         {/* <div id="meetings-container__header">
           <span>Check out any of the meetings below or search above with the map!</span>

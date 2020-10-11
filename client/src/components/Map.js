@@ -107,7 +107,7 @@ export default function MapApi() {
             </InfoWindow>
           ) : null}
         </GoogleMap>
-        <div id="map__table-header">
+        {/* <div id="map__table-header">
           <div id="map__table-header-check">
             Check out any of the meetings below or search above with the map!
           </div>
@@ -117,7 +117,7 @@ export default function MapApi() {
             <div className="meetings-container__text">Time</div>
             <div className="meetings-container__text">Address</div>
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );
