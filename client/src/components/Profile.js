@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { NavLink, Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 export default function Profile() {
   const currentUser = useSelector((state) => state.auth);
-  console.log(currentUser);
+  const dispatch = useDispatch();
+
+  useEffect(() => {}, [dispatch]);
+
   return (
     <>
       <div id="profile-container">
@@ -25,10 +28,51 @@ export default function Profile() {
                   id="profile-container__default-avatar"
                 ></div>
               )}
+              <div id="profile-container__user-details">
+                <span id="profile-title">Welcome {currentUser.username}</span>
+                <div>
+                  {currentUser.sobriety_date ? `Sobriety date: ${currentUser.sobriety_date}` : null}
+                </div>
+              </div>
             </div>
-            <div id="profile-container__user-buttons"></div>
+            <div id="profile-container__user-buttons">
+              <div id="button-style">
+                <Link id="button-link" exact to="/dashboard/settings">
+                  {" "}
+                  <i className="fa fa-pencil" />
+                  edit profile
+                </Link>
+              </div>
+              <div id="button-style">
+                <Link id="button-link" exact to="/dashboard/settings">
+                  {" "}
+                  <i className="fa fa-picture-o" />
+                  update banner
+                </Link>
+              </div>
+            </div>
           </div>
-          <div id="profile-container__middle-lower"></div>
+          <div id="profile-container__middle-lower">
+            <div id="profile-container__middle-left">
+              <div id="profile-container__bio">
+                <h3>About me:</h3>
+                <br />
+                {currentUser.bio}
+              </div>
+              <div id="profile-container__interests">
+                <h3>Some of my interests:</h3>
+                <br />
+                {currentUser.interests}
+              </div>
+            </div>
+            <div id="profile-container__middle-right">
+              <div id="profile-container__events">
+                <h3>Events I'm hosting:</h3>
+                <br />
+                {currentUser.bio}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </>

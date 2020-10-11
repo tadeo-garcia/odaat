@@ -4,7 +4,7 @@
   align-items: center;
   width: 100%;
   height: 100%;
-  background: rgb(255, 255, 255, 0.5);
+  background: rgb(255, 255, 255, 0.75);
 }
 
 #profile-container__top {
@@ -37,7 +37,7 @@
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: 20%;
+  height: 15%;
 }
 
 #profile-container__user-info {
@@ -59,72 +59,75 @@
   background-repeat: no-repeat;
 }
 
+#profile-container__user-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#profile-title {
+  font-weight: 500;
+}
+
 #profile-container__user-buttons {
   height: 100%;
   width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#button-style {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-color: white;
+  width: 200px;
+  height: 30px;
+  border-radius: 10px;
+}
+
+.fa-pencil .fa-picture-o {
+  padding-right: 5px;
+}
+
+#button-link {
+  text-decoration: none;
+  color: #014178;
+}
+
+#button-link:hover {
+  text-decoration: underline;
+  color: #012e55;
 }
 
 #profile-container__middle-lower {
   width: 100%;
   height: 80%;
+  display: grid;
+  grid-template-columns: 1.5fr 2fr;
 }
 
-#profile-page-top {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 300px;
+#profile-container__middle-left {
   width: 100%;
-  background-color: #e9e9e9;
-  text-align: center;
-}
-
-#profile-avatar {
-  background-image: url("/user_avatar.png");
-  height: 150px;
-  width: 150px;
-  border-radius: 75px;
-  margin-bottom: 15px;
-}
-#profile-navbar {
-  width: 100%;
-  height: 50px;
-  border: 1px solid #e9e9e9;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-
-.active-display {
-  border-bottom: 3px solid #028858;
-  margin-right: 5px;
-  margin-left: 5px;
   height: 100%;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-
-#profile-navbar-link {
-  font-weight: 500;
-  padding-left: 1px;
-  cursor: pointer;
-}
-
-#link-number {
-  color: #028858;
-  font-size: 9px;
-  font-weight: 500;
-  margin-bottom: 7px;
-  margin-left: 2px;
-}
-
-#profile-display {
-  display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  padding: 0px 15px;
+}
+
+#profile-container__bio {
+  margin-bottom: 15px;
+}
+
+#profile-container__interests {
+  margin-bottom: 15px;
+}
+
+#profile-container__middle-right {
+  width: 100%;
+  height: 100%;
 }

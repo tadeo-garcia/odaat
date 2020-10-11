@@ -1,6 +1,5 @@
-import React, { useEffect, useCallback, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import React, { useCallback, useRef, useState } from "react";
+import { useSelector } from "react-redux";
 import { GoogleMap, useLoadScript, Marker, InfoWindow } from "@react-google-maps/api";
 import mapStyle from "./MapStyle";
 import Compass from "./Compass";
