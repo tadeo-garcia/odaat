@@ -1,10 +1,10 @@
-const GET_MEETING = "meeting/single";
-const GET_MEETINGS = "meeting/all";
+const GET_MEETING = "meetings/single";
+const GET_MEETINGS = "meetings/all";
 
 const loadMeeting = (meeting) => {
   return {
     type: GET_MEETING,
-    meeting: meeting,
+    meeting,
   };
 };
 
@@ -12,6 +12,19 @@ const loadMeetings = (meetings) => {
   return {
     type: GET_MEETINGS,
     meetings: meetings,
+  };
+};
+
+export const getMeeting = (meetingId) => {
+  return async (dispatch) => {
+    const res = await fetch(`/api/meetings/search_by_id?id=${meetingId}`, {
+      method: "GET",
+    });
+    res.data = await res.json();
+    if (res.ok) {
+      dispatch(loadMeeting(res.data.meeting));
+    }
+    return res;
   };
 };
 

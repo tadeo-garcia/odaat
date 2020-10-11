@@ -1,11 +1,11 @@
 import React, { useCallback, useState, useRef } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { GoogleMap, useLoadScript, Marker, InfoWindow } from "@react-google-maps/api";
 import mapStyle from "./MapStyle";
 import Search from "./Search";
 import Compass from "./Compass";
-// import { getGeocode, getLatLng } from "use-places-autocomplete";
+import { getMeeting } from "../store/meetings";
 
 const libraries = ["places"];
 const mapContainerStyle = {
@@ -25,11 +25,14 @@ export default function MapApi() {
     libraries,
   });
 
+  const dispatch = useDispatch();
   const [selected, setSelected] = useState(null);
   const [center, setCenter] = useState(null);
+  const [currentMeeting, setCurrentMeeting] = useState(null);
   const meetings = useSelector((state) => state.meetings.meetings);
 
   const mapRef = useRef();
+  const meetingRef = useRef();
   const onMapLoad = useCallback((map) => {
     mapRef.current = map;
     navigator.geolocation.getCurrentPosition(
@@ -54,7 +57,10 @@ export default function MapApi() {
     mapRef.current.setZoom(13);
   }, []);
 
-  // setMap(map);
+  const load = (meetingId) => {
+    console.log(meetingId);
+    dispatch(getMeeting(meetingId));
+  };
 
   if (loadError) return "Error loading maps";
   if (!isLoaded) return "Loading Maps";
@@ -68,7 +74,7 @@ export default function MapApi() {
         <GoogleMap
           mapContainerStyle={mapContainerStyle}
           id={"google-map"}
-          zoom={9}
+          zoom={10}
           center={center}
           options={options}
           onLoad={onMapLoad}
@@ -79,6 +85,7 @@ export default function MapApi() {
               position={{ lat: meeting.lat, lng: meeting.lng }}
               onClick={() => {
                 setSelected(meeting);
+                setCurrentMeeting(meeting);
               }}
             />
           ))}
@@ -88,6 +95,7 @@ export default function MapApi() {
               position={{ lat: selected.lat, lng: selected.lng }}
               onCloseClick={() => {
                 setSelected(null);
+                setCurrentMeeting(selected);
               }}
             >
               <div>
@@ -98,7 +106,11 @@ export default function MapApi() {
                 <br />
                 <span>
                   Click{" "}
-                  <Link id="map__link-meeting" to={`/dashboard/meetings/${selected.id}`}>
+                  <Link
+                    id="map__link-meeting"
+                    onClick={load(selected.id)}
+                    to={`/dashboard/meetings/${selected.id}`}
+                  >
                     here
                   </Link>{" "}
                   to see more details about the meeting.
@@ -107,17 +119,6 @@ export default function MapApi() {
             </InfoWindow>
           ) : null}
         </GoogleMap>
-        {/* <div id="map__table-header">
-          <div id="map__table-header-check">
-            Check out any of the meetings below or search above with the map!
-          </div>
-          <div id="map__table-label">
-            <div className="meetings-container__text">Name</div>
-            <div className="meetings-container__text">Date</div>
-            <div className="meetings-container__text">Time</div>
-            <div className="meetings-container__text">Address</div>
-          </div>
-        </div> */}
       </div>
     </>
   );

@@ -11,6 +11,14 @@ def get_meetings():
     return {"meetings": data}
 
 
+@meetings_routes.route('/search_by_id')
+def get_meeting():
+    meetingId = request.args.get('id', None)
+    meeting = Meeting.query.get(meetingId)
+    meeting = meeting.to_dict()
+    return {"meeting": meeting}, 200
+
+
 @meetings_routes.route('/create', methods=['POST'])
 def create_meeting():
     virtual = request.json.get('virtual')
