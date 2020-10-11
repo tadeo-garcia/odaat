@@ -17,12 +17,20 @@
   text-align: center;
   font-weight: 700;
   padding-bottom: 15px;
+  background-color: rgb(1, 65, 120, 0.5);
+  border-radius: 7px;
+  width: 450px;
+  color: white;
+  text-decoration: underline;
 }
 
 #meeting-container__info {
+  margin-top: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: rgb(1, 65, 120, 0.5);
+  border-radius: 7px;
 }
 
 #meeting-container__info-details {
@@ -32,4 +40,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 15px 25px;
+  font-weight: 500;
 }

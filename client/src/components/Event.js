@@ -70,14 +70,14 @@ export default function Event() {
           </GoogleMap>
         </div>
         <div id="event-container__main">
-          <div id="event-container__header">
-            <span>Please join us for the {meeting.title} !</span>
-          </div>
-          <div id="meeting-container__info-details">
-            {" "}
-            {meeting.date} at {meeting.time}{" "}
-          </div>
           <div id="meeting-container__info">
+            <div id="event-container__header">
+              <span>Please join us for the {meeting.title} !</span>
+            </div>
+            <div id="meeting-container__info-details">
+              {" "}
+              {meeting.date} at {meeting.time}{" "}
+            </div>
             <div id="meeting-container__info-details">{meeting.description}</div>
             {meeting.official ? (
               <div id="meeting-container__info-details">
