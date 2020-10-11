@@ -43,3 +43,15 @@
   cursor: pointer;
   color: #014178;
 }
+
+#map__link-meeting {
+  color: #014178;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+#map__link-meeting:hover {
+  color: #012e55;
+  cursor: pointer;
+  text-decoration: underline;
+}

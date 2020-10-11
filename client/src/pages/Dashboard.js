@@ -10,6 +10,7 @@ import Host from "../components/Host";
 import Settings from "../components/Settings";
 import Steps from "../components/Steps";
 import Profile from "../components/Profile";
+import Event from "../components/Event";
 
 export default function Dashboard() {
   const currentUserId = useSelector((state) => state.auth.id);
@@ -35,6 +36,7 @@ export default function Dashboard() {
               <Route exact path="/dashboard/profile" component={Profile} />
               <Route exact path="/dashboard/Settings" component={Settings} />
               <Route exact path="/dashboard/host" component={Host} />
+              <Route exact path="/dashboard/meetings/:id" component={Event} />
               <Route exact path="/dashboard/Steps" component={Steps} />
             </Switch>
           </div>

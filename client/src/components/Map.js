@@ -1,5 +1,6 @@
 import React, { useCallback, useState, useRef } from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { GoogleMap, useLoadScript, Marker, InfoWindow } from "@react-google-maps/api";
 import mapStyle from "./MapStyle";
 import Search from "./Search";
@@ -90,12 +91,18 @@ export default function MapApi() {
               }}
             >
               <div>
-                <h4>{selected.title}</h4>
+                <h4>Meeting: {selected.title}</h4>
                 <span>Join us on: {selected.date}</span>
                 <br />
-                <span>Meeting starts at: {selected.time}</span>
+                <span>Starts at: {selected.time}</span>
                 <br />
-                <span>{selected.id}</span>
+                <span>
+                  Click{" "}
+                  <Link id="map__link-meeting" to={`/dashboard/meetings/${selected.id}`}>
+                    here
+                  </Link>{" "}
+                  to see more details about the meeting.
+                </span>
               </div>
             </InfoWindow>
           ) : null}
