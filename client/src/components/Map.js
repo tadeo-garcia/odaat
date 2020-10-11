@@ -12,11 +12,6 @@ const mapContainerStyle = {
   height: "100%",
 };
 
-const center = {
-  lat: 32.776665,
-  lng: -96.796989,
-};
-
 const options = {
   styles: mapStyle,
   disableDefaultUI: true,
@@ -30,18 +25,35 @@ export default function MapApi() {
   });
 
   const [selected, setSelected] = useState(null);
+  const [center, setCenter] = useState(null);
   const meetings = useSelector((state) => state.meetings.meetings);
-  let coords = [];
 
   const mapRef = useRef();
   const onMapLoad = useCallback((map) => {
     mapRef.current = map;
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        let newCenter = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        };
+        setCenter(newCenter);
+      },
+      () => {
+        setCenter({
+          lat: 32.776665,
+          lng: -96.796989,
+        });
+      }
+    );
   }, []);
 
   const panTo = useCallback(({ lat, lng }) => {
     mapRef.current.panTo({ lat, lng });
-    mapRef.current.setZoom(12);
+    mapRef.current.setZoom(13);
   }, []);
+
+  // setMap(map);
 
   if (loadError) return "Error loading maps";
   if (!isLoaded) return "Loading Maps";
@@ -55,7 +67,7 @@ export default function MapApi() {
         <GoogleMap
           mapContainerStyle={mapContainerStyle}
           id={"google-map"}
-          zoom={8}
+          zoom={9}
           center={center}
           options={options}
           onLoad={onMapLoad}
