@@ -32,7 +32,8 @@ class User(db.Model, UserMixin):
     sponsee = db.Column(db.Boolean, default=False)
     picture = db.Column(db.String(200))
     bio = db.Column(db.String(1000))
-    sobriety_date = db.Column(db.Date)
+    interests = db.Column(db.String(1000))
+    sobriety_date = db.Column(db.Date())
     created_at = db.Column(db.DateTime, nullable=False,
                            default=datetime.datetime.utcnow)
     updated_at = db.Column(db.DateTime, nullable=False,
@@ -66,6 +67,8 @@ class User(db.Model, UserMixin):
             "sponsee": self.sponsee,
             "picture": self.picture,
             "bio": self.bio,
+            "interests": self.interests,
+            "sobriety_date": self.sobriety_date.isoformat(),
             "created_at": self.created_at.strftime("%B %Y")
         }
 
