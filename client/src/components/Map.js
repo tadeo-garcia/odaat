@@ -58,7 +58,6 @@ export default function MapApi() {
   }, []);
 
   const load = (meetingId) => {
-    console.log(meetingId);
     dispatch(getMeeting(meetingId));
   };
 

@@ -1,7 +1,6 @@
 import React, { useEffect, useCallback, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { getMeetings } from "../store/meetings";
 import { GoogleMap, useLoadScript, Marker, InfoWindow } from "@react-google-maps/api";
 import mapStyle from "./MapStyle";
 import Compass from "./Compass";
@@ -25,35 +24,19 @@ export default function Event() {
     libraries,
   });
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const meeting = useSelector((state) => state.meetings.meeting);
-  console.log(meeting);
+  // console.log(meeting);
   const meetings = useSelector((state) => state.meetings.meetings);
-  const [selected, setSelected] = useState(null);
   const [center, setCenter] = useState(null);
 
-  // useEffect(() => {
-  //   dispatch(getMeetings());
-  // }, [dispatch]);
-
+  // let center = { lat: meeting.lat, lng: meeting.lng };
   const mapRef = useRef();
   const onMapLoad = useCallback((map) => {
     mapRef.current = map;
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        let newCenter = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude,
-        };
-        setCenter(newCenter);
-      },
-      () => {
-        setCenter({
-          lat: 32.776665,
-          lng: -96.796989,
-        });
-      }
-    );
+    mapRef.current.setZoom(13);
+    let center = { lat: meeting.lat, lng: meeting.lng };
+    setCenter(center);
   }, []);
 
   const panTo = useCallback(({ lat, lng }) => {
@@ -78,39 +61,17 @@ export default function Event() {
             options={options}
             onLoad={onMapLoad}
           >
-            {/* {meetings.map((meeting, idx) => (
-              <Marker
-                key={idx}
-                position={{ lat: meeting.lat, lng: meeting.lng }}
-                onClick={() => {
-                  setSelected(meeting);
-                }}
-              />
-            ))} */}
+            <Marker key={meeting.id} position={{ lat: meeting.lat, lng: meeting.lng }} />
 
-            {selected ? (
-              <InfoWindow
-                position={{ lat: selected.lat, lng: selected.lng }}
-                onCloseClick={() => {
-                  setSelected(null);
-                }}
-              >
-                <div>
-                  <h4>Meeting: {selected.title}</h4>
-                  <span>Join us on: {selected.date}</span>
-                  <br />
-                  <span>Starts at: {selected.time}</span>
-                  <br />
-                  <span>
-                    Click{" "}
-                    <Link id="map__link-meeting" to={`/dashboard/meetings/${selected.id}`}>
-                      here
-                    </Link>{" "}
-                    to see more details about the meeting.
-                  </span>
-                </div>
-              </InfoWindow>
-            ) : null}
+            <InfoWindow position={{ lat: meeting.lat, lng: meeting.lng }}>
+              <div>
+                <h4>Meeting: {meeting.title}</h4>
+                <span>Join us on: {meeting.date}</span>
+                <br />
+                <span>Starts at: {meeting.time}</span>
+                <br />
+              </div>
+            </InfoWindow>
           </GoogleMap>
         </div>
         <div id="meetings-container__header">
