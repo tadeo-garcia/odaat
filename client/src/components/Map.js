@@ -61,7 +61,13 @@ export default function MapApi() {
           onLoad={onMapLoad}
         >
           {meetings.map((meeting, idx) => (
-            <Marker key={idx} position={{ lat: meeting.lat, lng: meeting.lng }} />
+            <Marker
+              key={idx}
+              position={{ lat: meeting.lat, lng: meeting.lng }}
+              onClick={() => {
+                setSelected(meeting);
+              }}
+            />
           ))}
 
           {selected ? (
@@ -72,7 +78,12 @@ export default function MapApi() {
               }}
             >
               <div>
-                <h2>MEETING!</h2>
+                <h4>{selected.title}</h4>
+                <span>Join us on: {selected.date}</span>
+                <br />
+                <span>Meeting starts at: {selected.time}</span>
+                <br />
+                <span>{selected.id}</span>
               </div>
             </InfoWindow>
           ) : null}
