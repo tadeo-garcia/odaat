@@ -13,7 +13,19 @@ export default function Profile() {
         </div>
         <div id="profile-container__middle">
           <div id="profile-container__middle-upper">
-            <div id="profile-container__user-details"></div>
+            <div id="profile-container__user-info">
+              {currentUser.pic ? (
+                <div
+                  className="profile-container__pic"
+                  style={{ backgroundImage: `'${currentUser.pic}'` }}
+                ></div>
+              ) : (
+                <div
+                  className="profile-container__pic"
+                  id="profile-container__default-avatar"
+                ></div>
+              )}
+            </div>
             <div id="profile-container__user-buttons"></div>
           </div>
           <div id="profile-container__middle-lower"></div>

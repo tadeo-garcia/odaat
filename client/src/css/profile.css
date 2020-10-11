@@ -40,9 +40,23 @@
   height: 20%;
 }
 
-#profile-container__user-details {
+#profile-container__user-info {
   height: 100%;
   width: 50%;
+  display: flex;
+  flex-direction: row;
+}
+
+.profile-container__pic {
+  height: 100%;
+  width: 35%;
+}
+
+#profile-container__default-avatar {
+  background-image: url("/aa-icon-no-bg.png");
+  background-size: 75px 75px;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 #profile-container__user-buttons {
