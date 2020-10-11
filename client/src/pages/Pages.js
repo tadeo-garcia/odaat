@@ -10,6 +10,7 @@ export default function Pages() {
     <>
       <Route exact path="/" component={HomePage} />
       <Route path="/dashboard" component={Dashboard} />
+      <Auth />
     </>
   );
 }
