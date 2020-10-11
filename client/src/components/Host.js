@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createMeeting } from "../store/meetings";
 import { getGeocode, getLatLng } from "use-places-autocomplete";
+import { useHistory } from "react-router-dom";
 import MapApi from "./Map";
 
 export default function Host() {
@@ -16,6 +17,7 @@ export default function Host() {
   const [official, setOfficial] = useState("off");
 
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const extractCoord = async () => {
     let address = location;
@@ -38,6 +40,8 @@ export default function Host() {
           official
         )
       );
+
+      return history.push("/Dashboard");
     } catch (e) {
       console.log(e);
     }
@@ -131,7 +135,9 @@ export default function Host() {
               </div>
             </form>
             <div className="host-container__input-div">
-              <button onClick={(e) => handleCreateMeeting()}>host</button>
+              <button className="host-container__button" onClick={(e) => handleCreateMeeting()}>
+                host
+              </button>
             </div>
           </div>
         </div>

@@ -1,12 +1,16 @@
 #map-container {
   width: 100%;
-  min-height: 200px;
-  height: 40%;
+  height: 350px;
+  /* min-height: 350px; */
+  /* max-height: 40%; */
   border: 1px solid gray;
+  position: absolute;
+  top: 0;
+  z-index: 40;
 }
 
 #google-map {
-  min-height: 200px;
+  min-height: 350px;
 }
 
 .map-container__search {

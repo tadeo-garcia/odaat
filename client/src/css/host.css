@@ -1,6 +1,8 @@
 #host-wrapper {
   min-width: 30%;
   overflow-y: scroll;
+  width: 100%;
+  height: 100%;
 }
 
 .hidden {
@@ -15,6 +17,7 @@
   width: 100%;
   margin-left: auto;
   margin-right: auto;
+  overflow-y: scroll;
 }
 
 #host-container__info {
@@ -65,4 +68,21 @@
   transform: scale(2);
   padding: 10px;
   margin-left: 10px;
+}
+
+.host-container__button {
+  width: 100%;
+  height: 45px;
+  text-align: center;
+  /* margin-bottom: 20px; */
+  background-color: #014178;
+  color: white;
+  font-size: 15px;
+  border-radius: 3px;
+  transition: all 300ms cubic-bezier(0.175, 0.885, 0.335, 1);
+}
+
+.host-container__button:hover {
+  background-color: #014178b1;
+  color: #014178;
 }
