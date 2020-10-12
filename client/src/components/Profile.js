@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 import { getMeetingsByHost, getMeeting } from "../store/meetings";
@@ -6,6 +6,7 @@ import { getMeetingsByHost, getMeeting } from "../store/meetings";
 export default function Profile() {
   const currentUser = useSelector((state) => state.auth);
   const userMeetings = useSelector((state) => state.meetings.hostMeetings);
+  const [follow, setFollow] = useState("following");
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -62,14 +63,28 @@ export default function Profile() {
                 </Link>
               </div>
               <div id="button-style">
-                <Link id="button-link" exact to="/dashboard/settings">
+                <Link
+                  id="button-link"
+                  exact
+                  to="/dashboard/Profile"
+                  onClick={() => {
+                    setFollow("followers");
+                  }}
+                >
                   {" "}
                   <i className="fa fa-users" />
                   followers
                 </Link>
               </div>
               <div id="button-style">
-                <Link id="button-link" exact to="/dashboard/settings">
+                <Link
+                  id="button-link"
+                  exact
+                  to="/dashboard/Profile"
+                  onClick={() => {
+                    setFollow("following");
+                  }}
+                >
                   {" "}
                   <i className="fa fa-users" />
                   following
@@ -80,19 +95,19 @@ export default function Profile() {
           <div id="profile-container__middle-lower">
             <div id="profile-container__middle-left">
               <div id="profile-container__bio">
-                <h3>About me:</h3>
+                <h3>about me:</h3>
                 <br />
                 {currentUser.bio}
               </div>
               <div id="profile-container__interests">
-                <h3>Some of my interests:</h3>
+                <h3>some of my interests:</h3>
                 <br />
                 {currentUser.interests}
               </div>
             </div>
             <div id="profile-container__middle-right">
               <div id="profile-container__events">
-                <h3>Events I'm hosting:</h3>
+                <h3>events i'm hosting:</h3>
                 <br />
                 {userMeetings ? (
                   <div id="profile-container__events-hosted">
@@ -124,6 +139,21 @@ export default function Profile() {
                     It looks like you're not hosting any events yet, check out the host link to the
                     left.
                   </div>
+                )}
+              </div>
+              <div id="profile-container__follow">
+                {follow === "followers" ? (
+                  <>
+                    <h3>followers:</h3>
+                    <br />
+                    <div>followertable</div>
+                  </>
+                ) : (
+                  <>
+                    <h3>following:</h3>
+                    <br />
+                    <div>followingtable</div>
+                  </>
                 )}
               </div>
             </div>
