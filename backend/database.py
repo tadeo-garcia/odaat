@@ -49,11 +49,11 @@ with app.app_context():
                        description='This meeting is closed; only those who have a desire to stop drinking may attend.',
                        date='2020-10-31', time='07:00:00', location='9090 Skillman St, Dallas, TX 75243', lat=32.896060, lng=-96.721440, virtual=True, zoom_id='555xyz', official=True)
 
-    meeting5 = Meeting(host_id='5', title='Unidad Meeting',
+    meeting5 = Meeting(host_id='555', title='Unidad Meeting',
                        description='This meeting is closed; only those who have a desire to stop drinking may attend. Meeting is in Spanish.',
                        date='2020-10-31', time='18:00:00', location='4532 Columbia Ave Dallas, TX 75226', lat=32.792220, lng=-96.766520, virtual=True, zoom_id='555xyz', official=True)
 
-    meeting6 = Meeting(host_id='6', title='31 De Octubre',
+    meeting6 = Meeting(host_id='555', title='31 De Octubre',
                        description='This meeting is closed; only those who have a desire to stop drinking may attend. Meeting is in Spanish.',
                        date='2020-10-31', time='18:00:00', location='7911 Lake June Rd Dallas, TX 75217', lat=32.734635, lng=-96.686310, virtual=True, zoom_id='555xyz', official=True)
 

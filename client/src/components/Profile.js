@@ -1,12 +1,20 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
+import { getMeetingsByHost } from "../store/meetings";
 
 export default function Profile() {
   const currentUser = useSelector((state) => state.auth);
+  const userMeetings = useSelector((state) => state.meetings.hostMeetings);
   const dispatch = useDispatch();
 
-  useEffect(() => {}, [dispatch]);
+  useEffect(() => {
+    dispatch(getMeetingsByHost(currentUser.id));
+  }, [dispatch]);
+
+  if (!userMeetings) return null;
+
+  console.log(userMeetings);
 
   return (
     <>

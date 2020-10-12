@@ -4,6 +4,14 @@ from app.models import User, Meeting, db
 meetings_routes = Blueprint('meetings', __name__)
 
 
+@meetings_routes.route('/search_by_id', methods=['GET'])
+def get_meeting():
+    meetingId = request.args.get('id', None)
+    meeting = Meeting.query.get(meetingId)
+    meeting = meeting.to_dict()
+    return {"meeting": meeting}, 200
+
+
 @meetings_routes.route('/', methods=['GET'])
 def get_meetings():
     meetings = Meeting.query.all()
@@ -11,12 +19,15 @@ def get_meetings():
     return {"meetings": data}
 
 
-@meetings_routes.route('/search_by_id')
-def get_meeting():
-    meetingId = request.args.get('id', None)
-    meeting = Meeting.query.get(meetingId)
-    meeting = meeting.to_dict()
-    return {"meeting": meeting}, 200
+@meetings_routes.route('/meetings_by_host_id', methods=['GET'])
+def get_meetings_by_host_id():
+    hostId = request.args.get('id', None)
+    meetings = Meeting.query.filter(Meeting.host_id == hostId).all()
+    print("~~~~~~~")
+    print(meetings)
+    data = [meeting.to_dict() for meeting in meetings]
+    print(data)
+    return {"meetings": data}, 200
 
 
 @meetings_routes.route('/create', methods=['POST'])

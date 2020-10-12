@@ -12,7 +12,7 @@ export default function Meetings() {
   }, [dispatch]);
 
   const load = (meetingId) => {
-    console.log(meetingId);
+    // console.log(meetingId);
     dispatch(getMeeting(meetingId));
   };
 

@@ -1,5 +1,6 @@
 const GET_MEETING = "meetings/single";
 const GET_MEETINGS = "meetings/all";
+const GET_MEETINGS_BY_HOST = "meetings/by_host";
 
 const loadMeeting = (meeting) => {
   return {
@@ -11,6 +12,13 @@ const loadMeeting = (meeting) => {
 const loadMeetings = (meetings) => {
   return {
     type: GET_MEETINGS,
+    meetings: meetings,
+  };
+};
+
+const loadMeetingsByHost = (meetings) => {
+  return {
+    type: GET_MEETINGS_BY_HOST,
     meetings: meetings,
   };
 };
@@ -37,6 +45,19 @@ export const getMeetings = () => {
     res.data = await res.json();
     if (res.ok) {
       dispatch(loadMeetings(res.data.meetings));
+    }
+    return res;
+  };
+};
+
+export const getMeetingsByHost = (id) => {
+  return async (dispatch) => {
+    const res = await fetch(`/api/meetings/meetings_by_host_id?id=${id}`, {
+      method: "GET",
+    });
+    res.data = await res.json();
+    if (res.ok) {
+      dispatch(loadMeetingsByHost(res.data.meetings));
     }
     return res;
   };
@@ -88,6 +109,8 @@ export default function meetingsReducer(state = {}, action) {
       return { ...state, meeting: action.meeting };
     case GET_MEETINGS:
       return { ...state, meetings: action.meetings };
+    case GET_MEETINGS_BY_HOST:
+      return { ...state, hostMeetings: action.meetings };
     default:
       return state;
   }
