@@ -23,7 +23,7 @@ export default function Profile() {
     <>
       <div id="profile-container">
         <div id="profile-container__top">
-          <div id="profile-container__top-banner">Banner goes here.</div>
+          <div id="profile-container__top-banner"></div>
         </div>
         <div id="profile-container__middle">
           <div id="profile-container__middle-upper">

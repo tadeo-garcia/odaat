@@ -18,6 +18,7 @@
 #profile-container__top-banner {
   height: 150px;
   width: 100%;
+  background-image: url("/banner-no-b.jpg");
   background-size: cover;
   background-position: center;
   border: 1px solid gray;
