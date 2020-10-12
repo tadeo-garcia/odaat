@@ -106,7 +106,7 @@ export default function Profile() {
                           <div className="profile-container__event-text">{meeting.title}</div>
                           <div className="profile-container__event-text">{meeting.date}</div>
                           <div className="profile-container__event-text">{meeting.time}</div>
-                          <div className="profile-container__event-text">{meeting.location}</div>
+                          <div className="profile-container__event-address">{meeting.location}</div>
                           <div className="">
                             <Link
                               to={`/Dashboard/meetings/${meeting.id}`}
