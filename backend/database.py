@@ -21,7 +21,8 @@ with app.app_context():
     alissa = User(username='Alissa', email='alissa@odaat.com',
                   password='password')
     demo = User(id=555, username='Demo',
-                email='demo@odaat.com', password='password', sobriety_date='2019-09-04', bio='I love meeting new people, and have been a member of AA for a couple of years now. "It works if you work it!"', interests='biking, hiking and riding my motorcycle')
+                email='demo@odaat.com', password='password',
+                sponsor=True, sobriety_date='2019-09-04', bio='I love meeting new people, and have been a member of AA for a couple of years now. "It works if you work it!"', interests='biking, hiking and riding my motorcycle')
 
     db.session.add(ian)
     db.session.add(javier)

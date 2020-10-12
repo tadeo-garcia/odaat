@@ -23,8 +23,6 @@ def get_meetings():
 def get_meetings_by_host_id():
     hostId = request.args.get('id', None)
     meetings = Meeting.query.filter(Meeting.host_id == hostId).all()
-    print("~~~~~~~")
-    print(meetings)
     data = [meeting.to_dict() for meeting in meetings]
     print(data)
     return {"meetings": data}, 200
@@ -54,7 +52,6 @@ def create_meeting():
         virtual=virtual,
         zoom_id=request.json.get('zoomId'),
         official=official
-
     )
     db.session.add(meeting)
     db.session.commit()

@@ -7,16 +7,16 @@ db = SQLAlchemy()
 
 follow_table = db.Table('follow_table',
                         db.Column('follower_id', db.Integer, db.ForeignKey(
-                            'users.id'), primary_key=True),
+                            'users.id')),
                         db.Column('followed_id', db.Integer, db.ForeignKey(
-                            'users.id'), primary_key=True)
+                            'users.id'))
                         )
 
 sponsor_table = db.Table('sponsor_table',
                          db.Column('sponsor_id', db.Integer, db.ForeignKey(
-                             'users.id'), primary_key=True),
+                             'users.id')),
                          db.Column('sponsee_id', db.Integer, db.ForeignKey(
-                             'users.id'), primary_key=True)
+                             'users.id'))
                          )
 
 
@@ -58,23 +58,38 @@ class User(db.Model, UserMixin):
         return check_password_hash(self.password, password)
 
     def to_dict(self):
-        return {
-            "id": self.id,
-            "email": self.email,
-            "username": self.username,
-            "zipcode": self.zipcode,
-            "sponsor": self.sponsor,
-            "sponsee": self.sponsee,
-            "picture": self.picture,
-            "bio": self.bio,
-            "interests": self.interests,
-            "sobriety_date": self.sobriety_date.isoformat(),
-            "created_at": self.created_at.strftime("%B %Y")
-        }
+        if self.sobriety_date == None:
+            return {
+                "id": self.id,
+                "email": self.email,
+                "username": self.username,
+                "zipcode": self.zipcode,
+                "sponsor": self.sponsor,
+                "sponsee": self.sponsee,
+                "picture": self.picture,
+                "bio": self.bio,
+                "interests": self.interests,
+                "sobriety_date": self.sobriety_date,
+                "created_at": self.created_at.strftime("%B %Y")
+            }
+        else:
+            return {
+                "id": self.id,
+                "email": self.email,
+                "username": self.username,
+                "zipcode": self.zipcode,
+                "sponsor": self.sponsor,
+                "sponsee": self.sponsee,
+                "picture": self.picture,
+                "bio": self.bio,
+                "interests": self.interests,
+                "sobriety_date": self.sobriety_date.isoformat(),
+                "created_at": self.created_at.strftime("%B %Y")
+            }
 
     def follow(self, user):
         if not self.is_following(user):
-            self.followed.remove(user)
+            self.followed.append(user)
 
     def unfollow(self, user):
         if self.is_following(user):
