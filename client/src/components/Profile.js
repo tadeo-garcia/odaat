@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 import { getMeetingsByHost, getMeeting } from "../store/meetings";
-import { getFollowersById } from "../store/user";
+import { getFollowersById, getFollowingById } from "../store/user";
 
 export default function Profile() {
   const currentUser = useSelector((state) => state.auth);
@@ -11,8 +11,9 @@ export default function Profile() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // dispatch(getMeetingsByHost(currentUser.id));
+    dispatch(getMeetingsByHost(currentUser.id));
     dispatch(getFollowersById(currentUser.id));
+    dispatch(getFollowingById(currentUser.id));
   }, [dispatch]);
 
   const load = (meetingId) => {

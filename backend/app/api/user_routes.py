@@ -23,24 +23,20 @@ def signup_user():
         return jsonify({"msg": "Bad data for signup."}), 400
 
 
+@user_routes.route('/following_by_id', methods=['GET'])
+def get_following():
+    userId = request.args.get('id', None)
+    following = User.query.join(follow_table, (follow_table.c.followed_id == User.id)).filter(
+        follow_table.c.follower_id == userId)
+
+    data = [user.to_dict() for user in following]
+    return {"following": data}, 200
+
+
 @user_routes.route('/followers_by_id', methods=['GET'])
 def get_followers():
     userId = request.args.get('id', None)
-    print("~~~~~~~~~~~~~")
-    print(userId)
-    followers = User.query.join(follow_table, (follow_table.c.followed_id == User.id)).filter(
-        follow_table.c.follower_id == userId)
-
-    data = [follower.to_dict() for follower in followers]
-    print("~~~~~~~~~~~~~")
-    print(followers)
+    followers = User.query.join(follow_table, (follow_table.c.follower_id == User.id)).filter(
+        follow_table.c.followed_id == userId)
+    data = [user.to_dict() for user in followers]
     return {"followers": data}, 200
-
-
-# @user_routes.route('/following_by_id', methods=['GET'])
-# def get_following():
-#     userId = request.args.get('id', None)
-#     following = User.query.filter(User.follower_id == userId).all()
-#     print("~~~~~~~~~~~~~")
-#     print(following)
-#     return ("following": data), 200
