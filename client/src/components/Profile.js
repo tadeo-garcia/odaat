@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
-import { getMeetingsByHost } from "../store/meetings";
+import { getMeetingsByHost, getMeeting } from "../store/meetings";
 
 export default function Profile() {
   const currentUser = useSelector((state) => state.auth);
@@ -12,9 +12,12 @@ export default function Profile() {
     dispatch(getMeetingsByHost(currentUser.id));
   }, [dispatch]);
 
-  if (!userMeetings) return null;
+  const load = (meetingId) => {
+    // console.log(meetingId);
+    dispatch(getMeeting(meetingId));
+  };
 
-  console.log(userMeetings);
+  if (!userMeetings) return null;
 
   return (
     <>
@@ -77,7 +80,37 @@ export default function Profile() {
               <div id="profile-container__events">
                 <h3>Events I'm hosting:</h3>
                 <br />
-                {currentUser.bio}
+                {userMeetings ? (
+                  <div id="profile-container__events-hosted">
+                    {userMeetings.map((meeting, idx) => {
+                      let meetClass = "profile-container__event-row";
+                      if (idx % 2 === 0) {
+                        meetClass = "profile-container__event-row2";
+                      }
+                      return (
+                        <div key={meeting.id} id={meetClass}>
+                          <div className="profile-container__event-text">{meeting.title}</div>
+                          <div className="profile-container__event-text">{meeting.date}</div>
+                          <div className="profile-container__event-text">{meeting.time}</div>
+                          <div className="profile-container__event-text">{meeting.location}</div>
+                          <div className="">
+                            <Link
+                              to={`/Dashboard/meetings/${meeting.id}`}
+                              onClick={load(meeting.id)}
+                            >
+                              <i className="fa fa-2x fa-arrow-circle-right" />
+                            </Link>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                ) : (
+                  <div>
+                    It looks like you're not hosting any events yet, check out the host link to the
+                    left.
+                  </div>
+                )}
               </div>
             </div>
           </div>
