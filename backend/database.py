@@ -31,6 +31,17 @@ with app.app_context():
     db.session.add(alissa)
     db.session.add(demo)
 
+    demo.followed.append(ian)
+    demo.followed.append(javier)
+    demo.followed.append(dean)
+
+    ian.followed.append(javier)
+    ian.followed.append(angela)
+    ian.followed.append(demo)
+
+    angela.followed.append(ian)
+    angela.followed.append(demo)
+
 # MEETINGS
 
     meeting1 = Meeting(host_id='1', title='Clean Air Meeting',
