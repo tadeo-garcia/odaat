@@ -61,6 +61,20 @@ export default function Profile() {
                   update banner
                 </Link>
               </div>
+              <div id="button-style">
+                <Link id="button-link" exact to="/dashboard/settings">
+                  {" "}
+                  <i className="fa fa-users" />
+                  followers
+                </Link>
+              </div>
+              <div id="button-style">
+                <Link id="button-link" exact to="/dashboard/settings">
+                  {" "}
+                  <i className="fa fa-users" />
+                  following
+                </Link>
+              </div>
             </div>
           </div>
           <div id="profile-container__middle-lower">
