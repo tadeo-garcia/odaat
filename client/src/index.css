@@ -14,6 +14,7 @@
 @import "./css/host.css";
 @import "./css/steps.css";
 @import "./css/event.css";
+@import "./css//followtable.css";
 
 * {
   margin: 0px;

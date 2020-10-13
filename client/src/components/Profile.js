@@ -3,10 +3,14 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 import { getMeetingsByHost, getMeeting } from "../store/meetings";
 import { getFollowersById, getFollowingById } from "../store/user";
+import { FollowerTable, FollowingTable } from "./FollowTables";
 
 export default function Profile() {
   const currentUser = useSelector((state) => state.auth);
   const userMeetings = useSelector((state) => state.meetings.hostMeetings);
+  const followers = useSelector((state) => state.user.followers);
+  const following = useSelector((state) => state.user.following);
+
   const [follow, setFollow] = useState("following");
   const dispatch = useDispatch();
 
@@ -17,12 +21,13 @@ export default function Profile() {
   }, [dispatch]);
 
   const load = (meetingId) => {
-    // console.log(meetingId);
     dispatch(getMeeting(meetingId));
   };
 
   // if (!userMeetings) return null;
-
+  if (!followers || !following) return null;
+  // console.log(followers);
+  // console.log(following);
   return (
     <>
       <div id="profile-container">
@@ -52,14 +57,14 @@ export default function Profile() {
             </div>
             <div id="profile-container__user-buttons">
               <div id="button-style">
-                <Link id="button-link" exact to="/dashboard/settings">
+                <Link id="button-link" to="/dashboard/settings">
                   {" "}
                   <i className="fa fa-pencil" />
                   edit profile
                 </Link>
               </div>
               <div id="button-style">
-                <Link id="button-link" exact to="/dashboard/settings">
+                <Link id="button-link" to="/dashboard/settings">
                   {" "}
                   <i className="fa fa-picture-o" />
                   update banner
@@ -68,7 +73,6 @@ export default function Profile() {
               <div id="button-style">
                 <Link
                   id="button-link"
-                  exact
                   to="/dashboard/Profile"
                   onClick={() => {
                     setFollow("followers");
@@ -82,7 +86,6 @@ export default function Profile() {
               <div id="button-style">
                 <Link
                   id="button-link"
-                  exact
                   to="/dashboard/Profile"
                   onClick={() => {
                     setFollow("following");
@@ -149,13 +152,13 @@ export default function Profile() {
                   <>
                     <h3>followers:</h3>
                     <br />
-                    <div>followertable</div>
+                    <FollowerTable followers={followers} />
                   </>
                 ) : (
                   <>
                     <h3>following:</h3>
                     <br />
-                    <div>followingtable</div>
+                    <FollowingTable following={following} />
                   </>
                 )}
               </div>

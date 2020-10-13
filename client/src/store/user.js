@@ -17,10 +17,8 @@ export const loadFollowingById = (following) => {
 
 export const getFollowersById = (id) => {
   return async (dispatch) => {
-    console.log(id);
     const res = await fetch(`/api/user/followers_by_id?id=${id}`, { method: "GET" });
     res.data = await res.json();
-    console.log(res.data.followers);
     if (res.ok) {
       dispatch(loadFollowersById(res.data.followers));
     }
@@ -30,10 +28,8 @@ export const getFollowersById = (id) => {
 
 export const getFollowingById = (id) => {
   return async (dispatch) => {
-    console.log(id);
     const res = await fetch(`/api/user/following_by_id?id=${id}`, { method: "GET" });
     res.data = await res.json();
-    console.log(res.data.following);
     if (res.ok) {
       dispatch(loadFollowingById(res.data.following));
     }
