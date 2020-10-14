@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, Redirect } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { getMeetingsByHost, getMeeting } from "../store/meetings";
 import { getFollowersById, getFollowingById } from "../store/user";
 import { FollowerTable, FollowingTable } from "./FollowTables";
 
-export default function Profile() {
+export default function UserProfile() {
   const currentUser = useSelector((state) => state.auth);
   const userMeetings = useSelector((state) => state.meetings.hostMeetings);
   const followers = useSelector((state) => state.user.followers);
   const following = useSelector((state) => state.user.following);
+  let params = useParams();
+  let profileId = params.id;
+  console.log(profileId);
 
   const [follow, setFollow] = useState("following");
   const dispatch = useDispatch();
@@ -26,8 +29,7 @@ export default function Profile() {
 
   // if (!userMeetings) return null;
   if (!followers || !following) return null;
-  // console.log(followers);
-  // console.log(following);
+
   return (
     <>
       <div id="profile-container">
