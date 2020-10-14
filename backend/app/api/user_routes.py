@@ -30,6 +30,40 @@ def get_user_by_id():
     return {"user": user.to_dict()}, 200
 
 
+@user_routes.route('/follow_by_id', methods=['GET'])
+def follow_user_by_id():
+    currentUserId = request.args.get('current_user_id')
+    profileId = request.args.get('profile_id')
+    currentUser = User.query.filter(User.id == currentUserId).first()
+    profileUser = User.query.filter(User.id == profileId).first()
+    try:
+        currentUser.follow(profileUser)
+        db.session.commit()
+        following = User.query.join(follow_table, (follow_table.c.followed_id == User.id)).filter(
+            follow_table.c.follower_id == currentUserId)
+        data = [user.to_dict() for user in following]
+        return{"following": data}, 200
+    except:
+        return jsonify({"msg": "Unable to follow this user"}), 400
+
+
+@user_routes.route('/unfollow_by_id', methods=['GET'])
+def unfollow_user_by_id():
+    currentUserId = request.args.get('current_user_id')
+    profileId = request.args.get('profile_id')
+    currentUser = User.query.filter(User.id == currentUserId).first()
+    profileUser = User.query.filter(User.id == profileId).first()
+    try:
+        currentUser.unfollow(profileUser)
+        db.session.commit()
+        following = User.query.join(follow_table, (follow_table.c.followed_id == User.id)).filter(
+            follow_table.c.follower_id == currentUserId)
+        data = [user.to_dict() for user in following]
+        return{"following": data}, 200
+    except:
+        return jsonify({"msg": "Unable to unfollow this user"}), 400
+
+
 @user_routes.route('/following_by_id', methods=['GET'])
 def get_following():
     userId = request.args.get('id', None)

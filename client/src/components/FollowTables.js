@@ -14,7 +14,7 @@ export function FollowerTable({ followers }) {
           <div key={user.id} id={followClass}>
             <div>{user.username}</div>
             <div>
-              <Link to={`profile/${user.id}`} id="follow_table-link">
+              <Link to={`/Dashboard/profile/${user.id}`} id="follow_table-link">
                 {" "}
                 go to profile
               </Link>
@@ -39,7 +39,7 @@ export function FollowingTable({ following }) {
           <div key={user.id} id={followClass}>
             <div>{user.username}</div>
             <div>
-              <Link to={`profile/${user.id}`} id="follow_table-link">
+              <Link to={`/Dashboard/profile/${user.id}`} id="follow_table-link">
                 {" "}
                 go to profile
               </Link>

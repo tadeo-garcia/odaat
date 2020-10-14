@@ -2,17 +2,23 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { getMeetingsByHost, getMeeting } from "../store/meetings";
-import { getFollowersById, getFollowingById, getUserById } from "../store/user";
+import {
+  getFollowersById,
+  getFollowingById,
+  getUserById,
+  followUser,
+  unfollowUser,
+} from "../store/user";
 import { FollowerTable, FollowingTable } from "./FollowTables";
 
 export default function UserProfile() {
   const currentUser = useSelector((state) => state.auth);
+  const profileUser = useSelector((state) => state.user.user);
   const userMeetings = useSelector((state) => state.meetings.hostMeetings);
   const followers = useSelector((state) => state.user.followers);
   const following = useSelector((state) => state.user.following);
   let params = useParams();
   let profileId = params.id;
-  // console.log(profileId);
 
   const [follow, setFollow] = useState("following");
   const dispatch = useDispatch();
@@ -22,14 +28,23 @@ export default function UserProfile() {
     dispatch(getMeetingsByHost(profileId));
     dispatch(getFollowersById(profileId));
     dispatch(getFollowingById(profileId));
-  }, [dispatch]);
+  }, [dispatch, profileId]);
 
   const load = (meetingId) => {
     dispatch(getMeeting(meetingId));
   };
 
+  const handleFollowUser = (id1, id2) => {
+    dispatch(followUser(currentUser.id, profileUser.id));
+  };
+
+  const handleUnfollowUser = (id1, id2) => {
+    dispatch(unfollowUser(currentUser.id, profileUser.id));
+  };
+
   // if (!userMeetings) return null;
   if (!followers || !following) return null;
+  if (!profileUser) return null;
 
   return (
     <>
@@ -40,10 +55,10 @@ export default function UserProfile() {
         <div id="profile-container__middle">
           <div id="profile-container__middle-upper">
             <div id="profile-container__user-info">
-              {currentUser.pic ? (
+              {profileUser.pic ? (
                 <div
                   className="profile-container__pic"
-                  style={{ backgroundImage: `'${currentUser.pic}'` }}
+                  style={{ backgroundImage: `'${profileUser.pic}'` }}
                 ></div>
               ) : (
                 <div
@@ -52,31 +67,39 @@ export default function UserProfile() {
                 ></div>
               )}
               <div id="profile-container__user-details">
-                <span id="profile-title">Welcome {currentUser.username}</span>
+                <span id="profile-title">{profileUser.username}'s Profile</span>
                 <div>
-                  {currentUser.sobriety_date ? `Sobriety date: ${currentUser.sobriety_date}` : null}
+                  {profileUser.sobriety_date ? `Sobriety date: ${profileUser.sobriety_date}` : null}
                 </div>
               </div>
             </div>
             <div id="profile-container__user-buttons">
               <div id="button-style">
-                <Link id="button-link" to="/dashboard/settings">
+                <Link
+                  id="button-link"
+                  onClick={handleFollowUser}
+                  to={`/dashboard/profile/${profileUser.id}`}
+                >
                   {" "}
-                  <i className="fa fa-pencil" />
-                  edit profile
-                </Link>
-              </div>
-              <div id="button-style">
-                <Link id="button-link" to="/dashboard/settings">
-                  {" "}
-                  <i className="fa fa-picture-o" />
-                  update banner
+                  <i className="fa fa-user-circle-o" />
+                  follow
                 </Link>
               </div>
               <div id="button-style">
                 <Link
                   id="button-link"
-                  to="/dashboard/Profile"
+                  onClick={handleUnfollowUser}
+                  to={`/dashboard/profile/${profileUser.id}`}
+                >
+                  {" "}
+                  <i className="fa fa-ban" />
+                  unfollow
+                </Link>
+              </div>
+              <div id="button-style">
+                <Link
+                  id="button-link"
+                  to={`/dashboard/profile/${profileUser.id}`}
                   onClick={() => {
                     setFollow("followers");
                   }}
@@ -89,7 +112,7 @@ export default function UserProfile() {
               <div id="button-style">
                 <Link
                   id="button-link"
-                  to="/dashboard/Profile"
+                  to={`/dashboard/profile/${profileUser.id}`}
                   onClick={() => {
                     setFollow("following");
                   }}
@@ -104,19 +127,19 @@ export default function UserProfile() {
           <div id="profile-container__middle-lower">
             <div id="profile-container__middle-left">
               <div id="profile-container__bio">
-                <h3>about me:</h3>
+                <h3>about them:</h3>
                 <br />
-                {currentUser.bio}
+                {profileUser.bio}
               </div>
               <div id="profile-container__interests">
-                <h3>some of my interests:</h3>
+                <h3>some of their interests:</h3>
                 <br />
-                {currentUser.interests}
+                {profileUser.interests}
               </div>
             </div>
             <div id="profile-container__middle-right">
               <div id="profile-container__events">
-                <h3>events i'm hosting:</h3>
+                <h3>events they're hosting:</h3>
                 <br />
                 {userMeetings ? (
                   <div id="profile-container__events-hosted">
