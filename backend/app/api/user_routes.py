@@ -23,6 +23,13 @@ def signup_user():
         return jsonify({"msg": "Bad data for signup."}), 400
 
 
+@user_routes.route('/user_by_id', methods=['GET'])
+def get_user_by_id():
+    userId = request.args.get('id', None)
+    user = User.query.filter(User.id == userId).first()
+    return {"user": user.to_dict()}, 200
+
+
 @user_routes.route('/following_by_id', methods=['GET'])
 def get_following():
     userId = request.args.get('id', None)

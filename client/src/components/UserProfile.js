@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { getMeetingsByHost, getMeeting } from "../store/meetings";
-import { getFollowersById, getFollowingById } from "../store/user";
+import { getFollowersById, getFollowingById, getUserById } from "../store/user";
 import { FollowerTable, FollowingTable } from "./FollowTables";
 
 export default function UserProfile() {
@@ -12,15 +12,16 @@ export default function UserProfile() {
   const following = useSelector((state) => state.user.following);
   let params = useParams();
   let profileId = params.id;
-  console.log(profileId);
+  // console.log(profileId);
 
   const [follow, setFollow] = useState("following");
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getMeetingsByHost(currentUser.id));
-    dispatch(getFollowersById(currentUser.id));
-    dispatch(getFollowingById(currentUser.id));
+    dispatch(getUserById(profileId));
+    dispatch(getMeetingsByHost(profileId));
+    dispatch(getFollowersById(profileId));
+    dispatch(getFollowingById(profileId));
   }, [dispatch]);
 
   const load = (meetingId) => {
