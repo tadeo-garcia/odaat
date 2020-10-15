@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux'
-import { BrowserRouter } from 'react-router-dom';
-import Pages from './pages/Pages'
-import { setUser } from './store/auth'
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
+import Pages from "./pages/Pages";
+import { setUser } from "./store/auth";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -17,7 +17,7 @@ function App() {
         dispatch(setUser(res.data.user));
       }
       setLoading(false);
-    }
+    };
     loadUser();
   }, [dispatch]);
 

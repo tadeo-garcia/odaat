@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, useParams, Redirect } from "react-router-dom";
+import { Link, useParams, useHistory } from "react-router-dom";
 import { getMeetingsByHost, getMeeting } from "../store/meetings";
 import {
   getFollowersById,
@@ -22,6 +22,7 @@ export default function UserProfile() {
 
   const [follow, setFollow] = useState("following");
   const dispatch = useDispatch();
+  const history = useHistory();
 
   useEffect(() => {
     dispatch(getUserById(profileId));
@@ -38,12 +39,14 @@ export default function UserProfile() {
     dispatch(followUser(currentUser.id, profileUser.id));
     dispatch(getFollowersById(profileId));
     dispatch(getFollowingById(profileId));
+    history.push(`/dashboard/profile`);
   };
 
   const handleUnfollowUser = (id1, id2) => {
     dispatch(unfollowUser(currentUser.id, profileUser.id));
     dispatch(getFollowersById(profileId));
     dispatch(getFollowingById(profileId));
+    history.push(`/dashboard/profile`);
   };
 
   // if (!userMeetings) return null;
@@ -79,18 +82,22 @@ export default function UserProfile() {
             </div>
             <div id="profile-container__user-buttons">
               <div id="button-style">
-                <Link id="button-link" onClick={handleFollowUser} to={`/dashboard/profile`}>
+                {/* <Link id="button-link" onClick={handleFollowUser} to={`/dashboard/profile`}> */}
+                <button type="button" id="button-link" onClick={handleFollowUser}>
                   {" "}
                   <i className="fa fa-user-circle-o" />
                   follow
-                </Link>
+                </button>
+                {/* </Link> */}
               </div>
               <div id="button-style">
-                <Link id="button-link" onClick={handleUnfollowUser} to={`/dashboard/profile}`}>
+                {/* <Link id="button-link" onClick={handleUnfollowUser} to={`/dashboard/profile}`}> */}
+                <button type="button" id="button-link" onClick={handleUnfollowUser}>
                   {" "}
                   <i className="fa fa-ban" />
                   unfollow
-                </Link>
+                </button>
+                {/* </Link> */}
               </div>
               <div id="button-style">
                 <Link
