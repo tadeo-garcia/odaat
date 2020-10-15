@@ -3,11 +3,13 @@ const UNFOLLOW_USER = "user/following";
 const FOLLOW_USER = "user/following";
 const GET_FOLLOWERS_BY_ID = "user/followers";
 const GET_FOLLOWING_BY_ID = "user/following";
+const GET_FOLLOWERS_BY_CURRENT_USER_ID = "user/myfollowers";
+const GET_FOLLOWING_BY_CURRENT_USER_ID = "user/imfollowing";
 
-export const loadUserById = (user) => {
+export const loadUserById = (profileUser) => {
   return {
     type: GET_USER_BY_ID,
-    user: user,
+    user: profileUser,
   };
 };
 
@@ -22,6 +24,20 @@ export const loadUnfollowUser = (following) => {
   return {
     type: UNFOLLOW_USER,
     following: following,
+  };
+};
+
+export const loadFollowersByCurrentUserId = (myFollowers) => {
+  return {
+    type: GET_FOLLOWERS_BY_CURRENT_USER_ID,
+    myFollowers: myFollowers,
+  };
+};
+
+export const loadFollowingByCurrentUserId = (imFollowing) => {
+  return {
+    type: GET_FOLLOWING_BY_CURRENT_USER_ID,
+    imFollowing: imFollowing,
   };
 };
 
@@ -91,12 +107,34 @@ export const getFollowersById = (id) => {
   };
 };
 
+export const getFollowersByCurrentUserId = (id) => {
+  return async (dispatch) => {
+    const res = await fetch(`/api/user/followers_by_id?id=${id}`, { method: "GET" });
+    res.data = await res.json();
+    if (res.ok) {
+      dispatch(loadFollowersByCurrentUserId(res.data.followers));
+    }
+    return res;
+  };
+};
+
 export const getFollowingById = (id) => {
   return async (dispatch) => {
     const res = await fetch(`/api/user/following_by_id?id=${id}`, { method: "GET" });
     res.data = await res.json();
     if (res.ok) {
       dispatch(loadFollowingById(res.data.following));
+    }
+    return res;
+  };
+};
+
+export const getFollowingByCurrentUserId = (id) => {
+  return async (dispatch) => {
+    const res = await fetch(`/api/user/following_by_id?id=${id}`, { method: "GET" });
+    res.data = await res.json();
+    if (res.ok) {
+      dispatch(loadFollowingByCurrentUserId(res.data.following));
     }
     return res;
   };
@@ -110,6 +148,10 @@ export default function userReducer(state = {}, action) {
       return { ...state, following: action.following };
     case UNFOLLOW_USER:
       return { ...state, following: action.following };
+    case GET_FOLLOWERS_BY_CURRENT_USER_ID:
+      return { ...state, myFollowers: action.myFollowers };
+    case GET_FOLLOWING_BY_CURRENT_USER_ID:
+      return { ...state, imFollowing: action.imFollowing };
     case GET_FOLLOWERS_BY_ID:
       return { ...state, followers: action.followers };
     case GET_FOLLOWING_BY_ID:

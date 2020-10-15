@@ -41,6 +41,7 @@
   color: #014178;
   text-decoration: none;
   padding-right: 10px;
+  cursor: pointer;
 }
 
 #nav-container__right-link:hover {
