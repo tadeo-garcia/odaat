@@ -70,6 +70,7 @@ export const updateUserProfile = (
   currentUserId,
   username,
   password,
+  confirmPassword,
   bio,
   sobrietyDate,
   displaySobrietyDate,
@@ -78,6 +79,10 @@ export const updateUserProfile = (
   sponsee
 ) => {
   return async (dispatch) => {
+    if (password !== confirmPassword) {
+      dispatch(setMessage({ msg: "Passwords do not match!" }));
+      return;
+    }
     const res = await fetch("/api/user/update", {
       method: "PUT",
       headers: {

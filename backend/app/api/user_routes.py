@@ -41,7 +41,29 @@ def update_user_info():
             User.username == new_username).first()
         if check_username:
             return jsonify({"msg": "Username already exists, please try again"}), 401
-    user.username = new_username
+    if new_username is None:
+        if new_password:
+            user.password = new_password
+        if new_bio:
+            user.bio = new_bio
+        if new_interests:
+            user.interests = new_interests
+        if new_sobriety_date:
+            user.sobriety_date = new_sobriety_date
+        if new_display_sd:
+            user.display_sd = True
+        user.display_sd = new_display_sd
+        if new_sponsor:
+            user.sponsor = True
+        user.sponsor = new_sponsor
+        if new_sponsee:
+            user.sponsee = True
+        user.sponsee = new_sponsee
+        db.session.add(user)
+        db.session.commit()
+        return {"user": user.to_dict(), "msg": "Profile Updated Successfully"}, 200
+    if new_username:
+        user.username = new_username
     if new_password:
         user.password = new_password
     if new_bio:
@@ -61,7 +83,6 @@ def update_user_info():
     user.sponsee = new_sponsee
     db.session.add(user)
     db.session.commit()
-    msg = jsonify({"msg"})
     return {"user": user.to_dict(), "msg": "Profile Updated Successfully"}, 200
 
 

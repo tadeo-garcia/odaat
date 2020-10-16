@@ -8,6 +8,7 @@ import { updateUserProfile } from "../store/auth";
 
 export default function EditProfile() {
   const currentUserId = useSelector((state) => state.auth.id);
+  const message = useSelector((state) => state.message);
   const [username, setUsername] = useState(null);
   const [password, setPassword] = useState(null);
   const [confirmPassword, setConfirmPassword] = useState(null);
@@ -75,6 +76,7 @@ export default function EditProfile() {
         currentUserId,
         username,
         password,
+        confirmPassword,
         bio,
         sobrietyDate,
         displaySobrietyDate,
@@ -93,6 +95,7 @@ export default function EditProfile() {
           <div id="edit-container__info">
             To edit your profile fill out any of the fields, and press submit!
           </div>
+          <div id="edit-container__info">{message ? message : null}</div>
           <div id="edit-container__form-div">
             <form id="edit-container__form">
               <div className="edit-container__input-div">
@@ -120,7 +123,6 @@ export default function EditProfile() {
                   className="edit-container__input"
                   onChange={(e) => {
                     setConfirmPassword(e.target.value);
-                    console.log(passMatch);
                   }}
                   placeholder={"Please confirm new password here."}
                 />
