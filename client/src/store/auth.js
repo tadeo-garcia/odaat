@@ -1,79 +1,112 @@
-const SET_USER = 'auth/SET_USER';
-const LOGOUT_USER = 'auth/LOGOUT_USER';
+const SET_USER = "auth/SET_USER";
+const LOGOUT_USER = "auth/LOGOUT_USER";
 
 export const setUser = (user) => {
-  if(!user){
+  if (!user) {
     return {
       type: SET_USER,
-      user: {}
-    }
+      user: {},
+    };
   }
   return {
     type: SET_USER,
-    user
+    user,
   };
 };
 
 export const logoutUser = () => {
   return {
-    type: LOGOUT_USER
-  }
-}
+    type: LOGOUT_USER,
+  };
+};
 
 export const login = (email, password) => {
-  return async dispatch => {
-    const res = await fetch('/api/session', {
-      method: 'post',
+  return async (dispatch) => {
+    const res = await fetch("/api/session", {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ email, password })
-    })
-    res.data = await res.json();
-    if (res.data.user) { 
-      dispatch(setUser(res.data.user))
-    }
-    else{
-      dispatch(setUser(res.data.msg))
-      return res;
-    }
-  }
-}
-
-export const signup = (email, password, username) => {
-  return async dispatch => {
-    const res = await fetch('/api/user/signup', {
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email, password, username })
-    })
+      body: JSON.stringify({ email, password }),
+    });
     res.data = await res.json();
     if (res.data.user) {
       dispatch(setUser(res.data.user));
-    }
-    else{
-      dispatch(setUser(res.data.msg))
+    } else {
+      dispatch(setUser(res.data.msg));
       return res;
     }
-  }
-}
+  };
+};
 
+export const signup = (email, password, username) => {
+  return async (dispatch) => {
+    const res = await fetch("/api/user/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password, username }),
+    });
+    res.data = await res.json();
+    if (res.data.user) {
+      dispatch(setUser(res.data.user));
+    } else {
+      dispatch(setUser(res.data.msg));
+      return res;
+    }
+  };
+};
 
+export const updateUserProfile = (
+  username,
+  password,
+  bio,
+  sobrietyDate,
+  displaySobrietyDate,
+  interests,
+  sponsor,
+  sponsee
+) => {
+  return async (dispatch) => {
+    const res = await fetch("/api/user/update", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username: username ? username : null,
+        password: password ? password : null,
+        bio: bio ? bio : null,
+        sobrietyDate: sobrietyDate ? sobrietyDate : null,
+        displaySobrietyDate: displaySobrietyDate ? displaySobrietyDate : null,
+        interests: interests ? interests : null,
+        sponsor: sponsor ? sponsor : null,
+        sponsee: sponsee ? sponsee : null,
+      }),
+    });
+    res.data = await res.json();
+    if (res.data.user) {
+      dispatch(setUser(res.data.user));
+    } else {
+      dispatch(setUser(res.data.msg));
+      return res;
+    }
+  };
+};
 
 export const logout = () => {
-  return async dispatch => {
-    const res = await fetch('/api/session', {
-      method: 'delete',
-      headers: { },
-    })
+  return async (dispatch) => {
+    const res = await fetch("/api/session", {
+      method: "DELETE",
+      headers: {},
+    });
     if (res.ok) {
       dispatch(logoutUser());
     }
     return res;
-  }
-}
+  };
+};
 
 export default function authReducer(state = {}, action) {
   // Object.freeze(state)

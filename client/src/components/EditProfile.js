@@ -12,6 +12,7 @@ export default function EditProfile() {
   const [confirmPassword, setConfirmPassword] = useState(null);
   const [bio, setBio] = useState(null);
   const [sobrietyDate, setSobrietyDate] = useState(null);
+  const [displaySobrietyDate, setDisplaySobrietyDate] = useState(null);
   const [picture, setPicture] = useState(null);
   const [interests, setInterests] = useState(null);
   const [sponsor, setSponsor] = useState(null);
@@ -77,6 +78,14 @@ export default function EditProfile() {
                   type="date"
                   className="edit-container__input"
                   onChange={(e) => setSobrietyDate(e.target.value)}
+                />
+              </div>
+              <div className="edit-container__input-div-check">
+                <span>If you want to keep your sobriety date private check this box.</span>
+                <input
+                  type="checkbox"
+                  className="edit-container__input-check"
+                  onChange={(e) => setSponsee(e.target.value)}
                 />
               </div>
               <div className="edit-container__input-div-check">
