@@ -112,7 +112,7 @@ export const updateUserProfile = (
       console.log(message);
       return res;
     }
-    return console.log("good to go");
+    return res;
   };
 };
 

@@ -40,6 +40,15 @@
   text-align: center;
 }
 
+#edit-container__message {
+  height: 30px;
+  width: 100%;
+  text-align: center;
+  color: rgb(10, 69, 10);
+  font-weight: 600;
+  font-size: 20px;
+}
+
 #edit-container__form-div {
   width: 85%;
 }

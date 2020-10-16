@@ -1,14 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { createMeeting } from "../store/meetings";
-// import { getGeocode, getLatLng } from "use-places-autocomplete";
 import { useHistory } from "react-router-dom";
 import { updateUserProfile } from "../store/auth";
-// import MapApi from "./Map";
 
 export default function EditProfile() {
   const currentUserId = useSelector((state) => state.auth.id);
-  const message = useSelector((state) => state.message);
+  const message = useSelector((state) => state.auth.message);
+  const [displayMessage, setDisplayMessage] = useState(null);
   const [username, setUsername] = useState(null);
   const [password, setPassword] = useState(null);
   const [confirmPassword, setConfirmPassword] = useState(null);
@@ -23,7 +21,7 @@ export default function EditProfile() {
   const [sponsorChange, setSponsorChange] = useState(null);
   const [sponsee, setSponsee] = useState(false);
   const [sponseeChange, setSponseeChange] = useState(null);
-
+  const [submitted, setSubmitted] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -46,6 +44,7 @@ export default function EditProfile() {
   };
 
   const handleSponsee = () => {
+    // setDisplayMessage(null);
     setSponseeChange(true);
     if (sponsee === false) {
       return setSponsee(true);
@@ -85,7 +84,8 @@ export default function EditProfile() {
         sponsee
       )
     );
-    // return history.push("/Dashboard/Profile");
+
+    setDisplayMessage(message);
   };
 
   return (
@@ -95,7 +95,7 @@ export default function EditProfile() {
           <div id="edit-container__info">
             To edit your profile fill out any of the fields, and press submit!
           </div>
-          <div id="edit-container__info">{message ? message : null}</div>
+          <div id="edit-container__message">{submitted ? displayMessage : null}</div>
           <div id="edit-container__form-div">
             <form id="edit-container__form">
               <div className="edit-container__input-div">
@@ -182,7 +182,16 @@ export default function EditProfile() {
               </div>
             </form>
             <div className="edit-container__input-div">
-              <button className="edit-container__button" onClick={handleSubmit}>
+              <button
+                className="edit-container__button"
+                onClick={() => {
+                  handleSubmit();
+                  console.log(submitted);
+                  console.log("inthemiddle");
+                  setSubmitted(true);
+                  console.log(submitted);
+                }}
+              >
                 submit update
               </button>
             </div>
