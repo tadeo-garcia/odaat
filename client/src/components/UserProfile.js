@@ -20,7 +20,7 @@ export default function UserProfile() {
   let params = useParams();
   let profileId = params.id;
 
-  const [follow, setFollow] = useState("following");
+  const [follow, setFollow] = useState("followers");
   const dispatch = useDispatch();
   const history = useHistory();
 

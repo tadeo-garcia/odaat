@@ -1,8 +1,6 @@
 const GET_USER_BY_ID = "user/user";
-const UNFOLLOW_USER = "user/following";
-const FOLLOW_USER = "user/following";
-const GET_FOLLOWERS_BY_ID = "user/followers";
-const GET_FOLLOWING_BY_ID = "user/following";
+const SET_FOLLOWERS_BY_ID = "user/followers";
+const SET_FOLLOWING_BY_ID = "user/following";
 const GET_FOLLOWERS_BY_CURRENT_USER_ID = "user/myfollowers";
 const GET_FOLLOWING_BY_CURRENT_USER_ID = "user/imfollowing";
 
@@ -13,17 +11,17 @@ export const loadUserById = (profileUser) => {
   };
 };
 
-export const loadFollowUser = (following) => {
+export const loadFollowUser = (followers) => {
   return {
-    type: FOLLOW_USER,
-    following: following,
+    type: SET_FOLLOWERS_BY_ID,
+    followers: followers,
   };
 };
 
-export const loadUnfollowUser = (following) => {
+export const loadUnfollowUser = (followers) => {
   return {
-    type: UNFOLLOW_USER,
-    following: following,
+    type: SET_FOLLOWERS_BY_ID,
+    followers: followers,
   };
 };
 
@@ -43,14 +41,14 @@ export const loadFollowingByCurrentUserId = (imFollowing) => {
 
 export const loadFollowersById = (followers) => {
   return {
-    type: GET_FOLLOWERS_BY_ID,
+    type: SET_FOLLOWERS_BY_ID,
     followers: followers,
   };
 };
 
 export const loadFollowingById = (following) => {
   return {
-    type: GET_FOLLOWING_BY_ID,
+    type: SET_FOLLOWING_BY_ID,
     following: following,
   };
 };
@@ -74,7 +72,7 @@ export const followUser = (currentUserId, profileId) => {
     );
     res.data = await res.json();
     if (res.ok) {
-      dispatch(loadFollowUser(res.data.following));
+      dispatch(loadFollowUser(res.data.followers));
     }
     return res;
   };
@@ -90,7 +88,7 @@ export const unfollowUser = (currentUserId, profileId) => {
     );
     res.data = await res.json();
     if (res.ok) {
-      dispatch(loadUnfollowUser(res.data.following));
+      dispatch(loadUnfollowUser(res.data.followers));
     }
     return res;
   };
@@ -107,23 +105,23 @@ export const getFollowersById = (id) => {
   };
 };
 
-export const getFollowersByCurrentUserId = (id) => {
-  return async (dispatch) => {
-    const res = await fetch(`/api/user/followers_by_id?id=${id}`, { method: "GET" });
-    res.data = await res.json();
-    if (res.ok) {
-      dispatch(loadFollowersByCurrentUserId(res.data.followers));
-    }
-    return res;
-  };
-};
-
 export const getFollowingById = (id) => {
   return async (dispatch) => {
     const res = await fetch(`/api/user/following_by_id?id=${id}`, { method: "GET" });
     res.data = await res.json();
     if (res.ok) {
       dispatch(loadFollowingById(res.data.following));
+    }
+    return res;
+  };
+};
+
+export const getFollowersByCurrentUserId = (id) => {
+  return async (dispatch) => {
+    const res = await fetch(`/api/user/followers_by_id?id=${id}`, { method: "GET" });
+    res.data = await res.json();
+    if (res.ok) {
+      dispatch(loadFollowersByCurrentUserId(res.data.followers));
     }
     return res;
   };
@@ -144,17 +142,13 @@ export default function userReducer(state = {}, action) {
   switch (action.type) {
     case GET_USER_BY_ID:
       return { ...state, user: action.user };
-    case FOLLOW_USER:
-      return { ...state, following: action.following };
-    case UNFOLLOW_USER:
-      return { ...state, following: action.following };
     case GET_FOLLOWERS_BY_CURRENT_USER_ID:
       return { ...state, myFollowers: action.myFollowers };
     case GET_FOLLOWING_BY_CURRENT_USER_ID:
       return { ...state, imFollowing: action.imFollowing };
-    case GET_FOLLOWERS_BY_ID:
+    case SET_FOLLOWERS_BY_ID:
       return { ...state, followers: action.followers };
-    case GET_FOLLOWING_BY_ID:
+    case SET_FOLLOWING_BY_ID:
       return { ...state, following: action.following };
     default:
       return state;
