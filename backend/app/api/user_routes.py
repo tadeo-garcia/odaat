@@ -102,10 +102,6 @@ def follow_user_by_id():
     try:
         currentUser.follow(profileUser)
         db.session.commit()
-        # following = User.query.join(follow_table, (follow_table.c.followed_id == User.id)).filter(
-        #     follow_table.c.follower_id == currentUserId)
-        # data = [user.to_dict() for user in following]
-        # return{"following": data}, 200
         followers = User.query.join(follow_table, (follow_table.c.follower_id == User.id)).filter(
             follow_table.c.followed_id == profileId)
         data = [user.to_dict() for user in followers]
@@ -123,10 +119,6 @@ def unfollow_user_by_id():
     try:
         currentUser.unfollow(profileUser)
         db.session.commit()
-        # following = User.query.join(follow_table, (follow_table.c.followed_id == User.id)).filter(
-        #     follow_table.c.follower_id == currentUserId)
-        # data = [user.to_dict() for user in following]
-        # return{"following": data}, 200
         followers = User.query.join(follow_table, (follow_table.c.follower_id == User.id)).filter(
             follow_table.c.followed_id == profileId)
         data = [user.to_dict() for user in followers]

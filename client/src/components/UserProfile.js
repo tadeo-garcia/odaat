@@ -46,7 +46,7 @@ export default function UserProfile() {
     dispatch(unfollowUser(currentUser.id, profileUser.id));
     dispatch(getFollowersById(profileId));
     dispatch(getFollowingById(profileId));
-    history.push(`/dashboard/profile${profileUser.id}`);
+    history.push(`/dashboard/profile/${profileUser.id}`);
   };
 
   // if (!userMeetings) return null;
@@ -82,7 +82,6 @@ export default function UserProfile() {
             </div>
             <div id="profile-container__user-buttons">
               <div id="button-style">
-                {/* <Link id="button-link" onClick={handleFollowUser} to={`/dashboard/profile`}> */}
                 <button type="button" id="button-link" onClick={handleFollowUser}>
                   {" "}
                   <i className="fa fa-user-circle-o" />
@@ -91,7 +90,6 @@ export default function UserProfile() {
                 {/* </Link> */}
               </div>
               <div id="button-style">
-                {/* <Link id="button-link" onClick={handleUnfollowUser} to={`/dashboard/profile}`}> */}
                 <button type="button" id="button-link" onClick={handleUnfollowUser}>
                   {" "}
                   <i className="fa fa-ban" />
