@@ -14,15 +14,19 @@ export default function EditProfile() {
   const [bio, setBio] = useState(null);
   const [sobrietyDate, setSobrietyDate] = useState(null);
   const [displaySobrietyDate, setDisplaySobrietyDate] = useState(false);
+  const [displayChange, setDisplayChange] = useState(null);
   // const [picture, setPicture] = useState(null);
   const [interests, setInterests] = useState(null);
   const [sponsor, setSponsor] = useState(false);
+  const [sponsorChange, setSponsorChange] = useState(null);
   const [sponsee, setSponsee] = useState(false);
+  const [sponseeChange, setSponseeChange] = useState(null);
 
   const dispatch = useDispatch();
   const history = useHistory();
 
   const handleDisplaySD = () => {
+    setDisplayChange(true);
     if (displaySobrietyDate === false) {
       return setDisplaySobrietyDate(true);
     } else {
@@ -31,6 +35,7 @@ export default function EditProfile() {
   };
 
   const handleSponsor = () => {
+    setSponsorChange(true);
     if (sponsor === false) {
       return setSponsor(true);
     } else {
@@ -39,6 +44,7 @@ export default function EditProfile() {
   };
 
   const handleSponsee = () => {
+    setSponseeChange(true);
     if (sponsee === false) {
       return setSponsee(true);
     } else {
@@ -47,6 +53,17 @@ export default function EditProfile() {
   };
 
   const handleSubmit = () => {
+    if (!displayChange) {
+      setDisplaySobrietyDate(false);
+    }
+    if (!sponsorChange) {
+      setSponsor(false);
+    }
+
+    if (!sponseeChange) {
+      setSponsee(false);
+    }
+
     dispatch(
       updateUserProfile(
         currentUserId,
@@ -60,7 +77,7 @@ export default function EditProfile() {
         sponsee
       )
     );
-    // return history.push("/Dashboard/Profile");
+    return history.push("/Dashboard/Profile");
   };
 
   return (

@@ -88,7 +88,7 @@ export const updateUserProfile = (
         username: username ? username : null,
         password: password ? password : null,
         bio: bio ? bio : null,
-        sobrietyDate: sobrietyDate ? sobrietyDate : null,
+        sobrietyDate,
         displaySobrietyDate: displaySobrietyDate,
         interests: interests ? interests : null,
         sponsor: sponsor,

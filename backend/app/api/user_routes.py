@@ -31,26 +31,7 @@ def update_user_info():
     new_password = request.json.get("password")
     new_bio = request.json.get("bio")
     new_interests = request.json.get("interests")
-    new_sobriety_date = request.json.get("SobrietyDate")
-    new_display_sd = request.json.get("displaySobrietyDate")
-    new_sponsor = request.json.get("sponsor")
-    new_sponsee = request.json.get("sponsee")
-    print('~~~~~~~~~~~~~~~~~~~~~~~~~')
-    print(user)
-    print('~~~~~~~~~~~~~~~~~~~~~~~~~')
-    print(new_password)
-    print('~~~~~~~~~~~~~~~~~~~~~~~~~')
-    print(new_bio)
-    print('~~~~~~~~~~~~~~~~~~~~~~~~~')
-    print(new_interests)
-    print('~~~~~~~~~~~~~~~~~~~~~~~~~')
-    print(new_sobriety_date)
-    print('~~~~~~~~~~~~~~~~~~~~~~~~~')
-    print(new_display_sd)
-    print('~~~~~~~~~~~~~~~~~~~~~~~~~')
-    print(new_sponsor)
-    print('~~~~~~~~~~~~~~~~~~~~~~~~~')
-    print(new_sponsee)
+    new_sobriety_date = request.json.get("sobrietyDate")
     if new_username:
         user.username = new_username
         print(user.username)
@@ -59,23 +40,22 @@ def update_user_info():
         #     print('username already taken')
         #     return jsonify({"msg": "Username already exists, please try again"}), 401
     if new_password:
-        print(new_password)
         user.password = new_password
     if new_bio:
-        print(new_bio)
         user.bio = new_bio
     if new_interests:
-        print(new_interests)
         user.interests = new_interests
     if new_sobriety_date:
-        print(new_sobriety_date)
         user.sobriety_date = new_sobriety_date
     if new_display_sd:
         user.display_sd = True
+    user.display_sd = new_display_sd
     if new_sponsor:
         user.sponsor = True
+    user.sponsor = new_sponsor
     if new_sponsee:
         user.sponsee = True
+    user.sponsee = new_sponsee
     db.session.add(user)
     db.session.commit()
     return {"user": user.to_dict()}, 200
