@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createMeeting } from "../store/meetings";
-import { getGeocode, getLatLng } from "use-places-autocomplete";
+// import { createMeeting } from "../store/meetings";
+// import { getGeocode, getLatLng } from "use-places-autocomplete";
 import { useHistory } from "react-router-dom";
-import MapApi from "./Map";
+import { updateUserProfile } from "../store/auth";
+// import MapApi from "./Map";
 
 export default function EditProfile() {
   const currentUserId = useSelector((state) => state.auth.id);
@@ -12,14 +13,55 @@ export default function EditProfile() {
   const [confirmPassword, setConfirmPassword] = useState(null);
   const [bio, setBio] = useState(null);
   const [sobrietyDate, setSobrietyDate] = useState(null);
-  const [displaySobrietyDate, setDisplaySobrietyDate] = useState(null);
-  const [picture, setPicture] = useState(null);
+  const [displaySobrietyDate, setDisplaySobrietyDate] = useState(false);
+  // const [picture, setPicture] = useState(null);
   const [interests, setInterests] = useState(null);
-  const [sponsor, setSponsor] = useState(null);
-  const [sponsee, setSponsee] = useState(null);
+  const [sponsor, setSponsor] = useState(false);
+  const [sponsee, setSponsee] = useState(false);
 
   const dispatch = useDispatch();
   const history = useHistory();
+
+  const handleDisplaySD = () => {
+    if (displaySobrietyDate === false) {
+      return setDisplaySobrietyDate(true);
+    } else {
+      return setDisplaySobrietyDate(false);
+    }
+  };
+
+  const handleSponsor = () => {
+    if (sponsor === false) {
+      return setSponsor(true);
+    } else {
+      return setSponsor(false);
+    }
+  };
+
+  const handleSponsee = () => {
+    if (sponsee === false) {
+      return setSponsee(true);
+    } else {
+      return setSponsee(false);
+    }
+  };
+
+  const handleSubmit = () => {
+    dispatch(
+      updateUserProfile(
+        currentUserId,
+        username,
+        password,
+        bio,
+        sobrietyDate,
+        displaySobrietyDate,
+        interests,
+        sponsor,
+        sponsee
+      )
+    );
+    // return history.push("/Dashboard/Profile");
+  };
 
   return (
     <>
@@ -85,7 +127,10 @@ export default function EditProfile() {
                 <input
                   type="checkbox"
                   className="edit-container__input-check"
-                  onChange={(e) => setSponsee(e.target.value)}
+                  value="true"
+                  onChange={() => {
+                    handleDisplaySD();
+                  }}
                 />
               </div>
               <div className="edit-container__input-div-check">
@@ -93,7 +138,7 @@ export default function EditProfile() {
                 <input
                   type="checkbox"
                   className="edit-container__input-check"
-                  onChange={(e) => setSponsee(e.target.value)}
+                  onChange={() => handleSponsee()}
                 />
               </div>
               <div className="edit-container__input-div-check">
@@ -101,12 +146,14 @@ export default function EditProfile() {
                 <input
                   type="checkbox"
                   className="edit-container__input-check"
-                  onChange={(e) => setSponsor(e.target.value)}
+                  onChange={() => handleSponsor()}
                 />
               </div>
             </form>
             <div className="edit-container__input-div">
-              <button className="edit-container__button">submit update</button>
+              <button className="edit-container__button" onClick={handleSubmit}>
+                submit update
+              </button>
             </div>
           </div>
         </div>

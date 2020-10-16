@@ -23,43 +23,59 @@ def signup_user():
         return jsonify({"msg": "Bad data for signup."}), 400
 
 
-@user_routes.route('/update', methods=['PATCH'])
+@user_routes.route('/update', methods=['PUT'])
 def update_user_info():
     currentUserId = request.json.get("currentUserId")
     user = User.query.filter(User.id == currentUserId).first()
     new_username = request.json.get("username")
-    # new_password = request.json.get("password")
+    new_password = request.json.get("password")
     new_bio = request.json.get("bio")
     new_interests = request.json.get("interests")
     new_sobriety_date = request.json.get("SobrietyDate")
     new_display_sd = request.json.get("displaySobrietyDate")
     new_sponsor = request.json.get("sponsor")
     new_sponsee = request.json.get("sponsee")
+    print('~~~~~~~~~~~~~~~~~~~~~~~~~')
+    print(user)
+    print('~~~~~~~~~~~~~~~~~~~~~~~~~')
+    print(new_password)
+    print('~~~~~~~~~~~~~~~~~~~~~~~~~')
+    print(new_bio)
+    print('~~~~~~~~~~~~~~~~~~~~~~~~~')
+    print(new_interests)
+    print('~~~~~~~~~~~~~~~~~~~~~~~~~')
+    print(new_sobriety_date)
+    print('~~~~~~~~~~~~~~~~~~~~~~~~~')
+    print(new_display_sd)
+    print('~~~~~~~~~~~~~~~~~~~~~~~~~')
+    print(new_sponsor)
+    print('~~~~~~~~~~~~~~~~~~~~~~~~~')
+    print(new_sponsee)
     if new_username:
-        check_username = User.query.filter(User.username == new_username)
-        if check_username:
-            return jsonify({"msg": "Username already exists, please try again"}), 401
         user.username = new_username
-    # if new_password:
-    #     user.password = new_password
+        print(user.username)
+        check_username = User.query.filter(User.username == new_username)
+        # if check_username:
+        #     print('username already taken')
+        #     return jsonify({"msg": "Username already exists, please try again"}), 401
+    if new_password:
+        print(new_password)
+        user.password = new_password
     if new_bio:
+        print(new_bio)
         user.bio = new_bio
     if new_interests:
+        print(new_interests)
         user.interests = new_interests
     if new_sobriety_date:
+        print(new_sobriety_date)
         user.sobriety_date = new_sobriety_date
-    if new_display_sd == 'off':
+    if new_display_sd:
         user.display_sd = True
-    if new_display_sd == 'on':
-        user.display_sd = False
-    if new_sponsor == 'on':
+    if new_sponsor:
         user.sponsor = True
-    if new_sponsor == 'off':
-        user.sponsor = False
-    if new_sponsee == 'on':
+    if new_sponsee:
         user.sponsee = True
-    if new_sponsee == 'off':
-        user.sponsee = False
     db.session.add(user)
     db.session.commit()
     return {"user": user.to_dict()}, 200

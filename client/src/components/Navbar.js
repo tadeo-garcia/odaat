@@ -25,7 +25,7 @@ function Navbar() {
       </div>
       <div id="nav-container__right">
         <div id="nav-container__right-profile">
-          <NavLink id="nav-container__right-link" exact to={`/user/${currentUserId}`}>
+          <NavLink id="nav-container__right-link" exact to={`/Dashboard/Profile`}>
             profile
           </NavLink>
         </div>

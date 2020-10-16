@@ -1,5 +1,13 @@
+const SET_ERROR = "auth/SET_ERROR";
 const SET_USER = "auth/SET_USER";
 const LOGOUT_USER = "auth/LOGOUT_USER";
+
+export const setError = (message) => {
+  return {
+    type: SET_ERROR,
+    message,
+  };
+};
 
 export const setUser = (user) => {
   if (!user) {
@@ -59,6 +67,7 @@ export const signup = (email, password, username) => {
 };
 
 export const updateUserProfile = (
+  currentUserId,
   username,
   password,
   bio,
@@ -75,23 +84,28 @@ export const updateUserProfile = (
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        currentUserId: currentUserId,
         username: username ? username : null,
         password: password ? password : null,
         bio: bio ? bio : null,
         sobrietyDate: sobrietyDate ? sobrietyDate : null,
-        displaySobrietyDate: displaySobrietyDate ? displaySobrietyDate : null,
+        displaySobrietyDate: displaySobrietyDate,
         interests: interests ? interests : null,
-        sponsor: sponsor ? sponsor : null,
-        sponsee: sponsee ? sponsee : null,
+        sponsor: sponsor,
+        sponsee: sponsee,
       }),
     });
     res.data = await res.json();
-    if (res.data.user) {
-      dispatch(setUser(res.data.user));
+    let user = res.data.user;
+    let message = res.data.msg;
+    if (user) {
+      dispatch(setUser(user));
     } else {
-      dispatch(setUser(res.data.msg));
+      dispatch(setError(message));
+      console.log(message);
       return res;
     }
+    return console.log("good to go");
   };
 };
 
@@ -111,6 +125,8 @@ export const logout = () => {
 export default function authReducer(state = {}, action) {
   // Object.freeze(state)
   switch (action.type) {
+    case SET_ERROR:
+      return { ...state, message: action.message };
     case SET_USER:
       return action.user;
     case LOGOUT_USER:
