@@ -32,13 +32,16 @@ def update_user_info():
     new_bio = request.json.get("bio")
     new_interests = request.json.get("interests")
     new_sobriety_date = request.json.get("sobrietyDate")
+    new_display_sd = request.json.get("displaySobrietyDate")
+    new_sponsor = request.json.get("sponsor")
+    new_sponsee = request.json.get("sponsee")
+
     if new_username:
-        user.username = new_username
-        print(user.username)
-        check_username = User.query.filter(User.username == new_username)
-        # if check_username:
-        #     print('username already taken')
-        #     return jsonify({"msg": "Username already exists, please try again"}), 401
+        check_username = User.query.filter(
+            User.username == new_username).first()
+        if check_username:
+            return jsonify({"msg": "Username already exists, please try again"}), 401
+    user.username = new_username
     if new_password:
         user.password = new_password
     if new_bio:
@@ -58,7 +61,8 @@ def update_user_info():
     user.sponsee = new_sponsee
     db.session.add(user)
     db.session.commit()
-    return {"user": user.to_dict()}, 200
+    msg = jsonify({"msg"})
+    return {"user": user.to_dict(), "msg": "Profile Updated Successfully"}, 200
 
 
 @user_routes.route('/user_by_id', methods=['GET'])

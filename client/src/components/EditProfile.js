@@ -11,6 +11,7 @@ export default function EditProfile() {
   const [username, setUsername] = useState(null);
   const [password, setPassword] = useState(null);
   const [confirmPassword, setConfirmPassword] = useState(null);
+  const [passMatch, setPassMatch] = useState(null);
   const [bio, setBio] = useState(null);
   const [sobrietyDate, setSobrietyDate] = useState(null);
   const [displaySobrietyDate, setDisplaySobrietyDate] = useState(false);
@@ -53,6 +54,11 @@ export default function EditProfile() {
   };
 
   const handleSubmit = () => {
+    if (password !== confirmPassword) {
+      setPassMatch({ border: "1px solid red" });
+      return;
+    }
+
     if (!displayChange) {
       setDisplaySobrietyDate(false);
     }
@@ -77,7 +83,7 @@ export default function EditProfile() {
         sponsee
       )
     );
-    return history.push("/Dashboard/Profile");
+    // return history.push("/Dashboard/Profile");
   };
 
   return (
@@ -101,15 +107,21 @@ export default function EditProfile() {
                 <input
                   type="text"
                   className="edit-container__input"
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                  }}
                   placeholder={"Update your password here."}
                 />
               </div>
               <div className="edit-container__input-div">
                 <input
                   type="text"
+                  style={passMatch}
                   className="edit-container__input"
-                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  onChange={(e) => {
+                    setConfirmPassword(e.target.value);
+                    console.log(passMatch);
+                  }}
                   placeholder={"Please confirm new password here."}
                 />
               </div>

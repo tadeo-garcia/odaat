@@ -1,10 +1,10 @@
-const SET_ERROR = "auth/SET_ERROR";
+const SET_MESSAGE = "auth/SET_MESSAGE";
 const SET_USER = "auth/SET_USER";
 const LOGOUT_USER = "auth/LOGOUT_USER";
 
-export const setError = (message) => {
+export const setMessage = (message) => {
   return {
-    type: SET_ERROR,
+    type: SET_MESSAGE,
     message,
   };
 };
@@ -98,10 +98,12 @@ export const updateUserProfile = (
     res.data = await res.json();
     let user = res.data.user;
     let message = res.data.msg;
-    if (user) {
+    console.log(message);
+    if (user && message) {
       dispatch(setUser(user));
+      dispatch(setMessage(message));
     } else {
-      dispatch(setError(message));
+      dispatch(setMessage(message));
       console.log(message);
       return res;
     }
@@ -125,7 +127,7 @@ export const logout = () => {
 export default function authReducer(state = {}, action) {
   // Object.freeze(state)
   switch (action.type) {
-    case SET_ERROR:
+    case SET_MESSAGE:
       return { ...state, message: action.message };
     case SET_USER:
       return action.user;
