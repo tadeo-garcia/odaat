@@ -10,19 +10,20 @@ with app.app_context():
 
 # USERS
     ian = User(username='Ian', email='ian@odaat.com',
-               password='password', zipcode=75214, bio='I love the outdoors and meeting new people', sobriety_date='2019-09-04')
+               password='password', zipcode=75214, bio='I love the outdoors and meeting new people', sobriety_date='2019-09-04', display_sd=False, sponsee=True)
     javier = User(username='Javier', email='javier@odaat.com',
-                  password='password')
-    dean = User(username='Dean', email='dean@odaat.com', password='password')
+                  password='password', sponsor=True, sobriety_date='2007-09-04')
+    dean = User(username='Dean', email='dean@odaat.com',
+                password='password', sponsor=True, sobriety_date='2017-09-04')
     angela = User(username='Angela', email='angela@odaat.com',
-                  password='password')
+                  password='password', sponsor=True, sobriety_date='2000-09-04')
     soonmi = User(username='Soon-Mi', email='soon-mi@odaat.com',
-                  password='password')
+                  password='password', sponsee=True, sobriety_date='2020-01-04')
     alissa = User(username='Alissa', email='alissa@odaat.com',
-                  password='password')
+                  password='password', sponsee=True, sobriety_date='2019-11-04')
     demo = User(id=555, username='Demo',
                 email='demo@odaat.com', password='password',
-                sponsor=True, sobriety_date='2019-09-04', bio='I love meeting new people, and have been a member of AA for a couple of years now. "It works if you work it!"', interests='biking, hiking and riding my motorcycle')
+                sponsor=True, sobriety_date='2019-09-04', bio='I love meeting new people, and have been a member of AA for a couple of years now. "It works if you work it!"', interests='biking, hiking and riding my motorcycle', display_sd=True)
 
     db.session.add(ian)
     db.session.add(javier)

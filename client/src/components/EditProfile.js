@@ -97,7 +97,7 @@ export default function EditProfile() {
               </div>
             </form>
             <div className="edit-container__input-div">
-              <button className="edit-container__button">host</button>
+              <button className="edit-container__button">submit update</button>
             </div>
           </div>
         </div>

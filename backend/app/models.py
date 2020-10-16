@@ -33,6 +33,7 @@ class User(db.Model, UserMixin):
     picture = db.Column(db.String(200))
     bio = db.Column(db.String(1000))
     interests = db.Column(db.String(1000))
+    display_sd = db.Column(db.Boolean, default=False)
     sobriety_date = db.Column(db.Date())
     created_at = db.Column(db.DateTime, nullable=False,
                            default=datetime.datetime.utcnow)
@@ -70,6 +71,7 @@ class User(db.Model, UserMixin):
                 "bio": self.bio,
                 "interests": self.interests,
                 "sobriety_date": self.sobriety_date,
+                "display_sd": self.display_sd,
                 "created_at": self.created_at.strftime("%B %Y")
             }
         else:
