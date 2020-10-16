@@ -39,14 +39,14 @@ export default function UserProfile() {
     dispatch(followUser(currentUser.id, profileUser.id));
     dispatch(getFollowersById(profileId));
     dispatch(getFollowingById(profileId));
-    history.push(`/dashboard/profile`);
+    history.push(`/dashboard/profile/${profileUser.id}`);
   };
 
   const handleUnfollowUser = (id1, id2) => {
     dispatch(unfollowUser(currentUser.id, profileUser.id));
     dispatch(getFollowersById(profileId));
     dispatch(getFollowingById(profileId));
-    history.push(`/dashboard/profile`);
+    history.push(`/dashboard/profile${profileUser.id}`);
   };
 
   // if (!userMeetings) return null;
