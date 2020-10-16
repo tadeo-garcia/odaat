@@ -56,14 +56,14 @@ export default function Profile() {
             </div>
             <div id="profile-container__user-buttons">
               <div id="button-style">
-                <Link id="button-link" to="/dashboard/settings">
+                <Link id="button-link" to="/dashboard/EditProfile">
                   {" "}
                   <i className="fa fa-pencil" />
                   edit profile
                 </Link>
               </div>
               <div id="button-style">
-                <Link id="button-link" to="/dashboard/settings">
+                <Link id="button-link" to="/dashboard/EditProfile">
                   {" "}
                   <i className="fa fa-picture-o" />
                   update banner

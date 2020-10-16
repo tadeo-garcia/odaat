@@ -23,9 +23,9 @@ function Sidebar() {
           <i className="fa fa-user-circle" />
           <span>my profile </span>
         </Link>
-        <Link className="sidebar-container__link" to="/Dashboard/Settings">
+        <Link className="sidebar-container__link" to="/Dashboard/EditProfile">
           <i className="fa fa-cog" />
-          <span>settings </span>
+          <span>edit profile </span>
         </Link>
         <Link className="sidebar-container__link" to="/Dashboard/Host">
           <i className="fa fa-calendar-o" />

@@ -7,7 +7,7 @@ import Sidebar from "../components/Sidebar";
 import Feed from "../components/Feed";
 import Footer from "../components/Footer";
 import Host from "../components/Host";
-import Settings from "../components/Settings";
+import EditProfile from "../components/EditProfile";
 import Steps from "../components/Steps";
 import Profile from "../components/MyProfile";
 import UserProfile from "../components/UserProfile";
@@ -36,7 +36,7 @@ export default function Dashboard() {
               <Route exact path="/dashboard" component={Feed} />
               <Route exact path="/dashboard/profile" component={Profile} />
               <Route exact path="/dashboard/profile/:id" component={UserProfile} />
-              <Route exact path="/dashboard/Settings" component={Settings} />
+              <Route exact path="/dashboard/EditProfile" component={EditProfile} />
               <Route exact path="/dashboard/host" component={Host} />
               <Route exact path="/dashboard/meetings/:id" component={Event} />
               <Route exact path="/dashboard/Steps" component={Steps} />
