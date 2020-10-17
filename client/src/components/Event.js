@@ -1,5 +1,6 @@
 import React, { useCallback, useRef, useState } from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { GoogleMap, useLoadScript, Marker, InfoWindow } from "@react-google-maps/api";
 import mapStyle from "./MapStyle";
 import Compass from "./Compass";
@@ -22,10 +23,11 @@ export default function Event() {
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries,
   });
-
+  const currentUserId = useSelector((state) => state.auth.id);
   const meeting = useSelector((state) => state.meetings.meeting);
   const meetings = useSelector((state) => state.meetings.meetings);
   const [center, setCenter] = useState(null);
+  let hostButton;
 
   const mapRef = useRef();
   const onMapLoad = useCallback((map) => {
@@ -44,6 +46,12 @@ export default function Event() {
   if (loadError) return "Error loading maps";
   if (!isLoaded) return "Loading Maps";
   if (!meetings) return null;
+
+  if (currentUserId === meeting.host_id) {
+    hostButton = true;
+  } else {
+    hostButton = false;
+  }
 
   return (
     <>
@@ -103,6 +111,13 @@ export default function Event() {
                 social distancing when possible!
               </div>
             )}
+          </div>
+          <div>
+            {hostButton ? (
+              <Link to={`/dashboard/meetings/${meeting.id}/edit`}>
+                <button className="meeting-container__button">edit your meeting</button>
+              </Link>
+            ) : null}
           </div>
         </div>
       </div>

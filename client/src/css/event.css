@@ -43,3 +43,23 @@
   padding: 15px 25px;
   font-weight: 500;
 }
+
+.meeting-container__button {
+  /* display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center; */
+  margin-top: 10px;
+  background-color: white;
+  font-size: 14px;
+  width: 200px;
+  min-width: 100px;
+  height: 30px;
+  border-radius: 10px;
+}
+
+.meeting-container__button:hover {
+  background-color: rgb(1, 65, 120, 0.5);
+  border: 3px solid #fff;
+  color: #fff;
+}

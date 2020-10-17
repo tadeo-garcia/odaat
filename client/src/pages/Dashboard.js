@@ -12,6 +12,7 @@ import Steps from "../components/Steps";
 import Profile from "../components/MyProfile";
 import UserProfile from "../components/UserProfile";
 import Event from "../components/Event";
+import EditMeeting from "../components/EditMeeting";
 
 export default function Dashboard() {
   const currentUserId = useSelector((state) => state.auth.id);
@@ -39,7 +40,7 @@ export default function Dashboard() {
               <Route exact path="/dashboard/EditProfile" component={EditProfile} />
               <Route exact path="/dashboard/host" component={Host} />
               <Route exact path="/dashboard/meetings/:id" component={Event} />
-              <Route exact path="/dashboard/meetings/:id/edit" component={Event} />
+              <Route exact path="/dashboard/meetings/:id/edit" component={EditMeeting} />
               <Route exact path="/dashboard/Steps" component={Steps} />
             </Switch>
           </div>
