@@ -87,7 +87,6 @@ export default function UserProfile() {
                   <i className="fa fa-user-circle-o" />
                   follow
                 </button>
-                {/* </Link> */}
               </div>
               <div id="button-style">
                 <button type="button" id="button-link" onClick={handleUnfollowUser}>
@@ -95,7 +94,6 @@ export default function UserProfile() {
                   <i className="fa fa-ban" />
                   unfollow
                 </button>
-                {/* </Link> */}
               </div>
               <div id="button-style">
                 <Link

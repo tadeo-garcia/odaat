@@ -39,6 +39,7 @@ export default function Dashboard() {
               <Route exact path="/dashboard/EditProfile" component={EditProfile} />
               <Route exact path="/dashboard/host" component={Host} />
               <Route exact path="/dashboard/meetings/:id" component={Event} />
+              <Route exact path="/dashboard/meetings/:id/edit" component={Event} />
               <Route exact path="/dashboard/Steps" component={Steps} />
             </Switch>
           </div>
