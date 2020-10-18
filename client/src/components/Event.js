@@ -1,9 +1,11 @@
 import React, { useCallback, useRef, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { GoogleMap, useLoadScript, Marker, InfoWindow } from "@react-google-maps/api";
 import mapStyle from "./MapStyle";
 import Compass from "./Compass";
+import { loadFollowUser } from "../store/user";
+import { getMeeting } from "../store/meetings";
 
 const mapContainerStyle = {
   width: "100%",
@@ -33,7 +35,6 @@ export default function Event() {
   const onMapLoad = useCallback((map) => {
     mapRef.current = map;
     mapRef.current.setZoom(13);
-    console.log(meeting);
     let center = { lat: meeting.lat, lng: meeting.lng };
     setCenter(center);
   }, []);

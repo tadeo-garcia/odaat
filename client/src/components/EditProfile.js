@@ -186,10 +186,10 @@ export default function EditProfile() {
                 className="edit-container__button"
                 onClick={() => {
                   handleSubmit();
-                  console.log(submitted);
-                  console.log("inthemiddle");
+                  // console.log(submitted);
+                  // console.log("inthemiddle");
                   setSubmitted(true);
-                  console.log(submitted);
+                  // console.log(submitted);
                 }}
               >
                 submit update

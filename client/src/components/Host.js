@@ -12,15 +12,25 @@ export default function Host() {
   const [date, setDate] = useState(null);
   const [time, setTime] = useState(null);
   const [location, setLocation] = useState(null);
-  const [virtual, setVirtual] = useState("off");
+  const [virtual, setVirtual] = useState(false);
+  const [virtualChange, setVirtualChange] = useState(null);
   const [zoomId, setZoomId] = useState(null);
-  const [official, setOfficial] = useState("off");
+  const [official, setOfficial] = useState(false);
+  const [officialChange, setOfficialChange] = useState(null);
 
   const dispatch = useDispatch();
   const history = useHistory();
 
   const extractCoord = async () => {
     let address = location;
+    if (!officialChange) {
+      setOfficial(false);
+    }
+
+    if (!virtualChange) {
+      setVirtual(false);
+    }
+
     try {
       const results = await getGeocode({ address });
       const { lat, lng } = await getLatLng(results[0]);
@@ -41,7 +51,7 @@ export default function Host() {
         )
       );
 
-      return history.push("/Dashboard");
+      return history.push("/Dashboard/Profile");
     } catch (e) {
       console.log(e);
     }
@@ -49,6 +59,24 @@ export default function Host() {
 
   const handleCreateMeeting = () => {
     extractCoord();
+  };
+
+  const handleVirtual = () => {
+    setVirtualChange(true);
+    if (virtual === false) {
+      return setVirtual(true);
+    } else {
+      return setVirtual(false);
+    }
+  };
+
+  const handleOfficial = () => {
+    setOfficialChange(true);
+    if (official === false) {
+      return setOfficial(true);
+    } else {
+      return setOfficial(false);
+    }
   };
 
   return (
@@ -114,7 +142,7 @@ export default function Host() {
                 <input
                   type="checkbox"
                   className="host-container__input-check"
-                  onClick={(e) => setOfficial(e.target.value)}
+                  onClick={handleOfficial}
                 />
               </div>
               <div className="host-container__input-div-check">
@@ -122,7 +150,7 @@ export default function Host() {
                 <input
                   type="checkbox"
                   className="host-container__input-check"
-                  onClick={(e) => setVirtual(e.target.value)}
+                  onClick={handleVirtual}
                 />
               </div>
               <div className="host-container__input-div">

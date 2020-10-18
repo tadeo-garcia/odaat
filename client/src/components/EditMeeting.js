@@ -1,26 +1,37 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createMeeting } from "../store/meetings";
+import { createMeeting, getMeeting } from "../store/meetings";
 import { getGeocode, getLatLng } from "use-places-autocomplete";
 import { useHistory } from "react-router-dom";
 import MapApi from "./Map";
 
 export default function EditMeeting() {
   const currentUserId = useSelector((state) => state.auth.id);
+  const meeting = useSelector((state) => state.meetings.meeting);
   const [title, setTitle] = useState(null);
   const [description, setDescription] = useState(null);
   const [date, setDate] = useState(null);
   const [time, setTime] = useState(null);
   const [location, setLocation] = useState(null);
-  const [virtual, setVirtual] = useState("off");
+  const [virtual, setVirtual] = useState(false);
+  const [virtualChange, setVirtualChange] = useState(null);
   const [zoomId, setZoomId] = useState(null);
-  const [official, setOfficial] = useState("off");
+  const [official, setOfficial] = useState(false);
+  const [officialChange, setOfficialChange] = useState(null);
 
   const dispatch = useDispatch();
   const history = useHistory();
 
   const extractCoord = async () => {
     let address = location;
+    if (!officialChange) {
+      setOfficial(false);
+    }
+
+    if (!virtualChange) {
+      setVirtual(false);
+    }
+
     try {
       const results = await getGeocode({ address });
       const { lat, lng } = await getLatLng(results[0]);
@@ -41,7 +52,7 @@ export default function EditMeeting() {
         )
       );
 
-      return history.push("/Dashboard");
+      // return history.push(`/Dashboard/meetings/${meeting.id}`);
     } catch (e) {
       console.log(e);
     }
@@ -51,6 +62,27 @@ export default function EditMeeting() {
     extractCoord();
   };
 
+  const handleVirtual = () => {
+    setVirtualChange(true);
+    if (virtual === false) {
+      return setVirtual(true);
+    } else {
+      return setVirtual(false);
+    }
+  };
+
+  const handleOfficial = () => {
+    setOfficialChange(true);
+    if (official === false) {
+      return setOfficial(true);
+    } else {
+      return setOfficial(false);
+    }
+  };
+
+  if (!meeting) return null;
+  console.log(meeting);
+
   return (
     <>
       <div id="host-wrapper">
@@ -58,7 +90,7 @@ export default function EditMeeting() {
           <MapApi />
         </div>
         <div id="host-container">
-          <div id="host-container__info">Fill out any of the fields below to edit your meeting</div>
+          <div id="host-container__info">Fill out any fields you want to update!</div>
           <div id="host-container__form-div">
             <form id="host-container__form">
               <div className="host-container__input-div">
@@ -66,14 +98,14 @@ export default function EditMeeting() {
                   type="text"
                   className="host-container__input"
                   onChange={(e) => setTitle(e.target.value)}
-                  placeholder={"Enter a Title for your meeting."}
+                  placeholder={`Edit current title: ${meeting.title}`}
                 />
               </div>
               <div className="host-container__input-div">
                 <input
                   type="text"
                   className="host-container__input"
-                  placeholder={"Enter an address for your meeting."}
+                  placeholder={`Edit current address: ${meeting.location}`}
                   onChange={(e) => setLocation(e.target.value)}
                 />
               </div>
@@ -83,12 +115,12 @@ export default function EditMeeting() {
                   className="host-container__input"
                   rows={10}
                   onChange={(e) => setDescription(e.target.value)}
-                  placeholder="Set a description for your meeeting. Here you can specify if it is a closed meeting, or what language it is, and so on."
+                  placeholder={`Edit current description: ${meeting.description}`}
                 />
               </div>
               <div className="host-container__input-div">
                 <span className="host-container__input-descript">
-                  Please provide a date for your meeting.
+                  Edit the date for your meeting.
                 </span>
                 <input
                   type="date"
@@ -99,7 +131,7 @@ export default function EditMeeting() {
               <div className="host-container__input-div">
                 <span className="host-container__input-descript">
                   {" "}
-                  Please provide a time for your meeting.{" "}
+                  Edit the time for your meeting.{" "}
                 </span>
                 <input
                   type="time"
@@ -114,7 +146,7 @@ export default function EditMeeting() {
                 <input
                   type="checkbox"
                   className="host-container__input-check"
-                  onClick={(e) => setOfficial(e.target.value)}
+                  onClick={handleOfficial}
                 />
               </div>
               <div className="host-container__input-div-check">
@@ -122,7 +154,7 @@ export default function EditMeeting() {
                 <input
                   type="checkbox"
                   className="host-container__input-check"
-                  onClick={(e) => setVirtual(e.target.value)}
+                  onClick={handleVirtual}
                 />
               </div>
               <div className="host-container__input-div">
@@ -130,13 +162,13 @@ export default function EditMeeting() {
                   type="text"
                   className="host-container__input"
                   onChange={(e) => setZoomId(e.target.value)}
-                  placeholder="If virtual, please provide zoom room ID, if not leave blank."
+                  placeholder={`Edit the zoom_id: ${meeting.zoom_id}`}
                 />
               </div>
             </form>
             <div className="host-container__input-div">
               <button className="host-container__button" onClick={(e) => handleCreateMeeting()}>
-                host
+                update
               </button>
             </div>
           </div>
