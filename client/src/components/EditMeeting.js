@@ -53,7 +53,7 @@ export default function EditMeeting() {
         )
       );
 
-      // return history.push(`/Dashboard/meetings/${meeting.id}`);
+      return history.push(`/Dashboard/meetings/${meeting.id}`);
     } catch (e) {
       console.log(e);
     }
@@ -76,6 +76,7 @@ export default function EditMeeting() {
           official
         )
       );
+      return history.push(`/Dashboard/meetings/${meeting.id}`);
     }
   };
 
