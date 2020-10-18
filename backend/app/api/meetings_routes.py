@@ -32,14 +32,6 @@ def get_meetings_by_host_id():
 def create_meeting():
     virtual = request.json.get('virtual')
     official = request.json.get('official')
-    # if(virtual == 'on'):
-    #     virtual = True
-    # else:
-    #     virtual = False
-    # if(official == 'on'):
-    #     official = True
-    # else:
-    #     official = False
     meeting = Meeting(
         host_id=request.json.get('userId'),
         title=request.json.get('title'),
@@ -61,30 +53,44 @@ def create_meeting():
 
 @meetings_routes.route('/update', methods=['PUT'])
 def update_meeting():
-    virtual = request.json.get('virtual')
-    official = request.json.get('official')
-    if(virtual == 'on'):
-        virtual = True
+    meetingId = request.json.get('currentMeetingId')
+    meeting = Meeting.query.filter(Meeting.id == meetingId).first()
+    new_title = request.json.get('title')
+    new_description = request.json.get('description')
+    new_date = request.json.get('date')
+    new_time = request.json.get('time')
+    new_location = request.json.get('location')
+    new_lat = request.json.get('lat')
+    new_lng = request.json.get('lng')
+    new_official = request.json.get('official')
+    new_virtual = request.json.get('virtual')
+    new_zoom_id = request.json.get('zoomId')
+
+    if new_title:
+        meeting.title = new_title
+
+    if new_description:
+        meeting.description = new_description
+    if new_date:
+        meeting.date = new_date
+    if new_time:
+        meeting.time: new_time
+    if new_official:
+        meeting.official = new_official
+    if new_virtual:
+        meeting.virtual = new_virtual
+    if new_zoom_id:
+        meeting.zoom_id = new_zoom_id
+    if new_location:
+        meeting.location = new_location
+        meeting.lat = new_lat
+        meeting.lng = new_lng
     else:
-        virtual = False
-    if(official == 'on'):
-        official = True
-    else:
-        official = False
-    meeting = Meeting(
-        host_id=request.json.get('userId'),
-        title=request.json.get('title'),
-        location=request.json.get('location'),
-        description=request.json.get('description'),
-        date=request.json.get('date'),
-        time=request.json.get('time'),
-        lat=request.json.get('lat'),
-        lng=request.json.get('lng'),
-        virtual=virtual,
-        zoom_id=request.json.get('zoomId'),
-        official=official
-    )
+        meeting.location = meeting.location
+        meeting.lat = meeting.lat
+        meeting.lng = meeting.lng
+
     db.session.add(meeting)
     db.session.commit()
 
-    return {"meeting": meeting.to_dict()}, 200
+    return {"meeting": meeting.to_dict(), "msg": "Meeting updated successfully!"}, 200

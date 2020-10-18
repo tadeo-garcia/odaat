@@ -105,6 +105,7 @@ export const createMeeting = (
 
 export const updateMeeting = (
   userId,
+  currentMeetingId,
   title,
   location,
   description,
@@ -124,6 +125,7 @@ export const updateMeeting = (
       },
       body: JSON.stringify({
         userId,
+        currentMeetingId,
         title,
         location,
         description,

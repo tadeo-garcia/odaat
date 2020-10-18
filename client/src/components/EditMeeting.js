@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createMeeting, getMeeting } from "../store/meetings";
+import { updateMeeting, getMeeting } from "../store/meetings";
 import { getGeocode, getLatLng } from "use-places-autocomplete";
 import { useHistory } from "react-router-dom";
 import MapApi from "./Map";
@@ -37,8 +37,9 @@ export default function EditMeeting() {
       const { lat, lng } = await getLatLng(results[0]);
 
       dispatch(
-        createMeeting(
+        updateMeeting(
           currentUserId,
+          currentMeetingId,
           title,
           location,
           description,
@@ -58,8 +59,24 @@ export default function EditMeeting() {
     }
   };
 
-  const handleCreateMeeting = () => {
-    extractCoord();
+  const handleUpdateMeeting = () => {
+    if (location) {
+      extractCoord();
+    } else {
+      dispatch(
+        updateMeeting(
+          currentUserId,
+          currentMeetingId,
+          title,
+          description,
+          date,
+          time,
+          virtual,
+          zoomId,
+          official
+        )
+      );
+    }
   };
 
   const handleVirtual = () => {
@@ -81,7 +98,7 @@ export default function EditMeeting() {
   };
 
   if (!meeting) return null;
-  console.log(meeting);
+  let currentMeetingId = meeting.id;
 
   return (
     <>
@@ -167,7 +184,7 @@ export default function EditMeeting() {
               </div>
             </form>
             <div className="host-container__input-div">
-              <button className="host-container__button" onClick={(e) => handleCreateMeeting()}>
+              <button className="host-container__button" onClick={(e) => handleUpdateMeeting()}>
                 update
               </button>
             </div>
