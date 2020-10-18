@@ -32,14 +32,14 @@ def get_meetings_by_host_id():
 def create_meeting():
     virtual = request.json.get('virtual')
     official = request.json.get('official')
-    if(virtual == 'on'):
-        virtual = True
-    else:
-        virtual = False
-    if(official == 'on'):
-        official = True
-    else:
-        official = False
+    # if(virtual == 'on'):
+    #     virtual = True
+    # else:
+    #     virtual = False
+    # if(official == 'on'):
+    #     official = True
+    # else:
+    #     official = False
     meeting = Meeting(
         host_id=request.json.get('userId'),
         title=request.json.get('title'),

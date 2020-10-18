@@ -51,7 +51,7 @@ export default function Host() {
         )
       );
 
-      return history.push("/Dashboard/Profile");
+      return history.push("/Dashboard");
     } catch (e) {
       console.log(e);
     }
