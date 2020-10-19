@@ -1,32 +1,46 @@
-#homepage__main{
-  display:flex;
-  flex-direction: column;
+#homepage__main {
+  display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  width:100%;
-  background-color: #F1F1E6;
+  width: 100%;
+  background-color: #f1f1e6;
 }
 
-#homepage__top{
-  height: 25%;
-  display:flex;
+#homepage__middle-left {
+  height: 100%;
+  width: 50%;
+}
+
+#homepage__middle-right {
+  height: 100%;
+  width: 50%;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-content: center;
 }
 
-#homepage__banner{
-  display:flex;
+#homepage__middle-links {
+  display: flex;
+  justify-content: center;
+}
+
+#homepage__login {
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-content: center;
 }
 
-#homepage__middle{
-  height: 50%;
+#homepage__right-link {
+  color: #014178;
+  text-decoration: none;
+  cursor: pointer;
 }
 
-#homepage__bottom{
-  height:25%;
+#homepage__right-link:hover {
+  color: #012546;
+  text-decoration: underline;
 }
