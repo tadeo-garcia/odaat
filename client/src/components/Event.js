@@ -1,11 +1,10 @@
 import React, { useCallback, useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { GoogleMap, useLoadScript, Marker, InfoWindow } from "@react-google-maps/api";
 import mapStyle from "./MapStyle";
 import Compass from "./Compass";
-import { loadFollowUser } from "../store/user";
-import { getMeeting } from "../store/meetings";
+import { getMeeting, deleteMeeting } from "../store/meetings";
 
 const mapContainerStyle = {
   width: "100%",
@@ -29,8 +28,8 @@ export default function Event() {
   const meeting = useSelector((state) => state.meetings.meeting);
   const meetings = useSelector((state) => state.meetings.meetings);
   const [center, setCenter] = useState(null);
-  let hostButton;
-
+  let hostOptions;
+  const dispatch = useDispatch();
   const mapRef = useRef();
   const onMapLoad = useCallback((map) => {
     mapRef.current = map;
@@ -49,10 +48,14 @@ export default function Event() {
   if (!meetings) return null;
 
   if (currentUserId === meeting.host_id) {
-    hostButton = true;
+    hostOptions = true;
   } else {
-    hostButton = false;
+    hostOptions = false;
   }
+
+  const handleDelete = () => {
+    dispatch(deleteMeeting(meeting.id));
+  };
 
   return (
     <>
@@ -114,9 +117,18 @@ export default function Event() {
             )}
           </div>
           <div>
-            {hostButton ? (
+            {hostOptions ? (
               <Link to={`/dashboard/meetings/${meeting.id}/edit`}>
                 <button className="meeting-container__button">edit your meeting</button>
+              </Link>
+            ) : null}
+          </div>
+          <div>
+            {hostOptions ? (
+              <Link to="/Dashboard">
+                <button className="meeting-container__button" onClick={handleDelete}>
+                  cancel your meeting
+                </button>
               </Link>
             ) : null}
           </div>

@@ -145,6 +145,23 @@ export const updateMeeting = (
   };
 };
 
+export const deleteMeeting = (meetingId) => {
+  return async (dispatch) => {
+    const res = await fetch(`/api/meetings/create`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ meetingId }),
+    });
+    res.data = await res.json();
+    if (res.ok) {
+      dispatch(loadMeetings(res.data.meetings));
+    }
+    return res;
+  };
+};
+
 export default function meetingsReducer(state = {}, action) {
   switch (action.type) {
     case GET_MEETING:

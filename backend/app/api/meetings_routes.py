@@ -51,6 +51,17 @@ def create_meeting():
     return {"meeting": meeting.to_dict()}, 200
 
 
+@meetings_routes.route('/create', methods=['DELETE'])
+def delete_meeting():
+    meetingId = request.json.get("meetingId")
+    meeting = Meeting.query.filter(Meeting.id == meetingId).first()
+    db.session.delete(meeting)
+    db.session.commit()
+    meetings = Meeting.query.all()
+    data = [meeting.to_dict() for meeting in meetings]
+    return {"meetings": data}
+
+
 @meetings_routes.route('/update', methods=['PUT'])
 def update_meeting():
     meetingId = request.json.get('currentMeetingId')
