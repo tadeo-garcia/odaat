@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateMeeting, getMeeting } from "../store/meetings";
+import { updateMeeting, getMeeting, deleteMeeting } from "../store/meetings";
 import { getGeocode, getLatLng } from "use-places-autocomplete";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import MapApi from "./Map";
 
 export default function EditMeeting() {
@@ -98,6 +98,10 @@ export default function EditMeeting() {
     }
   };
 
+  const handleDelete = () => {
+    dispatch(deleteMeeting(meeting.id));
+  };
+
   if (!meeting) return null;
   let currentMeetingId = meeting.id;
 
@@ -188,6 +192,13 @@ export default function EditMeeting() {
               <button className="host-container__button" onClick={(e) => handleUpdateMeeting()}>
                 update
               </button>
+            </div>
+            <div className="host-container__input-div">
+              <Link to="/Dashboard">
+                <button className="host-container__button" onClick={(e) => handleDelete()}>
+                  cancel meeting
+                </button>
+              </Link>
             </div>
           </div>
         </div>
