@@ -33,7 +33,6 @@ export default function MapApi() {
   const meetings = useSelector((state) => state.meetings.meetings);
 
   const mapRef = useRef();
-  const meetingRef = useRef();
   const onMapLoad = useCallback((map) => {
     mapRef.current = map;
     navigator.geolocation.getCurrentPosition(
@@ -104,6 +103,7 @@ export default function MapApi() {
                 <br />
                 <span>Starts at: {selected.time}</span>
                 <br />
+                <br />
                 <span>
                   Click{" "}
                   <Link
@@ -115,6 +115,18 @@ export default function MapApi() {
                   </Link>{" "}
                   to see more details about the meeting.
                 </span>
+                <br />
+                <span>
+                  Click{" "}
+                  <Link
+                    id="map__link-meeting"
+                    onClick={load(selected.id)}
+                    to={`/dashboard/profile/${selected.host_id}`}
+                  >
+                    here
+                  </Link>{" "}
+                  to learn more about the host.
+                </span>
               </div>
             </InfoWindow>
           ) : null}
@@ -123,39 +135,3 @@ export default function MapApi() {
     </>
   );
 }
-
-// EXTRA FUNCTIONS I MAY OR MAY NOT NEED
-
-// const onMapClick = useCallback((e) => {
-//   setMarkers((current) => [
-//     ...current,
-//     {
-//       lat: e.latLng.lat(),
-//       lng: e.latLng.lng(),
-//       time: new Date(),
-//     },
-//   ]);
-// }, []);
-
-// const extractCoord = async (meeting) => {
-//   let address = meeting.location;
-//   try {
-//     const results = await getGeocode({ address });
-//     const { lat, lng } = await getLatLng(results[0]);
-//     coords.push({ lat, lng });
-//     // console.log(coords);
-//   } catch (e) {
-//     console.log(e);
-//   }
-// };
-
-// let i = 0;
-// let intervalId = setInterval(() => {
-//   if (i === meetings.length - 1) {
-//     clearInterval(intervalId);
-//   }
-//   extractCoord(meetings[i]);
-//   i++;
-// }, 400);
-
-// if (coords.length < 0) return "loading meetings!";

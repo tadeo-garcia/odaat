@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateMeeting, getMeeting, deleteMeeting } from "../store/meetings";
+import { updateMeeting, deleteMeeting } from "../store/meetings";
 import { getGeocode, getLatLng } from "use-places-autocomplete";
 import { useHistory, Link } from "react-router-dom";
 import MapApi from "./Map";

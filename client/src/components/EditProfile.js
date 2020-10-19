@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
 import { updateUserProfile } from "../store/auth";
 
 export default function EditProfile() {
@@ -23,7 +22,6 @@ export default function EditProfile() {
   const [sponseeChange, setSponseeChange] = useState(null);
   const [submitted, setSubmitted] = useState(false);
   const dispatch = useDispatch();
-  const history = useHistory();
 
   const handleDisplaySD = () => {
     setDisplayChange(true);
