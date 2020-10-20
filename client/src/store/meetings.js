@@ -38,7 +38,7 @@ export const getMeeting = (meetingId) => {
 
 export const getMeetings = () => {
   return async (dispatch) => {
-    const res = await fetch("/api/meetings", {
+    const res = await fetch("/api/meetings/", {
       method: "GET",
       headers: { "Access-Control-Allow-Origin": "*" },
     });
@@ -77,7 +77,7 @@ export const createMeeting = (
   official
 ) => {
   return async (dispatch) => {
-    const res = await fetch("/api/meetings/create", {
+    const res = await fetch("/api/meetings/create/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -118,7 +118,7 @@ export const updateMeeting = (
   official
 ) => {
   return async (dispatch) => {
-    const res = await fetch("/api/meetings/update", {
+    const res = await fetch("/api/meetings/update/", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -147,7 +147,7 @@ export const updateMeeting = (
 
 export const deleteMeeting = (meetingId) => {
   return async (dispatch) => {
-    const res = await fetch(`/api/meetings/create`, {
+    const res = await fetch(`/api/meetings/create/`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
