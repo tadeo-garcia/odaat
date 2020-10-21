@@ -4,11 +4,13 @@ import thunk from "redux-thunk";
 import auth from "./auth";
 import meetings from "./meetings";
 import users from "./user";
+import images from "./images";
 
 const rootReducer = combineReducers({
   auth,
   meetings,
   users,
+  images,
 });
 
 let storeEnhancer;
