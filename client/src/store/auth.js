@@ -1,3 +1,5 @@
+const axios = require("axios");
+
 const SET_MESSAGE = "auth/SET_MESSAGE";
 const SET_USER = "auth/SET_USER";
 const LOGOUT_USER = "auth/LOGOUT_USER";
@@ -111,6 +113,44 @@ export const updateUserProfile = (
       dispatch(setMessage(message));
       console.log(message);
       return res;
+    }
+    return res;
+  };
+};
+
+export const updateProfilePicture = (file, currentUserId) => {
+  let formData = new FormData();
+
+  formData.append("id", currentUserId);
+  formData.append("file", file.raw);
+  let config = {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  };
+  return async (dispatch) => {
+    const res = await axios.put("/api/images/profile_picture", formData, config);
+    if (res.statusText) {
+      dispatch(setUser(res.data.user));
+    }
+    return res;
+  };
+};
+
+export const updateBannerPicture = (file, currentUserId) => {
+  let formData = new FormData();
+
+  formData.append("id", currentUserId);
+  formData.append("file", file.raw);
+  let config = {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  };
+  return async (dispatch) => {
+    const res = await axios.put("/api/images/banner_picture", formData, config);
+    if (res.statusText) {
+      dispatch(setUser(res.data.user));
     }
     return res;
   };

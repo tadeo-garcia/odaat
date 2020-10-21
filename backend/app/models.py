@@ -31,6 +31,7 @@ class User(db.Model, UserMixin):
     sponsor = db.Column(db.Boolean, default=False)
     sponsee = db.Column(db.Boolean, default=False)
     picture = db.Column(db.String(200))
+    banner = db.Column(db.String(200))
     bio = db.Column(db.String(1000))
     interests = db.Column(db.String(1000))
     display_sd = db.Column(db.Boolean, default=False)
@@ -68,6 +69,7 @@ class User(db.Model, UserMixin):
                 "sponsor": self.sponsor,
                 "sponsee": self.sponsee,
                 "picture": self.picture,
+                "banner": self.banner,
                 "bio": self.bio,
                 "interests": self.interests,
                 "sobriety_date": self.sobriety_date,
@@ -83,6 +85,7 @@ class User(db.Model, UserMixin):
                 "sponsor": self.sponsor,
                 "sponsee": self.sponsee,
                 "picture": self.picture,
+                "banner": self.banner,
                 "bio": self.bio,
                 "interests": self.interests,
                 "sobriety_date": self.sobriety_date.isoformat(),

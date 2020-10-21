@@ -6,7 +6,7 @@ from .models import db, User, Meeting
 from .api.user_routes import user_routes
 from .api.session_routes import session_routes
 from .api.meetings_routes import meetings_routes
-from .api.images_routes import image_routes
+from .api.image_routes import image_routes
 from flask_migrate import Migrate
 from .config import Config
 
@@ -16,7 +16,7 @@ app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/user')
 app.register_blueprint(session_routes, url_prefix='/api/session')
 app.register_blueprint(meetings_routes, url_prefix='/api/meetings')
-app.register_blueprint(images_routes, url_prefix='/api/images')
+app.register_blueprint(image_routes, url_prefix='/api/images')
 
 db.init_app(app)
 migrate = Migrate(app, db)

@@ -4,12 +4,14 @@ import { Link } from "react-router-dom";
 import { getMeetingsByHost, getMeeting } from "../store/meetings";
 import { getFollowersByCurrentUserId, getFollowingByCurrentUserId } from "../store/user";
 import { FollowerTable, FollowingTable } from "./FollowTables";
+import { updateProfilePicture, updateBannerPicture } from "../store/auth";
 
 export default function Profile() {
   const currentUser = useSelector((state) => state.auth);
   const userMeetings = useSelector((state) => state.meetings.hostMeetings);
   const followers = useSelector((state) => state.users.myFollowers);
   const following = useSelector((state) => state.users.imFollowing);
+  const [file, setFile] = useState(null);
 
   const [follow, setFollow] = useState("following");
   const dispatch = useDispatch();
@@ -22,6 +24,16 @@ export default function Profile() {
 
   const load = (meetingId) => {
     dispatch(getMeeting(meetingId));
+  };
+
+  const handlePostPicture = () => {
+    dispatch(updateProfilePicture(file, currentUser.id));
+  };
+
+  const handleFileChange = (e) => {
+    setFile({
+      raw: e.target.files[0],
+    });
   };
 
   // if (!userMeetings) return null;
@@ -56,11 +68,15 @@ export default function Profile() {
             </div>
             <div id="profile-container__user-buttons">
               <div id="button-style">
-                <Link id="button-link" to="/dashboard/EditProfile">
+                <label>
+                  Change Profile Picture
+                  <input type="file" onChange={handleFileChange} />
+                </label>
+                <button onClick={handlePostPicture}>
                   {" "}
                   <i className="fa fa-pencil" />
-                  edit profile
-                </Link>
+                  Upload Picture
+                </button>
               </div>
               <div id="button-style">
                 <Link id="button-link" to="/dashboard/EditProfile">

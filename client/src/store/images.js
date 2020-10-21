@@ -17,9 +17,10 @@ export const setBanner = (image) => {
   };
 };
 
-export const postProfileImage = (file) => {
+export const postProfileImage = (file, currentUserId) => {
   let formData = new FormData();
 
+  formData.append("id", currentUserId);
   formData.append("file", file.raw);
   let config = {
     headers: {
@@ -35,9 +36,10 @@ export const postProfileImage = (file) => {
   };
 };
 
-export const postBannerImage = (file) => {
+export const postBannerImage = (file, currentUserId) => {
   let formData = new FormData();
 
+  formData.append("id", currentUserId);
   formData.append("file", file.raw);
   let config = {
     headers: {
