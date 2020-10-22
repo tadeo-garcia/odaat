@@ -2,21 +2,27 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { getMeetingsByHost, getMeeting } from "../store/meetings";
-import { getFollowersByCurrentUserId, getFollowingByCurrentUserId } from "../store/user";
+import {
+  getFollowersByCurrentUserId,
+  getFollowingByCurrentUserId,
+  getUserById,
+} from "../store/user";
 import { FollowerTable, FollowingTable } from "./FollowTables";
-import { updateProfilePicture, updateBannerPicture } from "../store/auth";
 
 export default function Profile() {
   const currentUser = useSelector((state) => state.auth);
+  const currentUserUpdated = useSelector((state) => state.users.user);
   const userMeetings = useSelector((state) => state.meetings.hostMeetings);
   const followers = useSelector((state) => state.users.myFollowers);
   const following = useSelector((state) => state.users.imFollowing);
-  const [file, setFile] = useState(null);
+  // const [profileImage, setProfileImage] = useState(null);
+  // const [bannerImage, setBannerImage] = useState(null);
 
   const [follow, setFollow] = useState("following");
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(getUserById(currentUser.id));
     dispatch(getMeetingsByHost(currentUser.id));
     dispatch(getFollowersByCurrentUserId(currentUser.id));
     dispatch(getFollowingByCurrentUserId(currentUser.id));
@@ -26,26 +32,22 @@ export default function Profile() {
     dispatch(getMeeting(meetingId));
   };
 
-  const handlePostPicture = () => {
-    dispatch(updateProfilePicture(file, currentUser.id));
-  };
+  if (!followers || !following || !currentUserUpdated) return null;
 
-  const handleFileChange = (e) => {
-    setFile({
-      raw: e.target.files[0],
-    });
-  };
-
-  // if (!userMeetings) return null;
-  if (!followers || !following) return null;
-
-  // console.log(currentUser.picture);
+  console.log(currentUserUpdated.banner);
 
   return (
     <>
       <div id="profile-container">
         <div id="profile-container__top">
-          <div id="profile-container__top-banner"></div>
+          {currentUserUpdated.banner !== null ? (
+            <div
+              id="profile-container__top-banner"
+              style={{ backgroundImage: `url('${currentUserUpdated.banner}')` }}
+            ></div>
+          ) : (
+            <div id="profile-container__top-default"></div>
+          )}
         </div>
         <div id="profile-container__middle">
           <div id="profile-container__middle-upper">
@@ -80,7 +82,7 @@ export default function Profile() {
                 <Link id="button-link" to="/dashboard/upload">
                   {" "}
                   <i className="fa fa-picture-o" />
-                  update banner
+                  update pictures
                 </Link>
               </div>
               <div id="button-style">
@@ -123,11 +125,6 @@ export default function Profile() {
                 <br />
                 {currentUser.interests}
               </div>
-            </div>
-            <div id="profile-container__interests">
-              <h3>my new pic:</h3>
-              <br />
-              <img src={currentUser.picture} alt="profilepic"></img>
             </div>
             <div id="profile-container__middle-right">
               <div id="profile-container__events">

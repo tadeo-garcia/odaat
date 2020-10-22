@@ -43,6 +43,7 @@ def load_profile_picture():
 def load_banner_picture():
     if request.method == 'PUT':
         currentUserId = request.form.get('id', None)
+        user = User.query.filter(User.id == currentUserId).first()
         file = request.files['file'] or None
         if file == None:
             return jsonify({"error": "file is required for upload"})

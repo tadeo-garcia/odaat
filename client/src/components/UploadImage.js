@@ -13,10 +13,13 @@ export default function UploadImage() {
     if (profileImage !== null && bannerImage !== null) {
       dispatch(updateProfilePicture(profileImage, currentUserId));
       dispatch(updateBannerPicture(bannerImage, currentUserId));
+      return <Redirect to="/dashboard/profile"></Redirect>;
     } else if (profileImage === null && bannerImage !== null) {
       dispatch(updateBannerPicture(bannerImage, currentUserId));
+      return <Redirect to="/dashboard/profile"></Redirect>;
     } else if (profileImage !== null && bannerImage === null) {
       dispatch(updateProfilePicture(profileImage, currentUserId));
+      return <Redirect to="/dashboard/profile"></Redirect>;
     } else {
       return alert("You must upload a file before pressing submit!");
     }
@@ -29,7 +32,7 @@ export default function UploadImage() {
   };
 
   const handleBannerImage = (e) => {
-    setProfileImage({
+    setBannerImage({
       raw: e.target.files[0],
     });
   };

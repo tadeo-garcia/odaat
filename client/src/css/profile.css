@@ -18,7 +18,17 @@
 #profile-container__top-banner {
   height: 150px;
   width: 100%;
-  background-image: url("/banner-no-b.jpg");
+  background-size: cover;
+  background-position: center;
+  /* background-image: url("https://odaat-app.s3.amazonaws.com/users/555/banner_pictures/keeb.jpg"); */
+
+  border: 1px solid gray;
+}
+
+#profile-container__top-default {
+  height: 150px;
+  width: 100%;
+  background-image: url("https://odaat-app.s3.amazonaws.com/odaat_stock/banner-no-b.jpg");
   background-size: cover;
   background-position: center;
   border: 1px solid gray;
@@ -60,7 +70,7 @@
 }
 
 #profile-container__default-avatar {
-  background-image: url("/aa-icon-no-bg.png");
+  background-image: url("https://odaat-app.s3.amazonaws.com/odaat_stock/aa-icon-no-bg.png");
   background-size: 75px 75px;
   background-position: center;
   background-repeat: no-repeat;
