@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Redirect } from "react-router-dom";
 import { updateProfilePicture, updateBannerPicture } from "../store/auth";
 
 export default function UploadImage() {
@@ -35,27 +36,18 @@ export default function UploadImage() {
 
   return (
     <div id="upload__container">
-      <div id="upload__profile-image">
-        <label>
-          Change Profile Picture
-          <input type="file" onChange={handleProfileImage} />
-        </label>
-        <button onClick={handlePostPicture}>
-          {" "}
-          <i className="fa fa-pencil" />
-          Edit Profile
+      <div className="upload__image">
+        <span id="upload__span">Change Profile Picture</span>
+        <input id="upload__input" type="file" onChange={handleProfileImage} />
+        <button id="upload__button" onClick={handlePostPicture}>
+          Submit
         </button>
       </div>
-      <div id="upload__banner-image">
-        {" "}
-        <label>
-          Change Profile Picture
-          <input type="file" onChange={handleBannerImage} />
-        </label>
-        <button onClick={handlePostPicture}>
-          {" "}
-          <i className="fa fa-pencil" />
-          Edit Profile
+      <div className="upload__image">
+        <span id="upload__span"> Change Banner Picture</span>
+        <input type="file" id="upload__input" onChange={handleBannerImage} />
+        <button id="upload__button" onClick={handlePostPicture}>
+          Submit
         </button>
       </div>
     </div>
