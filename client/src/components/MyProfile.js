@@ -39,6 +39,8 @@ export default function Profile() {
   // if (!userMeetings) return null;
   if (!followers || !following) return null;
 
+  // console.log(currentUser.picture);
+
   return (
     <>
       <div id="profile-container">
@@ -68,18 +70,14 @@ export default function Profile() {
             </div>
             <div id="profile-container__user-buttons">
               <div id="button-style">
-                <label>
-                  Change Profile Picture
-                  <input type="file" onChange={handleFileChange} />
-                </label>
-                <button onClick={handlePostPicture}>
+                <Link id="button-link" to="/dashboard/EditProfile">
                   {" "}
                   <i className="fa fa-pencil" />
-                  Upload Picture
-                </button>
+                  edit profile
+                </Link>
               </div>
               <div id="button-style">
-                <Link id="button-link" to="/dashboard/EditProfile">
+                <Link id="button-link" to="/dashboard/upload">
                   {" "}
                   <i className="fa fa-picture-o" />
                   update banner
@@ -125,6 +123,11 @@ export default function Profile() {
                 <br />
                 {currentUser.interests}
               </div>
+            </div>
+            <div id="profile-container__interests">
+              <h3>my new pic:</h3>
+              <br />
+              <img src={currentUser.picture} alt="profilepic"></img>
             </div>
             <div id="profile-container__middle-right">
               <div id="profile-container__events">

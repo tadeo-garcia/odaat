@@ -1,0 +1,15 @@
+#upload__container {
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+  min-width: 300px;
+  height: 25%;
+  margin-top: 150px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#upload__profile-image {
+  display: flex;
+  flex-direction: column;
+}

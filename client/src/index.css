@@ -1,4 +1,20 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700");
+
+* {
+  margin: 0px;
+  box-sizing: border-box;
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+button {
+  background: none;
+  border: none;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
 @import "./css/splashpage.css";
 @import "./css/login.css";
 @import "./css/signup.css";
@@ -16,18 +32,4 @@
 @import "./css/event.css";
 @import "./css/followtable.css";
 @import "./css/aboutme.css";
-
-* {
-  margin: 0px;
-  box-sizing: border-box;
-  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-
-button {
-  background: none;
-  border: none;
-}
-
-button:hover {
-  cursor: pointer;
-}
+@import "./css/uploadimage.css";

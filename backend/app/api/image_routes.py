@@ -27,7 +27,7 @@ def load_profile_picture():
         if file == None:
             return jsonify({"error": "file is required for upload"})
         file.filename = secure_filename(file.filename)
-        folder = f'{currentUserId}/profile_pictures/{file.filename}'
+        folder = f'users/{currentUserId}/profile_pictures/'
         file_path = folder + file.filename
         s3.upload_fileobj(file, BUCKET_NAME, file_path, ExtraArgs={
             "ContentType": file.content_type, "ACL": "public-read"})
@@ -47,7 +47,7 @@ def load_banner_picture():
         if file == None:
             return jsonify({"error": "file is required for upload"})
         file.filename = secure_filename(file.filename)
-        folder = f'{currentUserId}/banner_pictures/{file.filename}'
+        folder = f'users/{currentUserId}/banner_pictures/'
         file_path = folder + file.filename
         s3.upload_fileobj(file, BUCKET_NAME, file_path, ExtraArgs={
             "ContentType": file.content_type, "ACL": "public-read"})
