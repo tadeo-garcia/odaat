@@ -23,13 +23,17 @@ export default function Meetings() {
       <div id="meetings__table-header">
         <div id="meetings__table-header-check">
           Check out any of the meetings below or search above with the map!
+          <br />
+          Click on marker to see more details.
         </div>
         <div id="meetings__table-label">
-          <div className="meetings-container__text">Name</div>
-          <div className="meetings-container__text">Date</div>
-          <div className="meetings-container__text">Time</div>
-          <div className="meetings-container__text">Address</div>
-          <div className="meetings-conatiner__text">More Info</div>
+          <div className="meetings-container__label" style={{ marginLeft: "25px" }}>
+            Name
+          </div>
+          <div className="meetings-container__label">Date</div>
+          <div className="meetings-container__label">Time</div>
+          <div className="meetings-container__label">Address</div>
+          <div className="meetings-conatiner__label">More Info</div>
         </div>
       </div>
       <div id="meetings-container">
@@ -41,7 +45,11 @@ export default function Meetings() {
             }
             return (
               <div key={meeting.id} id={meetClass}>
-                <div id="meetings-container__title" className="meetings-container__text">
+                <div
+                  id="meetings-container__title"
+                  className="meetings-container__text"
+                  style={{ marginLeft: "25px" }}
+                >
                   {meeting.title}
                 </div>
                 <div className="meetings-container__text">{meeting.date}</div>

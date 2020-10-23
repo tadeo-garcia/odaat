@@ -1,5 +1,4 @@
 #meetings__table-header {
-  height: 50px;
   min-height: 45px;
   width: 100%;
   background-color: white;
@@ -17,13 +16,19 @@
 }
 
 #meetings__table-label {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  margin-bottom: 5px;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  display: grid;
+  grid-template-columns: 20% 20% 20% 20% 20%;
+  width: 100%;
+
+  margin-top: 10px;
+
   font-weight: 500;
+  border-top: 1px solid black;
+}
+
+.meetings-container__label {
+  margin-right: 15px;
+  border-right: 1px solid black;
 }
 
 #meetings-container {
@@ -43,19 +48,16 @@
 }
 
 #meetings-container__meeting {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-
+  display: grid;
+  grid-template-columns: 20% 20% 20% 20% 20%;
   width: 100%;
   height: 75px;
   border: solid 1px gray;
 }
 
 #meetings-container__meeting2 {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: 20% 20% 20% 20% 20%;
   width: 100%;
   height: 75px;
   border: solid 1px gray;
@@ -63,8 +65,9 @@
 }
 
 .meetings-container__text {
-  width: 125px;
-  margin-right: 5px;
+  margin-right: 15px;
+  padding-top: 5px;
+  border-right: 1px solid black;
 }
 
 .meetings-container__link {
