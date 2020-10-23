@@ -15,8 +15,6 @@ export default function Profile() {
   const userMeetings = useSelector((state) => state.meetings.hostMeetings);
   const followers = useSelector((state) => state.users.myFollowers);
   const following = useSelector((state) => state.users.imFollowing);
-  // const [profileImage, setProfileImage] = useState(null);
-  // const [bannerImage, setBannerImage] = useState(null);
 
   const [follow, setFollow] = useState("following");
   const dispatch = useDispatch();
@@ -34,8 +32,6 @@ export default function Profile() {
 
   if (!followers || !following || !currentUserUpdated) return null;
 
-  console.log(currentUserUpdated.banner);
-
   return (
     <>
       <div id="profile-container">
@@ -43,7 +39,9 @@ export default function Profile() {
           {currentUserUpdated.banner !== null ? (
             <div
               id="profile-container__top-banner"
-              style={{ backgroundImage: `url('${currentUserUpdated.banner}')` }}
+              style={{
+                backgroundImage: `url('${currentUserUpdated.banner}')`,
+              }}
             ></div>
           ) : (
             <div id="profile-container__top-default"></div>
@@ -52,11 +50,16 @@ export default function Profile() {
         <div id="profile-container__middle">
           <div id="profile-container__middle-upper">
             <div id="profile-container__user-info">
-              {currentUser.pic ? (
-                <div
-                  className="profile-container__pic"
-                  style={{ backgroundImage: `'${currentUser.pic}'` }}
-                ></div>
+              {currentUserUpdated.picture ? (
+                <div className="profile-container__pic">
+                  <div
+                    id="profile-container__avatar"
+                    style={{
+                      backgroundImage: `url('${currentUserUpdated.picture}')`,
+                      borderRadius: "10px",
+                    }}
+                  ></div>
+                </div>
               ) : (
                 <div
                   className="profile-container__pic"
