@@ -49,7 +49,6 @@ export default function UserProfile() {
     history.push(`/dashboard/profile/${profileUser.id}`);
   };
 
-  // if (!userMeetings) return null;
   if (!followers || !following) return null;
   if (!profileUser) return null;
 
@@ -57,16 +56,30 @@ export default function UserProfile() {
     <>
       <div id="profile-container">
         <div id="profile-container__top">
-          <div id="profile-container__top-banner"></div>
+          {profileUser.banner !== null ? (
+            <div
+              id="profile-container__top-banner"
+              style={{
+                backgroundImage: `url('${profileUser.banner}')`,
+              }}
+            ></div>
+          ) : (
+            <div id="profile-container__top-default"></div>
+          )}
         </div>
         <div id="profile-container__middle">
           <div id="profile-container__middle-upper">
             <div id="profile-container__user-info">
-              {profileUser.pic ? (
-                <div
-                  className="profile-container__pic"
-                  style={{ backgroundImage: `'${profileUser.pic}'` }}
-                ></div>
+              {profileUser.picture ? (
+                <div className="profile-container__pic">
+                  <div
+                    id="profile-container__avatar"
+                    style={{
+                      backgroundImage: `url('${profileUser.picture}')`,
+                      borderRadius: "10px",
+                    }}
+                  ></div>
+                </div>
               ) : (
                 <div
                   className="profile-container__pic"
