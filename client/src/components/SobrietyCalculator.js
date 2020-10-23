@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { useSelector } from "react-redux";
+import ConfettiGenerator from "confetti-js";
 
 export default function SobrietyCalculator() {
   const sobrietyDate = useSelector((state) => state.auth.sobriety_date);
@@ -9,25 +9,41 @@ export default function SobrietyCalculator() {
   let soberdate = new Date(sobrietyDate);
   let rough = soberdate.getTime() - today.getTime();
   let days = Math.floor((rough / (1000 * 3600 * 24)) * -1);
-  console.log(days);
+
+  const confettiSettings = {
+    target: "confetti-canvas",
+    clock: 35,
+    max: 350,
+    size: 2,
+    colors: [[1, 46, 85]],
+  };
 
   const handleDisplay = () => {
     setShowDays(true);
+    const confetti = new ConfettiGenerator(confettiSettings);
+    confetti.render();
+
+    setTimeout(() => {
+      confetti.clear();
+    }, 3500);
   };
 
   return (
     <div id="calculator__wrapper">
+      <canvas id="confetti-canvas"></canvas>
       <div id="calculator__container">
         <h2>Sobriety Calculator</h2>
         <h3>Everyone who has found sobriety is a living miracle!</h3>
         <h4>
-          To find out just how long you have enjoyed this new found freedom, use the calculator
-          below!
+          To find out just how long you have enjoyed this new found freedom, click the button below!
         </h4>
         <div id="calculator__sobriety-date">
           {sobrietyDate ? (
             <div>
-              <button onClick={handleDisplay}> Click Here </button>
+              <button id="calculator__button" onClick={handleDisplay}>
+                {" "}
+                Click Here{" "}
+              </button>
             </div>
           ) : (
             <div>
