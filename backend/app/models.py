@@ -88,6 +88,7 @@ class User(db.Model, UserMixin):
                 "banner": self.banner,
                 "bio": self.bio,
                 "interests": self.interests,
+                "display_sd": self.display_sd,
                 "sobriety_date": self.sobriety_date.isoformat(),
                 "created_at": self.created_at.strftime("%B %Y")
             }

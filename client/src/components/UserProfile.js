@@ -89,7 +89,11 @@ export default function UserProfile() {
               <div id="profile-container__user-details">
                 <span id="profile-title">{profileUser.username}'s Profile</span>
                 <div>
-                  {profileUser.sobriety_date ? `Sobriety date: ${profileUser.sobriety_date}` : null}
+                  {!profileUser.display_sd ? `Sobriety date: ${profileUser.sobriety_date}` : null}
+                </div>
+                <div id="profile-sponsor-status">
+                  {profileUser.sponsor ? <div>I am willing to sponsor someone</div> : null}
+                  {profileUser.sponsee ? <div>I am currently looking for a sponsor</div> : null}
                 </div>
               </div>
             </div>

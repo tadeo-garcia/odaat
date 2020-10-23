@@ -92,6 +92,9 @@
   justify-content: space-around;
   align-items: center;
 }
+#profile-sponsor-status {
+  font-size: 12px;
+}
 
 #profile-title {
   font-weight: 500;

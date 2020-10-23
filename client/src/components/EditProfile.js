@@ -14,7 +14,6 @@ export default function EditProfile() {
   const [sobrietyDate, setSobrietyDate] = useState(null);
   const [displaySobrietyDate, setDisplaySobrietyDate] = useState(false);
   const [displayChange, setDisplayChange] = useState(null);
-  // const [picture, setPicture] = useState(null);
   const [interests, setInterests] = useState(null);
   const [sponsor, setSponsor] = useState(false);
   const [sponsorChange, setSponsorChange] = useState(null);
@@ -26,18 +25,18 @@ export default function EditProfile() {
   const handleDisplaySD = () => {
     setDisplayChange(true);
     if (displaySobrietyDate === false) {
-      return setDisplaySobrietyDate(true);
+      setDisplaySobrietyDate(true);
     } else {
-      return setDisplaySobrietyDate(false);
+      setDisplaySobrietyDate(false);
     }
   };
 
   const handleSponsor = () => {
     setSponsorChange(true);
     if (sponsor === false) {
-      return setSponsor(true);
+      setSponsor(true);
     } else {
-      return setSponsor(false);
+      setSponsor(false);
     }
   };
 

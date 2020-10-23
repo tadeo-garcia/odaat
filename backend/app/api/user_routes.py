@@ -33,6 +33,8 @@ def update_user_info():
     new_interests = request.json.get("interests")
     new_sobriety_date = request.json.get("sobrietyDate")
     new_display_sd = request.json.get("displaySobrietyDate")
+    print('~~~~~~~~~')
+    print(new_display_sd)
     new_sponsor = request.json.get("sponsor")
     new_sponsee = request.json.get("sponsee")
 
