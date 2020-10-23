@@ -35,6 +35,10 @@ function Sidebar() {
           <i className="fa fa-book" />
           <span>12 steps</span>
         </Link>
+        <Link className="sidebar-container__link" to="/Dashboard/Steps">
+          <i className="fa fa-calculator" />
+          <span>sobriety calculator</span>
+        </Link>
         <Link className="sidebar-container__link" to="/">
           <i className="fa fa-sign-out" />
           <span onClick={handleLogout}>logout</span>

@@ -44,7 +44,7 @@
   min-height: 25%;
   flex-direction: column;
   overflow-y: scroll;
-  padding-bottom: 165px;
+  padding-bottom: 200px;
 }
 
 #meetings-container__meeting {
