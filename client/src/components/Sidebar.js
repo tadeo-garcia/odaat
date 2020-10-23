@@ -35,7 +35,7 @@ function Sidebar() {
           <i className="fa fa-book" />
           <span>12 steps</span>
         </Link>
-        <Link className="sidebar-container__link" to="/Dashboard/Steps">
+        <Link className="sidebar-container__link" to="/Dashboard/Calculator">
           <i className="fa fa-calculator" />
           <span>sobriety calculator</span>
         </Link>

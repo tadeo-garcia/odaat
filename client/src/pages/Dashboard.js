@@ -14,6 +14,7 @@ import UserProfile from "../components/UserProfile";
 import Event from "../components/Event";
 import EditMeeting from "../components/EditMeeting";
 import UploadImage from "../components/UploadImage";
+import SobrietyCalculator from "../components/SobrietyCalculator";
 
 export default function Dashboard() {
   const currentUserId = useSelector((state) => state.auth.id);
@@ -44,6 +45,7 @@ export default function Dashboard() {
               <Route exact path="/dashboard/meetings/:id" component={Event} />
               <Route exact path="/dashboard/meetings/:id/edit" component={EditMeeting} />
               <Route exact path="/dashboard/Steps" component={Steps} />
+              <Route exact path="/dashboard/Calculator" component={SobrietyCalculator} />
             </Switch>
           </div>
         </div>
