@@ -5,10 +5,14 @@ import ConfettiGenerator from "confetti-js";
 export default function SobrietyCalculator() {
   const sobrietyDate = useSelector((state) => state.auth.sobriety_date);
   const [showDays, setShowDays] = useState(null);
+  const [showDaysTwo, setShowDaysTwo] = useState(null);
+  const [soberDate, setSoberDate] = useState(null);
+  const [days, setDays] = useState(null);
   let today = new Date();
   let soberdate = new Date(sobrietyDate);
   let rough = soberdate.getTime() - today.getTime();
-  let days = Math.floor((rough / (1000 * 3600 * 24)) * -1);
+  let totalDays = Math.floor((rough / (1000 * 3600 * 24)) * -1);
+  // setDays(Math.floor((rough / (1000 * 3600 * 24)) * -1));
 
   const confettiSettings = {
     target: "confetti-canvas",
@@ -26,6 +30,31 @@ export default function SobrietyCalculator() {
     setTimeout(() => {
       confetti.clear();
     }, 3500);
+  };
+
+  const handleDisplayTwo = () => {
+    let today = new Date();
+    let soberdate = new Date(soberDate);
+    let rough = soberdate.getTime() - today.getTime();
+    let x = Math.floor((rough / (1000 * 3600 * 24)) * -1);
+    setDays(x);
+    setShowDaysTwo(true);
+    const confetti = new ConfettiGenerator(confettiSettings);
+    confetti.render();
+
+    setTimeout(() => {
+      confetti.clear();
+    }, 3500);
+  };
+
+  const handleInputDate = (e) => {
+    setSoberDate(e.target.value);
+    // let today = new Date();
+    // let soberdate = new Date(soberDate);
+    // let rough = soberdate.getTime() - today.getTime();
+    // let x = Math.floor((rough / (1000 * 3600 * 24)) * -1);
+    // console.log(x);
+    // setDays(x);
   };
 
   return (
@@ -46,12 +75,17 @@ export default function SobrietyCalculator() {
               </button>
             </div>
           ) : (
-            <div>
-              <span>Input Your Sobriety Date below</span>
-              <input type="date"></input>
+            <div id="calculator__sobriety-date">
+              <h5>Input your sobriety date below:</h5>
+              <input type="date" onChange={handleInputDate}></input>
+              <button id="calculator__button" onClick={handleDisplayTwo}>
+                {" "}
+                Click Here{" "}
+              </button>
             </div>
           )}
-          {showDays ? <div>You've been sober {days} days! Congratulations!!</div> : null}
+          {showDays ? <div>You've been sober {totalDays} days! Congratulations!!</div> : null}
+          {showDaysTwo ? <div>You've been sober {days} days! Congratulations!!</div> : null}
         </div>
       </div>
     </div>
