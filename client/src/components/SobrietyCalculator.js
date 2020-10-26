@@ -49,12 +49,6 @@ export default function SobrietyCalculator() {
 
   const handleInputDate = (e) => {
     setSoberDate(e.target.value);
-    // let today = new Date();
-    // let soberdate = new Date(soberDate);
-    // let rough = soberdate.getTime() - today.getTime();
-    // let x = Math.floor((rough / (1000 * 3600 * 24)) * -1);
-    // console.log(x);
-    // setDays(x);
   };
 
   return (
