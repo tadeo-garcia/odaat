@@ -29,7 +29,7 @@ export default function MapApi() {
   const dispatch = useDispatch();
   const [selected, setSelected] = useState(null);
   const [center, setCenter] = useState(null);
-  const [currentMeeting, setCurrentMeeting] = useState(null);
+  // const [currentMeeting, setCurrentMeeting] = useState(null);
   const meetings = useSelector((state) => state.meetings.meetings);
 
   const mapRef = useRef();
@@ -84,7 +84,7 @@ export default function MapApi() {
               position={{ lat: meeting.lat, lng: meeting.lng }}
               onClick={() => {
                 setSelected(meeting);
-                setCurrentMeeting(meeting);
+                // setCurrentMeeting(meeting);
               }}
             />
           ))}
@@ -94,7 +94,7 @@ export default function MapApi() {
               position={{ lat: selected.lat, lng: selected.lng }}
               onCloseClick={() => {
                 setSelected(null);
-                setCurrentMeeting(selected);
+                // setCurrentMeeting(selected);
               }}
             >
               <div>
