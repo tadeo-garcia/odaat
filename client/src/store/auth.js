@@ -1,11 +1,9 @@
 const axios = require("axios");
 
-let url;
+let baseUrl;
 
 if (process.env.NODE_ENV === "development") {
-  url = "http://localhost:3000";
-} else {
-  url = "https://odaat-app.herokuapp.com";
+  baseUrl = "http://localhost:3000";
 }
 
 const SET_MESSAGE = "auth/SET_MESSAGE";
@@ -139,7 +137,11 @@ export const updateProfilePicture = (file, currentUserId) => {
     let user = res.data.user;
     if (user) {
       dispatch(setUser(user));
-      window.location.href = `${url}/dashboard/profile`;
+      if (!baseUrl) {
+        baseUrl = "https://odaat-app.herokuapp.com";
+      }
+
+      window.location.href = `${baseUrl}/dashboard/profile`;
     }
     return res;
   };
@@ -159,7 +161,11 @@ export const updateBannerPicture = (file, currentUserId) => {
     const res = await axios.put("/api/images/banner_picture", formData, config);
     if (res.statusText) {
       dispatch(setUser(res.data.user));
-      window.location.href = `${url}/dashboard/profile`;
+      if (!baseUrl) {
+        baseUrl = "https://odaat-app.herokuapp.com";
+      }
+
+      window.location.href = `${baseUrl}/dashboard/profile`;
     }
     return res;
   };

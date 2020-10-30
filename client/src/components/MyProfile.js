@@ -8,7 +8,6 @@ import {
   getUserById,
 } from "../store/user";
 import { FollowerTable, FollowingTable } from "./FollowTables";
-import { baseUrl } from "../config";
 
 export default function Profile() {
   const currentUser = useSelector((state) => state.auth);
@@ -32,9 +31,10 @@ export default function Profile() {
   };
 
   if (!followers || !following || !currentUserUpdated) return null;
+
   return (
     <>
-      <div id="profile-container">
+      <div id="profile-container" className="profile-wrapper">
         <div id="profile-container__top">
           {currentUserUpdated.banner !== null ? (
             <div

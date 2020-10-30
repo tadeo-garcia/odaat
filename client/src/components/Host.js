@@ -163,7 +163,8 @@ export default function Host() {
               </div>
             </form>
             <div className="host-container__input-div">
-              <button className="host-container__button" onClick={(e) => handleCreateMeeting()}>
+              <button className="host-container__button" onClick={(e) => 
+                handleCreateMeeting()}>
                 host
               </button>
             </div>
