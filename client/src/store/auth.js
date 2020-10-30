@@ -111,7 +111,6 @@ export const updateUserProfile = (
       dispatch(setMessage(message));
     } else {
       dispatch(setMessage(message));
-      console.log(message);
       return res;
     }
     return res;
