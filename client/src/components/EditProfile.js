@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Redirect, useHistory } from "react-router-dom";
 import { updateUserProfile } from "../store/auth";
 
 export default function EditProfile() {
@@ -21,6 +22,7 @@ export default function EditProfile() {
   const [sponseeChange, setSponseeChange] = useState(null);
   const [submitted, setSubmitted] = useState(false);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleDisplaySD = () => {
     setDisplayChange(true);
@@ -41,7 +43,6 @@ export default function EditProfile() {
   };
 
   const handleSponsee = () => {
-    // setDisplayMessage(null);
     setSponseeChange(true);
     if (sponsee === false) {
       return setSponsee(true);
@@ -183,10 +184,8 @@ export default function EditProfile() {
                 className="edit-container__button"
                 onClick={() => {
                   handleSubmit();
-                  // console.log(submitted);
-                  // console.log("inthemiddle");
                   setSubmitted(true);
-                  // console.log(submitted);
+                  return history.push("/Dashboard/profile");
                 }}
               >
                 submit update

@@ -10,4 +10,8 @@ One Day At A Time is an original social media app that is catered towards member
 - Members can host, edit and delete AA meetings.
 - Customizable profiles with AWS3 image hosting
 - Follow and unfollow other users
+- Sobriety calculator that calculates the users total amount of days being sober, based on their profile and if they have not declared a date there is an optional rendering that allows them to pick a date from a calendar input.
+
+# Future Features
+
 - Messaging system between users (to be implemented as of 10/29/20)

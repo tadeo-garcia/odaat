@@ -1,3 +1,5 @@
+import { baseUrl } from "../config";
+
 const axios = require("axios");
 
 const SET_MESSAGE = "auth/SET_MESSAGE";
@@ -129,8 +131,11 @@ export const updateProfilePicture = (file, currentUserId) => {
   };
   return async (dispatch) => {
     const res = await axios.put("/api/images/profile_picture", formData, config);
-    if (res.statusText) {
-      dispatch(setUser(res.data.user));
+    let user = res.data.user;
+    console.log(user);
+    if (user) {
+      dispatch(setUser(user));
+      window.location.href = `${baseUrl}/dashboard/profile`;
     }
     return res;
   };
@@ -150,6 +155,7 @@ export const updateBannerPicture = (file, currentUserId) => {
     const res = await axios.put("/api/images/banner_picture", formData, config);
     if (res.statusText) {
       dispatch(setUser(res.data.user));
+      window.location.href = `${baseUrl}/dashboard/profile`;
     }
     return res;
   };

@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import { updateProfilePicture, updateBannerPicture } from "../store/auth";
+import { getUserById } from "../store/user";
 
 export default function UploadImage() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [profileImage, setProfileImage] = useState(null);
   const [bannerImage, setBannerImage] = useState(null);
   const currentUserId = useSelector((state) => state.auth.id);
@@ -13,13 +15,11 @@ export default function UploadImage() {
     if (profileImage !== null && bannerImage !== null) {
       dispatch(updateProfilePicture(profileImage, currentUserId));
       dispatch(updateBannerPicture(bannerImage, currentUserId));
-      return <Redirect to="/dashboard/profile"></Redirect>;
     } else if (profileImage === null && bannerImage !== null) {
       dispatch(updateBannerPicture(bannerImage, currentUserId));
-      return <Redirect to="/dashboard/profile"></Redirect>;
     } else if (profileImage !== null && bannerImage === null) {
       dispatch(updateProfilePicture(profileImage, currentUserId));
-      return <Redirect to="/dashboard/profile"></Redirect>;
+      // dispatch(getUserById(currentUserId));
     } else {
       return alert("You must upload a file before pressing submit!");
     }
@@ -42,17 +42,30 @@ export default function UploadImage() {
       <div className="upload__image">
         <span id="upload__span">Change Profile Picture</span>
         <input id="upload__input" type="file" onChange={handleProfileImage} />
-        <button id="upload__button" onClick={handlePostPicture}>
+        <button
+          id="upload__button"
+          onClick={() => {
+            handlePostPicture();
+            // return history.replace("/Dashboard/profile");
+          }}
+        >
           Submit
         </button>
       </div>
       <div className="upload__image">
         <span id="upload__span"> Change Banner Picture</span>
         <input type="file" id="upload__input" onChange={handleBannerImage} />
-        <button id="upload__button" onClick={handlePostPicture}>
+        <button
+          id="upload__button"
+          onClick={() => {
+            handlePostPicture();
+            // return history.replace("/Dashboard/profile");
+          }}
+        >
           Submit
         </button>
       </div>
+      {/* {upload ? <Redirect to="/dashboard/profile" /> : null} */}
     </div>
   );
 }
