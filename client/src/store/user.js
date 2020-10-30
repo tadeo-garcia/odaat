@@ -80,8 +80,6 @@ export const followUser = (currentUserId, profileId) => {
 
 export const unfollowUser = (currentUserId, profileId) => {
   return async (dispatch) => {
-    console.log(currentUserId);
-    console.log(profileId);
     const res = await fetch(
       `/api/user/unfollow_by_id?current_user_id=${currentUserId}&profile_id=${profileId}`,
       { method: "GET" }

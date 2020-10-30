@@ -32,7 +32,6 @@ export default function Profile() {
   };
 
   if (!followers || !following || !currentUserUpdated) return null;
-  console.log(baseUrl);
   return (
     <>
       <div id="profile-container">

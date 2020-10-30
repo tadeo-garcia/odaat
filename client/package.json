@@ -11,6 +11,7 @@
     "axios": "^0.20.0",
     "confetti-js": "0.0.18",
     "date-fns": "^2.16.1",
+    "dotenv": "^8.2.0",
     "http-proxy-middleware": "^1.0.5",
     "react": "^16.13.1",
     "react-async": "^10.0.1",
