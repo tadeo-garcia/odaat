@@ -155,6 +155,7 @@ export const updateBannerPicture = (file, currentUserId) => {
     const res = await axios.put("/api/images/banner_picture", formData, config);
     if (res.statusText) {
       dispatch(setUser(res.data.user));
+      console.log(baseUrl);
       window.location.href = `${baseUrl}/dashboard/profile`;
     }
     return res;

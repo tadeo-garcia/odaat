@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect, useHistory } from "react-router-dom";
 import { updateProfilePicture, updateBannerPicture } from "../store/auth";
-import { getUserById } from "../store/user";
 
 export default function UploadImage() {
   const dispatch = useDispatch();
-  const history = useHistory();
+
   const [profileImage, setProfileImage] = useState(null);
   const [bannerImage, setBannerImage] = useState(null);
   const currentUserId = useSelector((state) => state.auth.id);
@@ -19,7 +17,6 @@ export default function UploadImage() {
       dispatch(updateBannerPicture(bannerImage, currentUserId));
     } else if (profileImage !== null && bannerImage === null) {
       dispatch(updateProfilePicture(profileImage, currentUserId));
-      // dispatch(getUserById(currentUserId));
     } else {
       return alert("You must upload a file before pressing submit!");
     }
@@ -46,7 +43,6 @@ export default function UploadImage() {
           id="upload__button"
           onClick={() => {
             handlePostPicture();
-            // return history.replace("/Dashboard/profile");
           }}
         >
           Submit
@@ -59,7 +55,6 @@ export default function UploadImage() {
           id="upload__button"
           onClick={() => {
             handlePostPicture();
-            // return history.replace("/Dashboard/profile");
           }}
         >
           Submit
