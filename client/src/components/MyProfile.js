@@ -50,7 +50,7 @@ export default function Profile() {
         <div id="profile-container__middle">
           <div id="profile-container__middle-upper">
             <div id="profile-container__user-info">
-              {currentUser.picture ? (
+              {currentUserUpdated.picture ? (
                 <div className="profile-container__pic">
                   <div
                     id="profile-container__avatar"
