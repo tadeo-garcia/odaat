@@ -15,7 +15,7 @@ Users can host or browse meetings, official and non-official, through a Google M
 
 It also has the functionality of other traditional social media apps, like customizing your profile picture or banner, and following other users.
 
-<!-- Homepage gif -->
+![Homepage Demo](./client/public/homepage.gif)
 
 
 # Application Architecture
@@ -30,18 +30,47 @@ Additionally to deploy the whole app, front and back-ends, you need to have an u
 # Front-end Overview
 
 ## React
-React components are the key foundation to the app's minimalistic feel while still providing the user all the functionality of a traditional social media app. Components allow for 'DRY' code, and give the ability to render similar components multiple times with only the content being what is changed throughout. The following code snippet shows how a list of meetings that are avaible, is rendered as soon as you log in to the site.
+React components are the key foundation to the app's minimalistic feel while still providing the user all the functionality of a traditional social media app. Components allow for 'DRY' code, and give the ability to render similar components multiple times with only the content being what is changed throughout. 
 
-<!-- meetings code snippet -->
-
+The following code snippet shows how a list of meetings that are avaible, is rendered as soon as you log in to the site.
+```
+<div id="meetings-container">
+        <div id="meetings-container__table">
+          {meetings.map((meeting, idx) => {
+            let meetClass = "meetings-container__meeting";
+            if (idx % 2 === 0) {
+              meetClass = "meetings-container__meeting2";
+            }
+            return (
+              <div key={meeting.id} id={meetClass}>
+                <div
+                  id="meetings-container__title"
+                  className="meetings-container__text"
+                  style={{ marginLeft: "25px" }}
+                >
+                  {meeting.title}
+                </div>
+                <div className="meetings-container__text">{meeting.date}</div>
+                <div className="meetings-container__text">{meeting.time}</div>
+                <div className="meetings-container__text">{meeting.location}</div>
+                <div className="meetings-container__link">
+                  <Link to={`/Dashboard/meetings/${meeting.id}`} onClick={load(meeting.id)}>
+                    <i className="fa fa-3x fa-arrow-circle-right" />
+                  </Link>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+```
 ## Redux
 Redux, react-redux, and redux-thunk work together to manage the application's state. Through the state the app can maintain a current list of meetings or combination of meetings depending on which profile you are viewing. This allows for fast rendering of meeting markers on the Google map.
 
-<!-- Map gif -->
+![Meetings Gif](./client/public/meetings.gif)
 
 Additionally, in the Sobriety Calculator component there is a react-confetti module that creates an animation whenever the user's sobriety date is calculated!
 
-<!-- confetti gif -->
+![Calculator Gif](./client/public/calculator.gif)
 
 Redux also stores and sets the information of the user that is currently logged in. This allows for different functionality across the site only if the user is authenticated. By storing the user's information in state, they have access to their meetings, followers and following lists. They can create or edit meetings, as well as their profiles which has information that they can choose to be public or private to others.
 
@@ -59,4 +88,4 @@ I have many, many features that I would like to work on in the future but I have
 If you made it this far, thank you so much for reading! I had a great time working on this project and I hope to continue to work on it until all of the features have been added!
 
 Credits:
-  Thank you [Soon-mi Sugihara](https://github.com/ssoonmi/) and [Steven Tegnelia](https://github.com/uribgp) for all of your help and guidance throughout this process, could not have done it without you guys!
+  Thank you [Soon-mi](https://github.com/ssoonmi/) and [Steven](https://github.com/uribgp) for all of your help and guidance throughout this process, could not have done it without you guys!
