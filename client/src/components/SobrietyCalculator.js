@@ -12,7 +12,6 @@ export default function SobrietyCalculator() {
   let soberdate = new Date(sobrietyDate);
   let rough = soberdate.getTime() - today.getTime();
   let totalDays = Math.floor((rough / (1000 * 3600 * 24)) * -1);
-  // setDays(Math.floor((rough / (1000 * 3600 * 24)) * -1));
 
   const confettiSettings = {
     target: "confetti-canvas",

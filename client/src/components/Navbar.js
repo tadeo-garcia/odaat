@@ -4,7 +4,6 @@ import { NavLink, Redirect } from "react-router-dom";
 import { logout } from "../store/auth";
 
 function Navbar() {
-  // const currentUserId = useSelector((state) => state.auth.id);
   const dispatch = useDispatch();
 
   const handleLogout = (e) => {

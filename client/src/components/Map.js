@@ -84,7 +84,6 @@ export default function MapApi() {
               position={{ lat: meeting.lat, lng: meeting.lng }}
               onClick={() => {
                 setSelected(meeting);
-                // setCurrentMeeting(meeting);
               }}
             />
           ))}
@@ -94,7 +93,6 @@ export default function MapApi() {
               position={{ lat: selected.lat, lng: selected.lng }}
               onCloseClick={() => {
                 setSelected(null);
-                // setCurrentMeeting(selected);
               }}
             >
               <div>
