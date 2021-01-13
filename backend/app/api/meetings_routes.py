@@ -24,7 +24,6 @@ def get_meetings_by_host_id():
     hostId = request.args.get('id', None)
     meetings = Meeting.query.filter(Meeting.host_id == hostId).all()
     data = [meeting.to_dict() for meeting in meetings]
-    print(data)
     return {"meetings": data}, 200
 
 
