@@ -14,7 +14,7 @@ function Footer() {
         </div>
       </div>
       <div id='footer-container__middle'>
-        <a id='footer-container__link' href='https://github.com/tadeo-garcia/odaat/branches' >
+        <a id='footer-container__link' href='https://github.com/tadeo-garcia/odaat' >
           <i className="fa fa-2x fa-github" aria-hidden="true"></i>
         </a>
     </div>
